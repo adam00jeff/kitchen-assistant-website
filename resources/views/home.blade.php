@@ -38,8 +38,8 @@
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="text-center pt-2 sm:justify-start sm:pt-0">
-                    Kitchen Assistant<br>
-                    Website Logo
+                    {{--Kitchen Assistant<br>--}}
+                    <img src="{{ url('storage/images/logo-draft-1.jpg') }}" alt="" title="" />
                 </div>
                 <div class="text-center mt-4 font-semibold text-xl" >
                     <h1>Kitchen Assistant Website</h1>
