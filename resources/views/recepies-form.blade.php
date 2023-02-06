@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-center text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ Auth::user()->name }}'s stock
+            {{ Auth::user()->name }}'s recepies
         </h2>
     </x-slot>
-    <div class="py-12">
 
-    @include('layouts.stock_navigation')
+    <div class="py-12">
+    @include('layouts.recepie_navigation')
     <div class="flex justify-center items-center p-2">
         <!-- if to catch errors and report to user -->
         @if ($errors->any())

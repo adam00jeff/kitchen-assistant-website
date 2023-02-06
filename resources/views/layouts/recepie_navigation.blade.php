@@ -4,10 +4,10 @@
             <!-- Logo -->
             <!-- Navigation Links -->
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')">
+                <x-nav-link :href="route('recepies')" :active="request()->routeIs('recepies')">
                     {{ __('All Recepies') }}
                 </x-nav-link>
-                <x-nav-link :href="route('recepies')" :active="request()->routeIs('recepies')">
+                <x-nav-link :href="route('create_recepies')" :active="request()->routeIs('create_recepies')">
                     {{ __('Add Recepie') }}
                 </x-nav-link>
                 <x-nav-link :href="route('stock')" :active="request()->routeIs('stock')">

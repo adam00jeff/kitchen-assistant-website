@@ -7,7 +7,7 @@
                 <x-nav-link :href="route('stock')" :active="request()->routeIs('stock')">
                     {{ __('All Stock') }}
                 </x-nav-link>
-                <x-nav-link :href="route('create')" :active="request()->routeIs('create')">
+                <x-nav-link :href="route('create_stock')" :active="request()->routeIs('create_stock')">
                     {{ __('Add Stock') }}
                 </x-nav-link>
                 <x-nav-link :href="route('stock')" {{--:active="request()->routeIs('stock')"--}}>

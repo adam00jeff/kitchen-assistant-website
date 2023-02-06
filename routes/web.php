@@ -26,8 +26,8 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/stock',[\App\Http\Controllers\StocksController::class, 'stock_index'])->name('stock');
-    Route::get('/stocks/create', [\App\Http\Controllers\StocksController::class, 'create'])->name('create');
-    Route::post('/stock', [\App\Http\Controllers\StocksController::class, 'store'])->name('store');
+    Route::get('/stocks/create', [\App\Http\Controllers\StocksController::class, 'create'])->name('create_stock');
+    Route::post('/stock', [\App\Http\Controllers\StocksController::class, 'store'])->name('store_stock');
     Route::get('/recepies',function(){return view('recepies');})->name('recepies');
 });
 
