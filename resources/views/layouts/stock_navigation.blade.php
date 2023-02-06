@@ -4,16 +4,16 @@
             <!-- Logo -->
             <!-- Navigation Links -->
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')">
+                <x-nav-link :href="route('stock')" :active="request()->routeIs('stock')">
                     {{ __('All Stock') }}
                 </x-nav-link>
-                <x-nav-link :href="route('recepies')" :active="request()->routeIs('recepies')">
+                <x-nav-link :href="route('create')" :active="request()->routeIs('create')">
                     {{ __('Add Stock') }}
                 </x-nav-link>
-                <x-nav-link :href="route('stock')" :active="request()->routeIs('stock')">
+                <x-nav-link :href="route('stock')" {{--:active="request()->routeIs('stock')"--}}>
                     {{ __('Stock Info') }}
                 </x-nav-link>
-                <x-nav-link :href="route('stock')" :active="request()->routeIs('stock')">
+                <x-nav-link :href="route('stock')" {{--:active="request()->routeIs('stock')"--}}>
                     {{ __('Other') }}
                 </x-nav-link>
             </div>

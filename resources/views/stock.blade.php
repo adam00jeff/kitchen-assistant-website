@@ -11,8 +11,30 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     Display a list of stock from the 'stock' table
-                </div>
+                    <br>
+                    <div>
+                        <table>
+                            <tr>
+                                <th>Stock ID</th>
+                                <th>Name</th>
+                                <th>Supplier</th>
+                                <th>Unit</th>
+                                <th>Info</th>
+                                <th>Allergens</th>
+                            </tr>
+                        @foreach($stocks as $stock)
+                            <tr>
+                                <td>{{$stock['id']}}</td>
+                                <td>{{$stock['name']}}</td>
+                                <td>{{ $stock['supplier'] }}</td>
+                                <td>{{ $stock['info'] }}</td>
+                                <td>{{ $stock['allergens'] }}</td>
+                            </tr>
+                        @endforeach
+                        </table>
+                    </div>
 
+                </div>
                 <x-nav-link :href="route('welcome')" :active="request()->routeIs('back')">
                     {{ __('Back') }}
                 </x-nav-link>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +24,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('welcome');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/stock',function(){return view('stock');})->name('stock');
+
+    Route::get('/stock',[\App\Http\Controllers\StocksController::class, 'stock_index'])->name('stock');
+    Route::get('/stocks/create', [\App\Http\Controllers\StocksController::class, 'create'])->name('create');
+    Route::post('/stock', [\App\Http\Controllers\StocksController::class, 'store'])->name('store');
     Route::get('/recepies',function(){return view('recepies');})->name('recepies');
 });
 
