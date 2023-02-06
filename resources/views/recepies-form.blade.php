@@ -19,29 +19,22 @@
             </div>
         @endif
         <!-- main form for new product -->
-        <form method="POST" action="/stock" class="" enctype="multipart/form-data">
+        <form method="POST" action="/recepies" class="" enctype="multipart/form-data">
             @csrf
             <div class="">
                 <p class="text-gray-700 text-sm">
                     <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                           id="name" name="name" type="text" placeholder="stock name">
+                           id="name" name="name" type="text" placeholder="recepie name">
                 </p>
                 <p class="text-gray-700 mt-2 text-sm">
                     <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                           id="supplier" name="supplier" type="text" placeholder="stock supplier">
+                           id="ingredients" name="ingredients" type="text" placeholder="ingredients">
                 </p>
                 <p class="text-gray-500 text-base mt-2">
                     <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                           id="unit" name="unit" type="text" placeholder="unit">
+                           id="rmethod" name="rmethod" type="text" placeholder="method">
                 </p>
-                <p class="text-gray-500 text-base mt-2">
-                    <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                           id="info" name="info" type="text" placeholder="info">
-                </p>
-                <p class="text-gray-500 text-base mt-2">
-                    <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                           id="allergens" name="allergens" type="text" placeholder="allergens">
-                </p>
+
 
                 <div class="flex items-center justify-end mt-4 top-auto">
                     <button type="submit" class="bg-gray-800 text-white text-xs px-2 py-2 rounded-md mb-2 mr-2 uppercase hover:underline">

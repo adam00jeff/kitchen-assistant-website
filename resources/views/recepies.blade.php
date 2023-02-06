@@ -10,7 +10,35 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                Display a list of recepies from the 'recepies' table
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                            <div class="p-6 text-gray-900 dark:text-gray-100">
+                                <div>
+                                    <table>
+                                        <tr>
+                                            <th>Recepie ID</th>
+                                            <th>Name</th>
+                                            <th>Ingredients</th>
+                                            <th>Method</th>
+                                        </tr>
+                                        @foreach($recepies as $recepie)
+                                            <tr>
+                                                <td>{{$recepie['id']}}</td>
+                                                <td>{{$recepie['name']}}</td>
+                                                <td>{{ $recepie['ingredients'] }}</td>
+                                                <td>{{ $recepie['method'] }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                </div>
+
+                            </div>
+                            <x-nav-link :href="route('recepies')" :active="request()->routeIs('recepies')">
+                                {{ __('Back') }}
+                            </x-nav-link>
+                        </div>
+                    </div>
+
 
 
                 </div>
