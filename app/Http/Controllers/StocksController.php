@@ -22,6 +22,12 @@ class StocksController extends Controller
     }
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'supplier' => 'required|numeric',//supplier ID for now, to be replaced with plain text entry
+            'unit'=>'required|max:50',
+            'allergens'=>'required|max:500'
+        ]);
 
         $stock = new Stock;
         $stock->name = $request->name;

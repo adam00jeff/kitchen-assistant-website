@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="flex flex-col justify-center items-center p-2">
+    <div class="flex justify-center items-center p-2">
         <!-- if to catch errors and report to user -->
         @if ($errors->any())
             <div class="bg-red-600 border-solid rounded-md border-2 border-red-700">
@@ -13,7 +13,7 @@
         <!-- main form for new product -->
         <form method="POST" action="/stock" class="" enctype="multipart/form-data">
             @csrf
-            <div class="p-2 m-2 rounded-lg shadow-lg bg-gray-50 border-2 border-blue-900 max-w-md">
+            <div class="">
                 <p class="text-gray-700 text-sm">
                     <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
                            id="name" name="name" type="text" placeholder="stock name">
