@@ -28,7 +28,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/stock',[\App\Http\Controllers\StocksController::class, 'stock_index'])->name('stock');
     Route::get('/stocks/create', [\App\Http\Controllers\StocksController::class, 'create'])->name('create_stock');
     Route::post('/stock', [\App\Http\Controllers\StocksController::class, 'store'])->name('store_stock');
-    Route::get('/recepies',function(){return view('recepies');})->name('recepies');
+
+    Route::get('/recepies',[\App\Http\Controllers\RecepiesController::class, 'recepie_index'])->name('recepies');
+    Route::get('/recepies/create',[\App\Http\Controllers\RecepiesController::class, 'create'])->name('create_recepies');
+    Route::post('/recepies', [\App\Http\Controllers\RecepiesController::class, 'store'])->name('store_recepies');
 });
 
 
