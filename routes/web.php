@@ -32,6 +32,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/recepies',[\App\Http\Controllers\RecepiesController::class, 'recepie_index'])->name('recepies');
     Route::get('/recepies/create',[\App\Http\Controllers\RecepiesController::class, 'create'])->name('create_recepies');
     Route::post('/recepies', [\App\Http\Controllers\RecepiesController::class, 'store'])->name('store_recepies');
+
+    Route::get('/documents',[\App\Http\Controllers\DocumentsController::class, 'documents_index'])->name('documents');
+    Route::get('/documents/create', [\App\Http\Controllers\DocumentsController::class, 'create'])->name('create_document');
+    Route::post('/documents', [\App\Http\Controllers\DocumentsController::class, 'store'])->name('store_document');
 });
 
 
