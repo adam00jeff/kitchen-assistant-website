@@ -6,6 +6,7 @@ use App\Models\Document;
 use App\Http\Requests\StoreDocumentRequest;
 use App\Http\Requests\UpdateDocumentRequest;
 
+
 class DocumentController extends Controller
 {
     /**
@@ -13,9 +14,10 @@ class DocumentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function documents_index()
     {
-        //
+        $documents = Document::all();
+        return view('documents',['documents'=>$documents]);
     }
 
     /**
@@ -23,7 +25,7 @@ class DocumentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create_document()
     {
         //
     }
@@ -34,7 +36,7 @@ class DocumentController extends Controller
      * @param  \App\Http\Requests\StoreDocumentRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDocumentRequest $request)
+    public function store_document(StoreDocumentRequest $request)
     {
         //
     }
