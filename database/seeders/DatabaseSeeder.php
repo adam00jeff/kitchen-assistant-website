@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
 
 
         \App\Models\User::factory(5)->create();
-        \App\Models\Stock::factory(10)->state(new Sequence(
+        \App\Models\Stock::factory(50)->state(new Sequence(
             ['user_id'=>1],
             ['user_id'=>2],
             ['user_id'=>3],
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             ['user_id'=>5],
 
         ))->create();
-        \App\Models\Recepie::factory(10)->state(new Sequence(
+        \App\Models\Recepie::factory(50)->state(new Sequence(
             ['user_id'=>1],
             ['user_id'=>2],
             ['user_id'=>3],
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
             ['user_id'=>5],
 
         ))->create();
-        \App\Models\Document::factory(10)->state(new Sequence(
+        \App\Models\Document::factory(50)->state(new Sequence(
             ['renewal_period'=>'annual'],
             ['renewal_period'=>'quarterly']
         ))->state(new Sequence(
