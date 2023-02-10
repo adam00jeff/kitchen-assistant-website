@@ -19,7 +19,8 @@ class RecepieFactory extends Factory
         return [
             'name' => $this->faker->word(),
             'ingredients' => $this->faker->words(6,true),
-            'method' => $this->faker->words(80,true)
+            'method' => $this->faker->words(80,true),
+            'user_id'=> rand(1,10)
         ];
     }
 
