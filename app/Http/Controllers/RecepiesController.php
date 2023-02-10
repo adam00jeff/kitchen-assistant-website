@@ -11,7 +11,8 @@ class RecepiesController extends Controller
 {
     public function recepie_index()
     {
-        $recepies = Recepie::all();
+        $id = Auth::id();
+        $recepies = Recepie::all()->where('id',$id);
         return view('recepies',['recepies'=>$recepies]);
     }
 

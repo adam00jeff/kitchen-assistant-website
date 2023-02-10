@@ -13,7 +13,8 @@ class StocksController extends Controller
 {
     public function stock_index()
     {
-        $stocks = Stock::all();
+        $id = Auth::id();
+        $stocks = Stock::all()->where('id',$id);
         return view('stock',['stocks'=>$stocks]);
     }
 

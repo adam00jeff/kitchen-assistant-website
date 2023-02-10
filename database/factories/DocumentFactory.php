@@ -23,7 +23,7 @@ class DocumentFactory extends Factory
             'file_location' => 'a_path_to_the_file.file',
             'doc_date' =>$this->faker->date,
             'renewal_period'=>$this->faker->word(),
-            'user_id'=> rand(1,10)/*state(new Sequence(
+            'user_id'=> rand(1,5)/*state(new Sequence(
                 ['annual'],['quarterly'],['bi-annual']
             ))*/
         ];
