@@ -18,7 +18,7 @@ class DocumentController extends Controller
     public function documents_index()
     {
         $id = Auth::id();
-        $documents = Document::all()->where('id',$id);
+        $documents = Document::all()->where('user_id',$id);
         return view('documents',['documents'=>$documents]);
     }
 

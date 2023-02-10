@@ -14,7 +14,7 @@ class StocksController extends Controller
     public function stock_index()
     {
         $id = Auth::id();
-        $stocks = Stock::all()->where('id',$id);
+        $stocks = Stock::all()->where('user_id',$id);
         return view('stock',['stocks'=>$stocks]);
     }
 
