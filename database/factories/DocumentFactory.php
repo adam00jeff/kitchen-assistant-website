@@ -26,6 +26,8 @@ class DocumentFactory extends Factory
             'user_id'=> rand(1,5)/*state(new Sequence(
                 ['annual'],['quarterly'],['bi-annual']
             ))*/
+            ,
+            'business_id'=> rand(1,5)
         ];
     }
 }

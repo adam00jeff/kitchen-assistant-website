@@ -22,7 +22,8 @@ class StockFactory extends Factory
         'unit' => $this->faker->word(),
         'info' => $this->faker->words(6,true),
         'allergens' => $this->faker->words(5, true),
-            'user_id'=> rand(1,5)
+            'user_id'=> rand(1,5),
+            'business_id'=> rand(1,5)
         ];
     }
 }

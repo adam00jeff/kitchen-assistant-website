@@ -15,15 +15,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(BusinessSeeder::class);
+        \App\Models\Business::factory(5)->state(new Sequence(
+            ['id'=>2],
+            ['id'=>3],
+            ['id'=>4],
+            ['id'=>5],
+            ['id'=>6],
+
+        ))->create();
         $this->call(UserSeeder::class);
         $this->call(StockSeeder::class);
         $this->call(RecepieSeeder::class);
         $this->call(DocumentSeeder::class);
-        $this->call(BusinessSeeder::class);
 
 
-        \App\Models\User::factory(5)->create();
-        \App\Models\Business::factory(5)->create();
+
+        \App\Models\User::factory(5)->state(new Sequence(
+            ['business_id'=>2],
+            ['business_id'=>3],
+            ['business_id'=>4],
+            ['business_id'=>5],
+            ['business_id'=>6],
+
+        ))->create();
+
         \App\Models\Stock::factory(50)->state(new Sequence(
             ['user_id'=>1],
             ['user_id'=>2],
