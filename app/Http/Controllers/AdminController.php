@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\User;
+use App\Models\Business;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -13,8 +16,13 @@ class AdminController extends Controller
      */
     public function index()
     {
-
-        return view('admin_panel');
+        $id = Auth::id();
+        $businesses = Business::all();
+        $users = User::all();
+        return view('admin_panel',[
+            'businesses'=>$businesses,
+            'users'=>$users
+        ]);
 
     }
 }
