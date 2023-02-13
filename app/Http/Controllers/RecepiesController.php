@@ -21,7 +21,7 @@ class RecepiesController extends Controller
         return view('recepies-form');
     }
     public function store(Request $request)
-    {
+    {        $busid = Auth::user()->business_id;
         $id = Auth::id();
         $validated = $request->validate([
             'name' => 'required|max:255',
@@ -34,6 +34,7 @@ class RecepiesController extends Controller
         $recepie->ingredients = $request->ingredients;
         $recepie->method = $request->rmethod;
         $recepie->user_id = $id;
+        $recepie->business_id = $busid;
         $recepie->save();
         return response()->json(["msg" => "success"]);
     }

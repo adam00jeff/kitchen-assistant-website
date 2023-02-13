@@ -40,6 +40,7 @@ class DocumentController extends Controller
      */
     public function store_document(StoreDocumentRequest $request)
     {
+        $busid = Auth::user()->business_id;
         $id = Auth::id();
         /*        $validated = $request->validate([
                     'name' => 'required|max:255',
@@ -55,6 +56,7 @@ class DocumentController extends Controller
         $document->doc_date = $request->doc_date;
         $document->renewal_period = $request->renewal_period;
         $document->user_id = $id;
+        $document->business_id = $busid;
         $document->save();
         return response()->json(["msg" => "success"]);
 
