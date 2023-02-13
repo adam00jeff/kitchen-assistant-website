@@ -23,6 +23,11 @@ Route::get('/dashboard', function () {
     return view('welcome');
 })->middleware(['auth', 'verified'])->name('welcome');
 
+Route::middleware(['auth', 'checkrole:admin'])->group(function (){
+    Route::get('/admin_panel',[\App\Http\Controllers\AdminController::class, 'index'])->name('admin_panel');
+
+});
+
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/stock',[\App\Http\Controllers\StocksController::class, 'stock_index'])->name('stock');
@@ -37,8 +42,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/documents/create', [\App\Http\Controllers\DocumentController::class, 'create_document'])->name('create_document');
     Route::post('/documents', [\App\Http\Controllers\DocumentController::class, 'store_document'])->name('store_document');
 });
-
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
