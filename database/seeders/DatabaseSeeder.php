@@ -19,9 +19,11 @@ class DatabaseSeeder extends Seeder
         $this->call(StockSeeder::class);
         $this->call(RecepieSeeder::class);
         $this->call(DocumentSeeder::class);
+        $this->call(BusinessSeeder::class);
 
 
         \App\Models\User::factory(5)->create();
+        \App\Models\Business::factory(5)->create();
         \App\Models\Stock::factory(50)->state(new Sequence(
             ['user_id'=>1],
             ['user_id'=>2],
