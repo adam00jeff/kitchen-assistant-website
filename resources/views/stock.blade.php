@@ -11,26 +11,7 @@
             <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div>
-                        <table>
-                            <tr>
-                                <th>Stock ID</th>
-                                <th>Name</th>
-                                <th>Supplier</th>
-                                <th>Unit</th>
-                                <th>Info</th>
-                                <th>Allergens</th>
-                            </tr>
-                        @foreach($stocks as $stock)
-                            <tr>
-                                <td>{{$stock['id']}}</td>
-                                <td>{{$stock['name']}}</td>
-                                <td>{{$stock['supplier'] }}</td>
-                                <td>{{$stock['unit'] }}</td>
-                                <td>{{$stock['info']}}</td>
-                                <td>{{$stock['allergens']}}</td>
-                            </tr>
-                        @endforeach
-                        </table>
+                        <x-showstock :stocks="$stocks"/>
                     </div>
 
                 </div>

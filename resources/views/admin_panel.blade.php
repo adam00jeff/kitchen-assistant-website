@@ -16,6 +16,15 @@
                         <br>
                         All Users
                         <x-showusers :users="$users"/>
+                        <br>
+                        All Recepies
+                        <x-showrecepies :recepies="$recepies"/>
+                        <br>
+                        All Stocks
+                        <x-showstock :stocks="$stocks"/>
+                        <br>
+                        All Documents
+                       <x-showdocuments :documents="$documents"/>
                     </div>
                 </div>
             </div>
