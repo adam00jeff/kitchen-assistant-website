@@ -19,7 +19,7 @@
             </div>
         @endif
         <!-- main form for new product -->
-        <form method="POST" action="/stock" class="" enctype="multipart/form-data">
+        <form method="post" action="/stock/store" class="" enctype="multipart/form-data">
             @csrf
             <div class="">
                 <p class="text-gray-700 text-sm">
@@ -45,7 +45,7 @@
 
                 <div class="flex items-center justify-end mt-4 top-auto">
                     <button type="submit" class="bg-gray-800 text-white text-xs px-2 py-2 rounded-md mb-2 mr-2 uppercase hover:underline">
-                        Add New
+                        Check Stock
                     </button>
                 </div>
             </div>
