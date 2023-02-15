@@ -32,20 +32,18 @@ class StocksController extends Controller
         $appid = "9787f4f0";
         $appkey = "5b11621e62674c09602b3d94977c8172";
         $endpoint = "https://trackapi.nutritionix.com/v2/natural/nutrients";
-
-        $response = Http::withHeaders([
-   /*         "Content-Type:application/json",*/
-            "x-app-id"=>$appid,
-            "x-app-key"=>$appkey
-        ])->post('https://trackapi.nutritionix.com/v2/natural/nutrients',[
-            "query" => "1kg Bramley apples,
+        $query = "1kg Bramley apples,
                         140g golden caster sugar,
                         ½ tsp cinnamon,
-                        3 tbsp flour",
+                        3 tbsp flour";
+
+        $response = Http::withHeaders([
+            "x-app-id"=>$appid,
+            "x-app-key"=>$appkey
+        ])->post($endpoint,[
+            "query" => $query,
             "timezone" => "US/Eastern"
-        ])/*->collect()*/;
-/*        dd($response);*/
-/*        return view('stock-confirm');*/
+        ]);
         $data = $response;
         return view('stock-confirm', ['data' => $data]);
     }
