@@ -5,6 +5,30 @@
         </h2>
     </x-slot>
 
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
+                Nutritionix API response<br>
+                {{--      {{$data}}<br>--}}
+                <?php
+                /*        $keys = array_keys(json_decode($data, true));*/
+                $keys = json_decode($data,true);
+                /*print_r($keys);*/
+                ?>
+
+                @foreach($keys['foods'] as $i)
+                    {{$i['food_name']}}<br>
+                @endforeach
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+{{--
     <div class="py-12">
         @include('layouts.stock_navigation')
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -51,4 +75,44 @@
             </div>
         </div>
     </div>
+--}}
+{{--/*<?php
+
+$appid = "9787f4f0";
+$appkey = "5b11621e62674c09602b3d94977c8172";
+$endpoint = "https://trackapi.nutritionix.com/v2/natural/nutrients";
+
+function sendRequest( $endpoint, $appkey,$appid)
+{
+    $curl = curl_init($endpoint);
+    curl_setopt($curl, CURLOPT_URL, $endpoint);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $headers = array(
+        "Content-Type:application/json",
+        "x-app-id:".$appid,
+        "x-app-key:".$appkey
+    );
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+    $data = array(
+        "query" => "1kg Bramley apples,
+140g golden caster sugar,
+½ tsp cinnamon,
+3 tbsp flour",
+        "timezone" => "US/Eastern"
+
+    );
+    $testdata = json_encode($data);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $testdata);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $resp = curl_exec($curl);
+    curl_close($curl);
+    return $resp;
+
+
+}
+$response = sendRequest($appkey, $endpoint, $appkey,$appid);
+echo "Response from API: " . $response . "\r\n";
+
+
+?>*/--}}
 </x-app-layout>
