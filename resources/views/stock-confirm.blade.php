@@ -15,66 +15,96 @@
                 /*        $keys = array_keys(json_decode($data, true));*/
                 $keys = json_decode($data,true);
                 /*print_r($keys);*/
+
+                $data = session()->all();
+/*                print_r($data);*/
                 ?>
 
                 @foreach($keys['foods'] as $i)
-                    {{$i['food_name']}}<br>
-                @endforeach
+                   food: {{$i['food_name']}}<br>
+                    brand name :{{$i['brand_name']}}<br>
+                    serving size :{{$i['serving_qty']}}<br>
+                    serving unit: {{$i['serving_unit']}}<br>
+                    serving callories :{{$i['nf_calories']}}<br>
+                    @foreach($i['full_nutrients'] as $j)
+                    {{$j['attr_id'] }} ::: {{$j['value'] }}<br>
+
+                    @endforeach
 
 
-            </div>
-        </div>
-    </div>
+@endforeach
+{{--                $value = $request->session()->pull('key', 'default');--}}
+{{--                {{$value}}--}}
+{{--                test<br>--}}
+Item Name: {{session('name')}}<br>
+Unit: {{session('unit')}}<br>
+Allergens: {{session('allergens')}}<br>
+Info: {{session('info')}}<br>
+{{--                {{$data}}--}}
+{{--                @foreach(session('sess') as $id => $stock)
+<br>
+ data-id={{ $id }}<br>
+{{ $stock['name'] }}<br>
+       {{$stock['unit']}}<br>
+{{ $stock['info'] }}<br>
+
+
+
+@endforeach--}}
+
+</div>
+</div>
+</div>
 
 
 
 {{--
-    <div class="py-12">
-        @include('layouts.stock_navigation')
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div>
-                        <form method="POST" action="/stock" class="" enctype="multipart/form-data">
-                            @csrf
-                            <div class="">
-                                <p class="text-gray-700 text-sm">
-                                    <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                                           id="name" name="name" type="text" placeholder="{{$session->name}}">
-                                </p>
-                                <p class="text-gray-700 mt-2 text-sm">
-                                    <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                                           id="supplier" name="supplier" type="text" placeholder="{{$session->supplier}}">
-                                </p>
-                                <p class="text-gray-500 text-base mt-2">
-                                    <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                                           id="unit" name="unit" type="text" placeholder="{{$session->unit}}">
-                                </p>
-                                <p class="text-gray-500 text-base mt-2">
-                                    <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                                           id="info" name="info" type="text" placeholder="{{$session->info}}">
-                                </p>
-                                <p class="text-gray-500 text-base mt-2">
-                                    <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                                           id="allergens" name="allergens" type="text" placeholder="{{$session->allergens}}">
-                                </p>
+<div class="py-12">
+@include('layouts.stock_navigation')
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+<div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
+<div class="p-6 text-gray-900 dark:text-gray-100">
+<div>
+   <form method="POST" action="/stock" class="" enctype="multipart/form-data">
+       @csrf
+       <div class="">
+           <p class="text-gray-700 text-sm">
+               <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                      id="name" name="name" type="text" placeholder="{{$session->name}}">
+           </p>
+           <p class="text-gray-700 mt-2 text-sm">
+               <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                      id="supplier" name="supplier" type="text" placeholder="{{$session->supplier}}">
+           </p>
+           <p class="text-gray-500 text-base mt-2">
+               <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                      id="unit" name="unit" type="text" placeholder="{{$session->unit}}">
+           </p>
+           <p class="text-gray-500 text-base mt-2">
+               <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                      id="info" name="info" type="text" placeholder="{{$session->info}}">
+           </p>
+           <p class="text-gray-500 text-base mt-2">
+               <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                      id="allergens" name="allergens" type="text" placeholder="{{$session->allergens}}">
+           </p>
 
-                                <div class="flex items-center justify-end mt-4 top-auto">
-                                    <button type="submit" class="bg-gray-800 text-white text-xs px-2 py-2 rounded-md mb-2 mr-2 uppercase hover:underline">
-                                        Add New
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+           <div class="flex items-center justify-end mt-4 top-auto">
+               <button type="submit" class="bg-gray-800 text-white text-xs px-2 py-2 rounded-md mb-2 mr-2 uppercase hover:underline">
+                   Add New
+               </button>
+           </div>
+       </div>
+   </form>
+</div>
 
-                </div>
-                <x-nav-link :href="route('welcome')" :active="request()->routeIs('back')">
-                    {{ __('Back') }}
-                </x-nav-link>
-            </div>
-        </div>
-    </div>
+</div>
+<x-nav-link :href="route('welcome')" :active="request()->routeIs('back')">
+{{ __('Back') }}
+</x-nav-link>
+</div>
+</div>
+</div>
 --}}
 {{--/*<?php
 
@@ -84,29 +114,29 @@ $endpoint = "https://trackapi.nutritionix.com/v2/natural/nutrients";
 
 function sendRequest( $endpoint, $appkey,$appid)
 {
-    $curl = curl_init($endpoint);
-    curl_setopt($curl, CURLOPT_URL, $endpoint);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    $headers = array(
-        "Content-Type:application/json",
-        "x-app-id:".$appid,
-        "x-app-key:".$appkey
-    );
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    $data = array(
-        "query" => "1kg Bramley apples,
+$curl = curl_init($endpoint);
+curl_setopt($curl, CURLOPT_URL, $endpoint);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+$headers = array(
+"Content-Type:application/json",
+"x-app-id:".$appid,
+"x-app-key:".$appkey
+);
+curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+$data = array(
+"query" => "1kg Bramley apples,
 140g golden caster sugar,
 ½ tsp cinnamon,
 3 tbsp flour",
-        "timezone" => "US/Eastern"
+"timezone" => "US/Eastern"
 
-    );
-    $testdata = json_encode($data);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $testdata);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    $resp = curl_exec($curl);
-    curl_close($curl);
-    return $resp;
+);
+$testdata = json_encode($data);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $testdata);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+$resp = curl_exec($curl);
+curl_close($curl);
+return $resp;
 
 
 }

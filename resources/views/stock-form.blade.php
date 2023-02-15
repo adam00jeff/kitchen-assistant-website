@@ -21,11 +21,11 @@
         <!-- main form for new product -->
         <!-- main form for new product -->
         <?php $query = "ham, butter";?>
-        test
+<br>
 
-        <a href="{{ route('confirm_stock', $query) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>    </div>
-{{--
-        <form method="post" action="/stock/store" class="" enctype="multipart/form-data">
+{{--        <a href="{{ route('confirm_stock', $query) }}" class="btn btn-warning btn-block text-center" role="button">API Test</a> </p>    </div>--}}
+        <br>
+        <form method="post" action="/stocks/confirm" class="" enctype="multipart/form-data">
             @csrf
             <div class="">
                 <p class="text-gray-700 text-sm">
@@ -56,7 +56,6 @@
                 </div>
             </div>
         </form>
---}}
     </div>
     </div>
 </x-app-layout>

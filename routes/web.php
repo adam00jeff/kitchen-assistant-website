@@ -33,7 +33,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/stock',[\App\Http\Controllers\StocksController::class, 'stock_index'])->name('stock');
     Route::get('/stocks/create', [\App\Http\Controllers\StocksController::class, 'create'])->name('create_stock');
 /*    Route::get('/stocks/confirm', [\App\Http\Controllers\StocksController::class, 'confirm'])->name('confirm_stock');*/
-    Route::get('/stocks/confirm/{query}', [\App\Http\Controllers\StocksController::class, 'confirm'])->name('confirm_stock');
+    Route::any('/stocks/confirm', [\App\Http\Controllers\StocksController::class, 'confirm'])->name('confirm_stock');
     Route::post('/stock/store', [\App\Http\Controllers\StocksController::class, 'store'])->name('store_stock');
 
 
