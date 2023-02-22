@@ -13,22 +13,37 @@
                 {{--      {{$data}}<br>--}}
                 <?php
                 /*        $keys = array_keys(json_decode($data, true));*/
-                $keys = json_decode($data,true);
-/*                print_r($keys);*/
+                $keys = $data;
 
-                $data = session()->all();
+ /*               print_r($nutrients);*/
+/*                    echo $nutrients;*/
+/*                $data = session()->all();*/
 /*                print_r($data);*/
                 ?>
 
                 @foreach($keys['foods'] as $i)
+
                    food: {{$i['food_name']}}<br>
 {{--                    brand name :{{$i['brand_name']}}<br>--}}
                     serving size :{{$i['serving_qty']}}{{$i['serving_unit']}}<br>
 {{--                    serving unit: {{$i['serving_unit']}}<br>--}}
                     serving callories :{{$i['nf_calories']}}<br>
                     @foreach($i['full_nutrients'] as $j)
-                    {{$j['attr_id'] }} ::: {{$j['value'] }}<br>
+
+                        @foreach($nutrients as $n)
+                            @if($j['attr_id']==$n['attr_id'])
+                                    <?php echo$n['name'];?>
+                            @endif
+                        @endforeach
+                            {{$j['value'] }}{{--{{$j['unit']}}--}} <?php echo$n['unit'];?>
+                        <br>
+
+{{--                        @if($j['attr_id']==$nutrients['attr_id'])
+                        <?php echo"success"; ?>
+                        @endif--}}
+
                     @endforeach
+
                @endforeach
 {{--                $value = $request->session()->pull('key', 'default');--}}
 {{--                {{$value}}--}}

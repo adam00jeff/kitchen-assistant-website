@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Nutrient;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -72,8 +73,16 @@ class StocksController extends Controller
             "locale"=>"en_GB",
             "timezone" => "GB"
         ]);
-        $data = $response;
-        return view('stock-confirm', ['data' => $data]);
+
+        $data = json_decode($response,true);
+
+        $testid = 262;
+
+        $nutrients = Nutrient::all()->sortBy('type');
+
+
+
+        return view('stock-confirm', ['data' => $data,'nutrients'=>$nutrients]);
     }
 
     public function store(Request $request)
