@@ -76,7 +76,7 @@ class StocksController extends Controller
 
         $data = json_decode($response,true);
 
-        $testid = 262;
+
 
         $nutrients = Nutrient::all()->sortBy('type');
 
