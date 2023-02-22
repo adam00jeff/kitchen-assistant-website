@@ -4,66 +4,29 @@
             {{ Auth::user()->name }}'s stock
         </h2>
     </x-slot>
-
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
                 Nutritionix API response<br>
-                {{--      {{$data}}<br>--}}
-                <?php
-                /*        $keys = array_keys(json_decode($data, true));*/
-                $keys = $data;
-
- /*               print_r($nutrients);*/
-/*                    echo $nutrients;*/
-/*                $data = session()->all();*/
-/*                print_r($data);*/
-                ?>
-
+                <?php $keys = $data;?>
                 @foreach($keys['foods'] as $i)
-
                    food: {{$i['food_name']}}<br>
-{{--                    brand name :{{$i['brand_name']}}<br>--}}
-                    serving size :{{$i['serving_qty']}}{{$i['serving_unit']}}<br>
-{{--                    serving unit: {{$i['serving_unit']}}<br>--}}
-                    serving callories :{{$i['nf_calories']}}<br>
+                   serving size :{{$i['serving_qty']}}{{$i['serving_unit']}}<br>
+                   serving callories :{{$i['nf_calories']}}<br>
                     @foreach($i['full_nutrients'] as $j)
-
                         @foreach($nutrients as $n)
-                            @if($j['attr_id']==$n['attr_id'])
-                                    <?php echo$n['name'];?>
+                            @if($j['attr_id']==$n['attr_id']&&$j['value']!=0)
+                                    {{$n['name']}} {{$j['value'] }} {{$n['unit']}}<br>
                             @endif
                         @endforeach
-                            {{$j['value'] }}{{--{{$j['unit']}}--}} <?php echo$n['unit'];?>
-                        <br>
 
-{{--                        @if($j['attr_id']==$nutrients['attr_id'])
-                        <?php echo"success"; ?>
-                        @endif--}}
 
                     @endforeach
-
                @endforeach
-{{--                $value = $request->session()->pull('key', 'default');--}}
-{{--                {{$value}}--}}
-{{--                test<br>--}}
 Item Name: {{session('name')}}<br>
 Unit: {{session('unit')}}<br>
 Allergens: {{session('allergens')}}<br>
 Info: {{session('info')}}<br>
-{{--                {{$data}}--}}
-{{--                @foreach(session('sess') as $id => $stock)
-<br>
- data-id={{ $id }}<br>
-{{ $stock['name'] }}<br>
-       {{$stock['unit']}}<br>
-{{ $stock['info'] }}<br>
-
-
-
-@endforeach--}}
-
 </div>
 </div>
 </div>
