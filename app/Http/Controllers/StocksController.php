@@ -36,9 +36,7 @@ class StocksController extends Controller
             'allergens' => 'required|max:500'
         ]);
 
-        $appid = "9787f4f0";
-        $appkey = "5b11621e62674c09602b3d94977c8172";
-        $endpoint = "https://trackapi.nutritionix.com/v2/natural/nutrients";
+
         $gotquery = $request->name;
 /*        $sess = session()->get('sess',[]);*/
         $sess = [
@@ -61,17 +59,21 @@ class StocksController extends Controller
                         140g golden caster sugar,
                         ½ tsp cinnamon,
                         3 tbsp flour";*/
-
+        $appid = "9787f4f0";
+        $appkey = "5b11621e62674c09602b3d94977c8172";
+        $endpoint = "https://trackapi.nutritionix.com/v2/natural/nutrients";
         $response = Http::withHeaders([
             "x-app-id"=>$appid,
             "x-app-key"=>$appkey
         ])->post($endpoint,[
             "query" => $gotquery,
-            "timezone" => "US/Eastern"
+/*            "include_subrecepie" => true,*/
+            "ingredient_statement"=> true,
+            "locale"=>"en_GB",
+            "timezone" => "GB"
         ]);
         $data = $response;
         return view('stock-confirm', ['data' => $data]);
-/*        return view('stock-confirm', ['data' => $data]);*/
     }
 
     public function store(Request $request)

@@ -14,7 +14,7 @@
                 <?php
                 /*        $keys = array_keys(json_decode($data, true));*/
                 $keys = json_decode($data,true);
-                /*print_r($keys);*/
+/*                print_r($keys);*/
 
                 $data = session()->all();
 /*                print_r($data);*/
@@ -22,17 +22,14 @@
 
                 @foreach($keys['foods'] as $i)
                    food: {{$i['food_name']}}<br>
-                    brand name :{{$i['brand_name']}}<br>
-                    serving size :{{$i['serving_qty']}}<br>
-                    serving unit: {{$i['serving_unit']}}<br>
+{{--                    brand name :{{$i['brand_name']}}<br>--}}
+                    serving size :{{$i['serving_qty']}}{{$i['serving_unit']}}<br>
+{{--                    serving unit: {{$i['serving_unit']}}<br>--}}
                     serving callories :{{$i['nf_calories']}}<br>
                     @foreach($i['full_nutrients'] as $j)
                     {{$j['attr_id'] }} ::: {{$j['value'] }}<br>
-
                     @endforeach
-
-
-@endforeach
+               @endforeach
 {{--                $value = $request->session()->pull('key', 'default');--}}
 {{--                {{$value}}--}}
 {{--                test<br>--}}
