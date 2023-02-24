@@ -36,8 +36,6 @@ class StocksController extends Controller
             'unit' => 'required|max:50',
             'allergens' => 'required|max:500'
         ]);
-
-
         $gotquery = $request->name;
 /*        $sess = session()->get('sess',[]);*/
         $sess = [
@@ -73,15 +71,8 @@ class StocksController extends Controller
             "locale"=>"en_GB",
             "timezone" => "GB"
         ]);
-
         $data = json_decode($response,true);
-
-
-
         $nutrients = Nutrient::all()->sortBy('type');
-
-
-
         return view('stock-confirm', ['data' => $data,'nutrients'=>$nutrients]);
     }
 
