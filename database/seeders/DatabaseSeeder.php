@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
         $this->call(StockSeeder::class);
         $this->call(RecepieSeeder::class);
         $this->call(DocumentSeeder::class);
-
+        $this->call(NutrientSeeder::class);
+        $this->call(AllergenSeeder::class);
 
 
         \App\Models\User::factory(5)->state(new Sequence(
