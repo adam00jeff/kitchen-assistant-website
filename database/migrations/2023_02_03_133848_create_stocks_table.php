@@ -13,12 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
+        /*        'name','supplier', 'serving_unit', 'serving_qty','info','callories','nutrients', 'allergens'*/
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->integer('supplier');
-            $table->string('unit');
+            $table->string('serving_unit');
+            $table->integer('serving_qty');
             $table->string('info');
+            $table->integer('callories');
+            $table->string('nutrients');
             $table->string('allergens');
             $table->timestamps();
         });
