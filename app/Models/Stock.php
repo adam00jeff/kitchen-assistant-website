@@ -11,4 +11,7 @@ class Stock extends Model
     protected $fillable =[
         'name','supplier', 'serving_unit', 'serving_qty','info','callories','nutrients', 'allergens'
     ];
+    protected $casts = [
+      'nutrients'=>'array',
+    ];
 }

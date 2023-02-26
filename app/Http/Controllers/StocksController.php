@@ -41,6 +41,7 @@ class StocksController extends Controller
         $sess = [
             "name"=>$request->name,
             "unit"=>$request->unit,
+            "supplier"=>$request->supplier,
         "info"=>$request->info,
         "allergens"=>$request->allergens
         ];
