@@ -11,6 +11,8 @@ use Illuminate\Support\Collection;?>
             <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
                 <div>
                     <h2>Please Confrim Stock Information</h2>
+                   {{-- {{print_r($session)}}--}}
+                    {{session('name')}}
                     <?php $keys = $data;?>
                     @foreach($keys['foods'] as $i)
                         <?php $foods = $i;

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('callories');
             $table->string('nutrients');
             $table->string('allergens');
+            $table->string('image');
             $table->timestamps();
         });
     }
