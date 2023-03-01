@@ -22,6 +22,11 @@ class StocksController extends Controller
         $stocks = Stock::all()->where('business_id', $busid);
         return view('stock', ['stocks' => $stocks]);
     }
+    public function get_suppliers()
+    {
+
+
+    }
 
     public function create()
     {

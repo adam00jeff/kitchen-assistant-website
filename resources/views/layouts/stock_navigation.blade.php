@@ -10,12 +10,13 @@
                 <x-nav-link :href="route('create_stock')" :active="request()->routeIs('create_stock')">
                     {{ __('Add Stock') }}
                 </x-nav-link>
-                <x-nav-link :href="route('stock')" {{--:active="request()->routeIs('stock')"--}}>
-                    {{ __('Stock Info') }}
+                <x-nav-link :href="route('suppliers')" :active="request()->routeIs('suppliers')">
+                    {{ __('Suppliers') }}
                 </x-nav-link>
                 <x-nav-link :href="route('stock')" {{--:active="request()->routeIs('stock')"--}}>
                     {{ __('Other') }}
                 </x-nav-link>
+
             </div>
         </div>
     </div>

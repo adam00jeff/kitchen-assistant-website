@@ -34,6 +34,7 @@ Route::middleware(['auth', 'checkrole:admin'])->group(function (){
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/stock',[StocksController::class, 'stock_index'])->name('stock');
+    Route::get('/stock/suppliers',[StocksController::class, 'get_suppliers'])->name('suppliers');
     Route::get('/stocks/create', [StocksController::class, 'create'])->name('create_stock');
     Route::post('/stocks/confirm', [StocksController::class, 'confirm'])->name('confirm_stock');
     Route::post('/stock', [StocksController::class, 'store'])->name('store_stock');
