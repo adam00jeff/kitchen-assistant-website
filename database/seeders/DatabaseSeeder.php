@@ -7,6 +7,7 @@ use App\Models\Business;
 use App\Models\Document;
 use App\Models\Recepie;
 use App\Models\Stock;
+use App\Models\supplier;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
@@ -35,6 +36,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DocumentSeeder::class);
         $this->call(NutrientSeeder::class);
         $this->call(AllergenSeeder::class);
+        $this->call(SupplierSeeder::class);
 
 
         User::factory(5)->state(new Sequence(
@@ -73,6 +75,7 @@ class DatabaseSeeder extends Seeder
             ['user_id'=>5],
 
         ))->create();
+        Supplier::factory(10)->create();
 
 
         // \App\Models\User::factory()->create([
