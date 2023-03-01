@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Nutrient;
 use App\Models\Stock;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -24,7 +25,8 @@ class StocksController extends Controller
     }
     public function get_suppliers()
     {
-
+        $suppliers = Supplier::all();
+        return view('suppliers', ['suppliers' => $suppliers]);
 
     }
 
