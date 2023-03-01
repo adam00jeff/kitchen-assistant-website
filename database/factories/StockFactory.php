@@ -25,7 +25,7 @@ class StockFactory extends Factory
         'serving_qty' => rand(1,10),
         'info' => $this->faker->words(6,true),
             'callories' => rand(1,500),
-            'nutrients'=> $this->faker->randomNumber(3,true),
+/*            'nutrients'=> $this->faker->randomNumber(3,true),*/
         'allergens' => $this->faker->words(5, true),
             'image' => $this->faker->image,
         'user_id'=> rand(1,5),
