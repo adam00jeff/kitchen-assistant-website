@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Business;
 use App\Http\Requests\StoreBusinessRequest;
 use App\Http\Requests\UpdateBusinessRequest;
+use Illuminate\Http\Response;
 
 class BusinessController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -21,7 +22,7 @@ class BusinessController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -31,8 +32,8 @@ class BusinessController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBusinessRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreBusinessRequest $request
+     * @return Response
      */
     public function store(StoreBusinessRequest $request)
     {
@@ -42,8 +43,8 @@ class BusinessController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Business  $business
-     * @return \Illuminate\Http\Response
+     * @param Business $business
+     * @return Response
      */
     public function show(Business $business)
     {
@@ -53,8 +54,8 @@ class BusinessController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Business  $business
-     * @return \Illuminate\Http\Response
+     * @param Business $business
+     * @return Response
      */
     public function edit(Business $business)
     {
@@ -64,9 +65,9 @@ class BusinessController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBusinessRequest  $request
-     * @param  \App\Models\Business  $business
-     * @return \Illuminate\Http\Response
+     * @param UpdateBusinessRequest $request
+     * @param Business $business
+     * @return Response
      */
     public function update(UpdateBusinessRequest $request, Business $business)
     {
@@ -76,8 +77,8 @@ class BusinessController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Business  $business
-     * @return \Illuminate\Http\Response
+     * @param Business $business
+     * @return Response
      */
     public function destroy(Business $business)
     {

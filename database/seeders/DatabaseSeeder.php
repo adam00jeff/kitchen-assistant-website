@@ -3,6 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Business;
+use App\Models\Document;
+use App\Models\Recepie;
+use App\Models\Stock;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 
@@ -16,7 +21,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(BusinessSeeder::class);
-        \App\Models\Business::factory(5)->state(new Sequence(
+        Business::factory(5)->state(new Sequence(
             ['id'=>2],
             ['id'=>3],
             ['id'=>4],
@@ -32,7 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AllergenSeeder::class);
 
 
-        \App\Models\User::factory(5)->state(new Sequence(
+        User::factory(5)->state(new Sequence(
             ['business_id'=>2],
             ['business_id'=>3],
             ['business_id'=>4],
@@ -41,7 +46,7 @@ class DatabaseSeeder extends Seeder
 
         ))->create();
 
-        \App\Models\Stock::factory(50)->state(new Sequence(
+        Stock::factory(50)->state(new Sequence(
             ['user_id'=>1],
             ['user_id'=>2],
             ['user_id'=>3],
@@ -49,7 +54,7 @@ class DatabaseSeeder extends Seeder
             ['user_id'=>5],
 
         ))->create();
-        \App\Models\Recepie::factory(50)->state(new Sequence(
+        Recepie::factory(50)->state(new Sequence(
             ['user_id'=>1],
             ['user_id'=>2],
             ['user_id'=>3],
@@ -57,7 +62,7 @@ class DatabaseSeeder extends Seeder
             ['user_id'=>5],
 
         ))->create();
-        \App\Models\Document::factory(50)->state(new Sequence(
+        Document::factory(50)->state(new Sequence(
             ['renewal_period'=>'annual'],
             ['renewal_period'=>'quarterly']
         ))->state(new Sequence(

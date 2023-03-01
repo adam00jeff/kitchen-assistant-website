@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('serving_qty');
             $table->string('info');
             $table->integer('callories');
-            $table->string('nutrients');
+            $table->text('nutrients');
             $table->string('allergens');
             $table->string('image');
             $table->timestamps();

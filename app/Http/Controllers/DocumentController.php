@@ -6,6 +6,7 @@ use App\Models\Document;
 use App\Http\Requests\StoreDocumentRequest;
 use App\Http\Requests\UpdateDocumentRequest;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class DocumentController extends Controller
@@ -13,7 +14,7 @@ class DocumentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function documents_index()
     {
@@ -25,7 +26,7 @@ class DocumentController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create_document()
     {
@@ -35,8 +36,8 @@ class DocumentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreDocumentRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreDocumentRequest $request
+     * @return Response
      */
     public function store_document(StoreDocumentRequest $request)
     {
@@ -65,8 +66,8 @@ class DocumentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Document  $document
-     * @return \Illuminate\Http\Response
+     * @param Document $document
+     * @return Response
      */
     public function show(Document $document)
     {
@@ -76,8 +77,8 @@ class DocumentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Document  $document
-     * @return \Illuminate\Http\Response
+     * @param Document $document
+     * @return Response
      */
     public function edit(Document $document)
     {
@@ -87,9 +88,9 @@ class DocumentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateDocumentRequest  $request
-     * @param  \App\Models\Document  $document
-     * @return \Illuminate\Http\Response
+     * @param UpdateDocumentRequest $request
+     * @param Document $document
+     * @return Response
      */
     public function update(UpdateDocumentRequest $request, Document $document)
     {
@@ -99,8 +100,8 @@ class DocumentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Document  $document
-     * @return \Illuminate\Http\Response
+     * @param Document $document
+     * @return Response
      */
     public function destroy(Document $document)
     {

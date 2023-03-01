@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Recepie;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Recepie>
+ * @extends Factory<Recepie>
  */
 class RecepieFactory extends Factory
 {

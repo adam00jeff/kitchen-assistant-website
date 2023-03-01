@@ -8,6 +8,7 @@ use App\Models\Recepie;
 use App\Models\Stock;
 use App\Models\User;
 use App\Models\Business;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -15,7 +16,7 @@ class AdminController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {

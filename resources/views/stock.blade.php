@@ -11,7 +11,12 @@
             <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div>
-                        <x-showstock :stocks="$stocks"/>
+                        @if(Route::currentRouteName() == "store_stock")
+                            <h1>New Stock Item</h1>
+                            <x-show_single_stock :stocks="$stocks"/>
+                        @else <x-showstock :stocks="$stocks"/>
+                        @endif
+
                     </div>
 
                 </div>
