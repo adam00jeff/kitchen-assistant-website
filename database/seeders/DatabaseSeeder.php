@@ -53,8 +53,12 @@ class DatabaseSeeder extends Seeder
             ['user_id'=>2],
             ['user_id'=>3],
             ['user_id'=>4],
-            ['user_id'=>5],
-
+            ['user_id'=>5]))->state(new Sequence(
+            ['image'=>"https://nix-tag-images.s3.amazonaws.com/159_thumb.jpg"],
+            ['image'=>"https://nix-tag-images.s3.amazonaws.com/653_thumb.jpg"],
+            ['image'=>"https://nix-tag-images.s3.amazonaws.com/834_thumb.jpg"],
+            ['image'=>"https://nix-tag-images.s3.amazonaws.com/115_thumb.jpg"],
+            ['image'=>"https://nix-tag-images.s3.amazonaws.com/320_thumb.jpg"]
         ))->create();
         Recepie::factory(50)->state(new Sequence(
             ['user_id'=>1],
