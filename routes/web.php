@@ -4,7 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ProfileController;
 
-use App\Http\Controllers\RecepiesController;
+use App\Http\Controllers\RecipesController;
 use App\Http\Controllers\StocksController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,20 +33,22 @@ Route::middleware(['auth', 'checkrole:admin'])->group(function (){
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    //stock
     Route::get('/stock',[StocksController::class, 'stock_index'])->name('stock');
-    Route::get('/stock/suppliers',[StocksController::class, 'get_suppliers'])->name('suppliers');
     Route::get('/stocks/create', [StocksController::class, 'create'])->name('create_stock');
     Route::post('/stocks/confirm', [StocksController::class, 'confirm'])->name('confirm_stock');
     Route::post('/stock', [StocksController::class, 'store'])->name('store_stock');
     Route::delete('/stock/{stock}', [\App\Http\Controllers\StocksController::class, 'destroy_stock'])->name('destroy_stock');
-
-    Route::get('/recepies',[RecepiesController::class, 'recepie_index'])->name('recepies');
-    Route::get('/recepies/create',[RecepiesController::class, 'create'])->name('create_recepies');
-    Route::post('/recepies', [RecepiesController::class, 'store'])->name('store_recepies');
+    //recipes
+    Route::get('/recipes',[RecipesController::class, 'recipes_index'])->name('recipes');
+    Route::get('/recipes/create',[RecipesController::class, 'create'])->name('create_recipes');
+    Route::post('/recipes', [RecipesController::class, 'store'])->name('store_recipes');
 
     Route::get('/documents',[DocumentController::class, 'documents_index'])->name('documents');
     Route::get('/documents/create', [DocumentController::class, 'create_document'])->name('create_document');
     Route::post('/documents', [DocumentController::class, 'store_document'])->name('store_document');
+
+    Route::get('/suppliers',[\App\Http\Controllers\SupplierController::class, 'suppliers_index'])->name('suppliers');
 });
 
 Route::middleware('auth')->group(function () {

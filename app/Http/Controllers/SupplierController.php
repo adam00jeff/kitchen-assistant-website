@@ -13,9 +13,10 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function suppliers_index()
     {
-        //
+        $suppliers = Supplier::all();
+        return view('suppliers', ['suppliers' => $suppliers]);
     }
 
     /**

@@ -19,7 +19,7 @@
                             {{ __('Admin Panel') }}
                         </x-nav-link>
                     @endcan
-                    <x-nav-link :href="route('recepies')" :active="request()->routeIs('recepies')">
+                    <x-nav-link :href="route('recipes')" :active="request()->routeIs('recipes)">
                         {{ __('Your Recipes') }}
                     </x-nav-link>
                     <x-nav-link :href="route('stock')" :active="request()->routeIs('stock')">

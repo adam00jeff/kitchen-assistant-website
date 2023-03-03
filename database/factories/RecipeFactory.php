@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Recepie;
+use App\Models\Recipe;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Recepie>
+ * @extends Factory<Recipe>
  */
-class RecepieFactory extends Factory
+class RecipeFactory extends Factory
 {
     /**
      * Define the model's default state.

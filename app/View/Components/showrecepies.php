@@ -6,17 +6,17 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class showrecepies extends Component
+class showrecipes extends Component
 {
-    public $recepies;
+    public $recipes;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($recepies)
+    public function __construct($recipes)
     {
-       $this->recepies=$recepies;
+       $this->recipes=$recipes;
     }
 
     /**
@@ -26,6 +26,6 @@ class showrecepies extends Component
      */
     public function render()
     {
-        return view('components.showrecepies');
+        return view('components.showrecipes');
     }
 }
