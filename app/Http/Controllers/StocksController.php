@@ -119,6 +119,9 @@ class StocksController extends Controller
     public function destroy_stock(Stock $stock)
     {
         $stock->delete();
-        return response()->json(["msg" => "success"]);
+        $id = Auth::id();
+        $busid = Auth::user()->business_id;
+        $stocks = Stock::all()->where('business_id', $busid);
+        return view('stock', ['stocks' => $stocks]);
     }
 }
