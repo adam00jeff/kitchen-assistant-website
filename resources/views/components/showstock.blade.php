@@ -10,6 +10,7 @@
             <th>Info</th>
             <th>Allergens</th>
             <th>Full Nutrients</th>
+            <th>Remove</th>
         </tr>
         @foreach($stocks as $stock)
             @php($nutrient_array=$stock['nutrients'])
@@ -26,6 +27,10 @@
                  <td><textarea>@foreach($nutrient_array as $key=>$na){{$key}}{{$na['value']}}{{$na['unit']}}
 @endforeach
                      </textarea>
+                 </td>
+                 <td>
+{{--                     <a href="{{ route('destroy_stock', $stock->id) }}" class="btn btn-xs btn-info pull-right">Edit</a>--}}
+                     <button type="button" value="{{$stock['id']}}" class="destroy_stock">Delete{{$stock['id']}}</button>
                  </td>
         @endforeach
 {{--        @else
