@@ -38,7 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/stocks/create', [StocksController::class, 'create'])->name('create_stock');
     Route::post('/stocks/confirm', [StocksController::class, 'confirm'])->name('confirm_stock');
     Route::post('/stock', [StocksController::class, 'store'])->name('store_stock');
-    Route::delete('/stock/{stock}', [\App\Http\Controllers\StocksController::class, 'destroy'])->name('destroy_stock');
+    Route::delete('/stock/{stock}', [\App\Http\Controllers\StocksController::class, 'destroy_stock'])->name('destroy_stock');
 
     Route::get('/recepies',[RecepiesController::class, 'recepie_index'])->name('recepies');
     Route::get('/recepies/create',[RecepiesController::class, 'create'])->name('create_recepies');

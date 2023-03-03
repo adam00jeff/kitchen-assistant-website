@@ -1,5 +1,6 @@
 <?php use Illuminate\Support\Arr;
-use Illuminate\Support\Collection; ?>
+use Illuminate\Support\Collection;
+?>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-center text-xl text-gray-800 dark:text-gray-200 leading-tight">

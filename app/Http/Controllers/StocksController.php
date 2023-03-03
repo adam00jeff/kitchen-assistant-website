@@ -116,7 +116,7 @@ class StocksController extends Controller
         $stock->save();
         return view('stock', ['stocks' => $stock]);
     }
-    public function destroy(Stock $stock)
+    public function destroy_stock(Stock $stock)
     {
         $stock->delete();
         return response()->json(["msg" => "success"]);

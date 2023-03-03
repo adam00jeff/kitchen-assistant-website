@@ -1,7 +1,7 @@
-<div>
-
-    <table>
-        <tr>
+<div class="">
+    <script src="{{ asset('js/my.js') }}"></script>
+    <table >
+        <tr class="border-gray-700">
             <th>Stock ID</th>
             <th>Image</th>
             <th>Name</th>
@@ -29,8 +29,19 @@
                      </textarea>
                  </td>
                  <td>
+                     <form method="POST" action="/stock/{{$stock->id}}">
+                         {{ csrf_field() }}
+                         {{ method_field('DELETE') }}
+
+                         <div class="form-group">
+                             <input type="submit" class="btn btn-danger destroy_stock" value="Delete {{$stock->id}}">
+                         </div>
+                     </form>
+
+                 </td>
+                 <td>
 {{--                     <a href="{{ route('destroy_stock', $stock->id) }}" class="btn btn-xs btn-info pull-right">Edit</a>--}}
-                     <button type="button" value="{{$stock['id']}}" class="destroy_stock">Delete{{$stock['id']}}</button>
+{{--                     <button value="{{$stock['id']}}" type="button" class="p-5 bg-gray-600 border-gray-700 destroy_stock">Delete{{$stock['id']}}</button>--}}
                  </td>
         @endforeach
 {{--        @else
