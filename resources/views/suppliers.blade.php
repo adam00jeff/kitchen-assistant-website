@@ -11,9 +11,7 @@
             <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div>
-{{--                            <x-show_single_stock :stocks="$stocks"/>--}}
-                        @foreach($suppliers as $s){{$s}}<br>
-                        @endforeach
+                        <x-showsuppliers :suppliers="$suppliers"/>
                 </div>
                 <x-nav-link :href="route('welcome')" :active="request()->routeIs('back')">
                     {{ __('Back') }}
