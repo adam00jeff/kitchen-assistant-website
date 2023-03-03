@@ -23,5 +23,12 @@ class UserSeeder extends Seeder
             'is_admin'=>true,
             'business_id'=>'1'
         ]);
+        User::create([
+            'name' => "user",
+            'email' => "user@user.com",
+            'password' => Hash::make("1234"),
+            'is_admin'=>false,
+            'business_id'=>'1'
+        ]);
     }
 }
