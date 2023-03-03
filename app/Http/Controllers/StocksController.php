@@ -122,6 +122,6 @@ class StocksController extends Controller
         $id = Auth::id();
         $busid = Auth::user()->business_id;
         $stocks = Stock::all()->where('business_id', $busid);
-        return view('stock', ['stocks' => $stocks]);
+        return redirect()->route('stock', ['stocks' => $stocks])->with('success','deleted');
     }
 }
