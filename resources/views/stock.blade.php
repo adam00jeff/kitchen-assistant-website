@@ -20,9 +20,16 @@
                     </div>
 
                 </div>
-                <x-nav-link :href="route('welcome')" :active="request()->routeIs('back')">
+                @if(Route::currentRouteName() == "store_stock")
+                    <x-nav-link :href="route('stock')" :active="request()->routeIs('stock')">
+                        {{ __('Back') }}
+                    </x-nav-link>
+                @else
+                    <x-nav-link :href="route('welcome')" :active="request()->routeIs('back')">
                     {{ __('Back') }}
-                </x-nav-link>
+                    </x-nav-link>
+                @endif
+
             </div>
         </div>
     </div>
