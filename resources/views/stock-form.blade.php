@@ -18,13 +18,8 @@
                 </ul>
             </div>
         @endif
-        <!-- main form for new product -->
-        <!-- main form for new product -->
         <?php $query = "ham, butter";?>
-<br>
-
-{{--        <a href="{{ route('confirm_stock', $query) }}" class="btn btn-warning btn-block text-center" role="button">API Test</a> </p>    </div>--}}
-        <br>
+<br><br>
         <form method="post" action="/stocks/confirm" class="" enctype="multipart/form-data">
             @csrf
             <div class="">
