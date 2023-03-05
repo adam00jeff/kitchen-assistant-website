@@ -15,11 +15,11 @@ class RecipesController extends Controller
         return view('recipes',['recipes'=>$recipes]);
     }
 
-    public function create()
+    public function create_recipe()
     {
         return view('recipes-form');
     }
-    public function store(Request $request)
+    public function store_recipe(Request $request)
     {        $busid = Auth::user()->business_id;
         $id = Auth::id();
         $validated = $request->validate([
@@ -36,5 +36,11 @@ class RecipesController extends Controller
         $recipe->business_id = $busid;
         $recipe->save();
         return response()->json(["msg" => "success"]);
+    }
+    public function destroy_recipe(recipe $recipe)
+    {
+        $recipe->delete();
+        $recipes = Recipe::all();
+        return view('recipes', ['recipes' => $recipes]);
     }
 }

@@ -1,5 +1,5 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
-    <div class="flex justify-between h-16 mb-4">
+    <div class="flex justify-center h-16 mb-4">
         <div class="flex mt-3 mb-4 ">
             <!-- Logo -->
             <!-- Navigation Links -->
@@ -12,9 +12,6 @@
                 </x-nav-link>
                 <x-nav-link :href="route('recipes')" :active="request()->routeIs('recipes')">
                     {{ __('Recipe Info') }}
-                </x-nav-link>
-                <x-nav-link :href="route('recipes')" :active="request()->routeIs('recipes')">
-                    {{ __('Other') }}
                 </x-nav-link>
             </div>
         </div>
