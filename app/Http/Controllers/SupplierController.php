@@ -87,8 +87,10 @@ class SupplierController extends Controller
      * @param  \App\Models\supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(supplier $supplier)
+    public function destroy_supplier(supplier $supplier)
     {
-        //
+        $supplier->delete();
+        $suppliers = Supplier::all();
+        return view('suppliers', ['suppliers' => $suppliers]);
     }
 }
