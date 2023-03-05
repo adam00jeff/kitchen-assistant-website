@@ -39,28 +39,29 @@ class DocumentController extends Controller
      * @param StoreDocumentRequest $request
      * @return Response
      */
-    public function store_document(StoreDocumentRequest $request)
+    public function store_document(Request $request)
     {
+        $request->validate([
+          /*  'file' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048'*/
+        ]);
         $busid = Auth::user()->business_id;
         $id = Auth::id();
-        /*        $validated = $request->validate([
-                    'name' => 'required|max:255',
-                    'type' => 'required|max:255',//supplier ID for now, to be replaced with plain text entry
-                    'file'=>'required|max:255',
-                    'date'=>'required|max:255'
-                ]);*/
-
         $document = new Document;
-        $document->name = $request->name;
-        $document->type = $request->type;
-        $document->file_location= $request->file_location;
-        $document->doc_date = $request->doc_date;
-        $document->renewal_period = $request->renewal_period;
-        $document->user_id = $id;
-        $document->business_id = $busid;
-        $document->save();
-        return response()->json(["msg" => "success"]);
-
+        if ($request->file()) {
+            $fileName = time() . '_' . $request->file->getClientOriginalName();
+            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+            $document->name = time() . '_' . $request->file->getClientOriginalName();
+            $document->file_location = '/storage/' . $filePath;
+            $document->type = $request->type;
+            $document->doc_date = $request->doc_date;
+            $document->renewal_period = $request->renewal_period;
+            $document->user_id = $id;
+            $document->business_id = $busid;
+            $document->save();
+            return back()
+                ->with('success', 'File has been uploaded.')
+                ->with('file', $fileName);
+        }
     }
 
     /**
