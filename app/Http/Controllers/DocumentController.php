@@ -112,7 +112,7 @@ class DocumentController extends Controller
     {
         $path = "/uploads/".$document->name;
         if (Storage::disk('public')->exists($path)) {
-            Storage::delete($path);
+            Storage::disk('public')->delete($path);
         } else {
             dd('File does not exist.');
         }
