@@ -1,5 +1,5 @@
-<div>
-    <table>
+<div class="flex justify-center">
+    <table class="align-middle">
         <tr>
             <th>Supplier ID</th>
             <th>Name</th>

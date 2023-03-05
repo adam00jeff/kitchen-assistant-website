@@ -1,6 +1,5 @@
-<div class="">
-{{--    <script src="{{ asset('js/my.js') }}"></script>--}}
-    <table >
+<div class="flex justify-center">
+    <table class="align-middle">
         <tr class="border-gray-700">
             <th>Stock ID</th>
             <th>Image</th>
