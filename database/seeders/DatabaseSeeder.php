@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(StockSeeder::class);
         $this->call(RecipeSeeder::class);
- /*       $this->call(DocumentSeeder::class);*/
+        $this->call(DocumentSeeder::class);
         $this->call(NutrientSeeder::class);
         $this->call(AllergenSeeder::class);
         $this->call(SupplierSeeder::class);
