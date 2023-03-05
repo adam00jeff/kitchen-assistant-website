@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(StockSeeder::class);
         $this->call(RecipeSeeder::class);
-        $this->call(DocumentSeeder::class);
+ /*       $this->call(DocumentSeeder::class);*/
         $this->call(NutrientSeeder::class);
         $this->call(AllergenSeeder::class);
         $this->call(SupplierSeeder::class);
@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
             ['user_id'=>5],
 
         ))->create();
-        Document::factory(50)->state(new Sequence(
+/*        Document::factory(50)->state(new Sequence(
             ['renewal_period'=>'annual'],
             ['renewal_period'=>'quarterly']
         ))->state(new Sequence(
@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
             ['user_id'=>4],
             ['user_id'=>5],
 
-        ))->create();
+        ))->create();*/
         Supplier::factory(10)->create();
 
 
