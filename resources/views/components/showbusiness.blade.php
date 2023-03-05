@@ -1,10 +1,11 @@
-<div class="flex justify-center">
-    <table class="align-middle">
+<div class="">
+    <table class="w-full border-separate p-16 text-sm text-cene= text-gray-500 dark:text-gray-400">
+        <thead class="text-s text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
-            <th>Business ID</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Phone Number</th>
+            <th scope="col" class="px-6 py-3">Business ID</th>
+            <th scope="col" class="px-6 py-3">Name</th>
+            <th scope="col" class="px-6 py-3">Address</th>
+            <th scope="col" class="px-6 py-3">Phone Number</th>
         </tr>
         @foreach($businesses as $business)
             <tr>

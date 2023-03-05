@@ -17,16 +17,16 @@
                         All Businesses:
                         <x-showbusiness :businesses="$businesses"/>
                         <br>
-                        All Users
+                        All Users:
                         <x-showusers :users="$users"/>
                         <br>
-                        All Recipes
+                        All Recipes:
                         <x-showrecipes :recipes="$recipes"/>
                         <br>
-                        All Stocks
+                        All Stocks:
                         <x-showstock :stocks="$stocks"/>
                         <br>
-                        All Documents
+                        All Documents:
                        <x-showdocuments :documents="$documents"/>
                     </div>
                 </div>
