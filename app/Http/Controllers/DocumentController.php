@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Storage;
+
 class DocumentController extends Controller
 {
     /**
@@ -50,7 +52,9 @@ class DocumentController extends Controller
         if ($request->file()) {
             $fileName = time() . '_' . $request->file->getClientOriginalName();
             $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
-            $document->name = time() . '_' . $request->file->getClientOriginalName();
+    /*            $document->name = time() . '_' . $request->file->getClientOriginalName();*/
+            $document->name= $fileName;
+            $document->display_name=$request->name;
             $document->file_location = '/storage/' . $filePath;
             $document->type = $request->type;
             $document->doc_date = $request->doc_date;
@@ -104,8 +108,19 @@ class DocumentController extends Controller
      * @param Document $document
      * @return Response
      */
-    public function destroy(Document $document)
+    public function destroy_document(Document $document)
     {
-        //
+        $path = "/uploads/".$document->name;
+        if (Storage::disk('public')->exists($path)) {
+            Storage::delete($path);
+        } else {
+            dd('File does not exist.');
+        }
+        $document->delete();
+        $id = Auth::user()->business_id;
+        $documents = Document::all()->where('business_id',$id);
+        return back()
+        ->with('success', $document->name.' has been removed')
+            ->with('documents',['documents'=>$documents]);
     }
 }

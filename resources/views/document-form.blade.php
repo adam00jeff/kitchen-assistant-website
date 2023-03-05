@@ -37,7 +37,10 @@
                             </ul>
                         </div>
                     @endif
-
+                    <p class="text-gray-700 mt-2 text-sm">
+                        <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                               id="name" name="name" type="text" placeholder="document name">
+                    </p>
                     <p class="text-gray-700 mt-2 text-sm">
                         <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
                                id="type" name="type" type="text" placeholder="document type">

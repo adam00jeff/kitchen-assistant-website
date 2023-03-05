@@ -1,17 +1,16 @@
-<div>
-    <table>
+<div class="">
+    <table class="w-full border-separate p-16 text-sm text-cene= text-gray-500 dark:text-gray-400">
+        <thead class="text-s text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
-            <th>Recipe ID</th>
-            <th>Name</th>
-            <th>Ingredients</th>
-            <th>Method</th>
+            <th scope="col" class="px-6 py-3">Recipe Name</th>
+            <th scope="col" class="px-6 py-3">Ingredients</th>
+            <th scope="col" class="px-6 py-3">Method</th>
         </tr>
         @foreach($recipes as $recipe)
             <tr>
-                <td>{{$recipe['id']}}</td>
-                <td>{{$recipe['name']}}</td>
-                <td>{{ $recipe['ingredients'] }}</td>
-                <td>{{ $recipe['method'] }}</td>
+                <td class="px-6 py-3">{{$recipe['name']}}</td>
+                <td class="px-6 py-3">{{ $recipe['ingredients'] }}</td>
+                <td class="border border border-gray-900 px-6 py-3">{{ $recipe['method'] }}</td>
                 <td>
                     <form method="POST" action="/recipes/{{$recipe->id}}">
                         {{ csrf_field() }}

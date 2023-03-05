@@ -1,15 +1,15 @@
 <div class="flex justify-center">
     <table class="align-middle">
         <tr class="border-gray-700">
-            <th>Stock ID</th>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Supplier</th>
-            <th>Serving Unit</th>
-            <th>Info</th>
-            <th>Allergens</th>
-            <th>Full Nutrients</th>
-            <th>Remove</th>
+            <th scope="col" class="px-6 py-3">Stock ID</th>
+            <th scope="col" class="px-6 py-3">Image</th>
+            <th scope="col" class="px-6 py-3">Name</th>
+            <th scope="col" class="px-6 py-3">Supplier</th>
+            <th scope="col" class="px-6 py-3">Serving Unit</th>
+            <th scope="col" class="px-6 py-3">Info</th>
+            <th scope="col" class="px-6 py-3">Allergens</th>
+            <th scope="col" class="px-6 py-3">Full Nutrients</th>
+            <th scope="col" class="px-6 py-3">Remove</th>
         </tr>
         @foreach($stocks as $stock)
             @php($nutrient_array=$stock['nutrients'])
