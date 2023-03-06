@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Nutrient;
 use App\Models\Stock;
 use App\Models\Supplier;
+use App\Models\Allergen;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -20,13 +21,17 @@ class StocksController extends Controller
         $id = Auth::id();
         $busid = Auth::user()->business_id;
         $stocks = Stock::all()->where('business_id', $busid);
-        return view('stock', ['stocks' => $stocks]);
+        $suppliers = Supplier::pluck('name','id')->toArray();
+/*        ddd($suppliers);*/
+        return view('stock', ['stocks' => $stocks,'suppliers'=>$suppliers]);
     }
 
 
     public function create()
     {
-        return view('stock-form');
+        $suppliers = Supplier::pluck('name','id');
+        $allergens = Allergen::all();
+        return view('stock-form', ['suppliers'=>$suppliers,'allergens'=>$allergens]);
     }
 
     public function confirm(Request $request)
@@ -39,10 +44,13 @@ class StocksController extends Controller
         ]);
         $gotquery = $request->name;
         /*        $sess = session()->get('sess',[]);*/
+        $getsupplier = Supplier::query()->where('id','=',$request->supplier)->get();
+        $thissupplier = $getsupplier->toArray();
+        $supplier =$thissupplier['0'];
         $sess = [
             "name" => $request->name,
             "unit" => $request->unit,
-            "supplier" => $request->supplier,
+            "supplier" => $supplier,
             "info" => $request->info,
             "allergens" => $request->allergens
         ];
@@ -61,21 +69,25 @@ class StocksController extends Controller
             "timezone" => "GB"
         ]);
         $data = json_decode($response, true);
+        $allergens = Allergen::all();
         $nutrients = Nutrient::all()->sortBy('type');
-        return view('stock-confirm', ['data' => $data, 'nutrients' => $nutrients]);
+        return view('stock-confirm', ['data' => $data, 'nutrients' => $nutrients, 'supplier'=>$supplier,'allergens'=>$allergens]);
     }
 
     public function store(Request $request)
     {
         $id = Auth::id();
         $busid = Auth::user()->business_id;
+        $s = Supplier::query()->where('name','=',$request->supplier)->get();
+        $s1 = $s->toArray();
+        $supplier = $s1['0'];
         $nutrients = session('nutrients');
         $photo = session('photo');
         $serving_unit = session('serving_unit');
         $serving_qty = session('serving_qty');
         $stock = new Stock;
         $stock->name = $request->name;
-        $stock->supplier = $request->supplier;
+        $stock->supplier = $supplier['id'];
         $stock->serving_unit = $serving_unit;
         $stock->serving_qty = $serving_qty;
         $stock->info = $request->info;

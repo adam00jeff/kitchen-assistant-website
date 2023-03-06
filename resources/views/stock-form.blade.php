@@ -18,18 +18,19 @@
                 </ul>
             </div>
         @endif
-        <?php $query = "ham, butter";?>
 <br><br>
         <form method="post" action="/stocks/confirm" class="" enctype="multipart/form-data">
             @csrf
             <div class="">
+
                 <p class="text-gray-700 text-sm">
                     <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
                            id="name" name="name" type="text" placeholder="stock name">
                 </p>
                 <p class="text-gray-700 mt-2 text-sm">
-                    <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                           id="supplier" name="supplier" type="text" placeholder="stock supplier">
+{{--                    <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                           id="supplier" name="supplier" type="text" placeholder="stock supplier">--}}
+                {!! Form::select('suppliers', $suppliers, null, ['class' => 'form-control appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3','placeholder'=>'Select Supplier','id'=>'supplier', 'name'=>'supplier']) !!}
                 </p>
                 <p class="text-gray-500 text-base mt-2">
                     <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"

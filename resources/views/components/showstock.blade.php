@@ -1,4 +1,6 @@
 <div class="">
+{{--    {{gettype($suppliers)}}--}}
+    {{--$suppliers does not follow in for some reason, $stock comes through fine--}}
     <table class="w-full border-separate p-16 text-sm text-cene= text-gray-500 dark:text-gray-400">
         <thead class="text-s text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr class="border-gray-700">
