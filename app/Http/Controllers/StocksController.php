@@ -30,7 +30,8 @@ class StocksController extends Controller
     public function create()
     {
         $suppliers = Supplier::pluck('name','id');
-        $allergens = Allergen::all();
+        $allergens = Allergen::pluck('name','id');
+
         return view('stock-form', ['suppliers'=>$suppliers,'allergens'=>$allergens]);
     }
 
@@ -43,7 +44,6 @@ class StocksController extends Controller
             'allergens' => 'required|max:500'
         ]);
         $gotquery = $request->name;
-        /*        $sess = session()->get('sess',[]);*/
         $getsupplier = Supplier::query()->where('id','=',$request->supplier)->get();
         $thissupplier = $getsupplier->toArray();
         $supplier =$thissupplier['0'];
@@ -52,9 +52,10 @@ class StocksController extends Controller
             "unit" => $request->unit,
             "supplier" => $supplier,
             "info" => $request->info,
-            "allergens" => $request->allergens
+            "allergens" => $request->allergens,
+            "db_allergens" => Allergen::query()->where('id','=',$request->db_allergens)->get()->toArray()
         ];
-        session()->put(/*'sess',*/ $sess);
+        session()->put($sess);
         $appid = "9787f4f0";
         $appkey = "5b11621e62674c09602b3d94977c8172";
         $endpoint = "https://trackapi.nutritionix.com/v2/natural/nutrients";
@@ -98,7 +99,8 @@ class StocksController extends Controller
         $stock->nutrients = $nutrients;
         $stock->image = $photo;
         $stock->save();
-        return view('stock', ['stocks' => $stock]);
+        $suppliers = Supplier::pluck('name','id');
+        return view('stock', ['stocks' => $stock, 'suppliers'=>$suppliers]);
     }
     public function destroy_stock(Stock $stock)
     {
