@@ -1,8 +1,10 @@
+<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#video-about-us">
+    @icon('oi oi-play-circle') Watch a video about us
+</button>
+
+
+
 <div class="">
-{{--    {{gettype($suppliers)}}--}}
-    {{--$suppliers does not follow in for some reason, $stock comes through fine--}}
-{{--    {{print_r($suppliers)}}--}}
-    {{--$suppliers now here and working just needs the right value echo'd below--}}
     <table class="w-full border-separate p-16 text-sm text-cene= text-gray-500 dark:text-gray-400">
         <thead class="text-s text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr class="border-gray-700">
@@ -43,7 +45,4 @@
         @endforeach
     </table>
 </div>
-{{--
-<div class="flex items-center justify-start mt-4 top-auto">
-    <a href="{{route('stock')}}" class="btn btn-primary btn-block bg-gray-800 text-white text-xs px-2 py-2 rounded-md mb-2 mr-2 uppercase hover:underline">Add Supplier</a>
-</div>--}}
+
