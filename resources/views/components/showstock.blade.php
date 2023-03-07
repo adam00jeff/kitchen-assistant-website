@@ -1,7 +1,8 @@
 <div class="">
 {{--    {{gettype($suppliers)}}--}}
     {{--$suppliers does not follow in for some reason, $stock comes through fine--}}
-    {{print_r($suppliers)}}
+{{--    {{print_r($suppliers)}}--}}
+    {{--$suppliers now here and working just needs the right value echo'd below--}}
     <table class="w-full border-separate p-16 text-sm text-cene= text-gray-500 dark:text-gray-400">
         <thead class="text-s text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr class="border-gray-700">
@@ -17,11 +18,12 @@
         </tr>
         @foreach($stocks as $stock)
             @php($nutrient_array=$stock['nutrients'])
+            @php($s = $stock['supplier'])
              <tr>
                 <td>{{$stock['id']}}</td>
                  <td><img src="{{$stock['image']}}" alt="" class="m-5 w-20 max-w-xs"></td>
                 <td>{{$stock['name']}}</td>
-                <td>{{$stock['supplier'] }}</td>
+                <td>{{$suppliers[$s] }}</td>
                 <td>{{$stock['serving_unit'] }}</td>
                 <td>{{$stock['info']}}</td>
                 <td>{{$stock['allergens']}}</td>
