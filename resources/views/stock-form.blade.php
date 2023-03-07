@@ -31,6 +31,9 @@
 {{--                    <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
                            id="supplier" name="supplier" type="text" placeholder="stock supplier">--}}
                 {!! Form::select('suppliers', $suppliers, null, ['class' => 'form-control appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3','placeholder'=>'Select Supplier','id'=>'supplier', 'name'=>'supplier']) !!}
+                <div class="flex items-center justify-end mt-4 top-auto">
+                    <a href="{{route('create_supplier')}}" class="btn btn-primary bg-gray-800 text-white text-xs px-2 py-2 rounded-md mb-2 mr-2 uppercase hover:underline">Add a New Supplier</a>
+                </div>
                 </p>
                 <p class="text-gray-500 text-base mt-2">
                     <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
