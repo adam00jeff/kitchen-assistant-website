@@ -24,7 +24,7 @@
                         <x-showrecipes :recipes="$recipes"/>
                         <br>
                         All Stocks:
-                        <x-showstock :stocks="$stocks"/>
+                        <x-showstock :stocks="$stocks" :suppliers="$suppliers"/>
                         <br>
                         All Documents:
                        <x-showdocuments :documents="$documents"/>

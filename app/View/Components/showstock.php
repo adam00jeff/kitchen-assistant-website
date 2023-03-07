@@ -15,6 +15,11 @@ class showstock extends Component
      * @return void
      */
     public $suppliers;
+    /**
+     * Create a new component instance.
+     *
+     * @return void
+     */
     public function __construct($stocks, $suppliers)
     {
         $this->stocks=$stocks;
