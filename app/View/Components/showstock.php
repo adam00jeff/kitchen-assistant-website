@@ -14,9 +14,11 @@ class showstock extends Component
      *
      * @return void
      */
-    public function __construct($stocks)
+    public $suppliers;
+    public function __construct($stocks, $suppliers)
     {
         $this->stocks=$stocks;
+        $this->suppliers=$suppliers;
     }
 
     /**

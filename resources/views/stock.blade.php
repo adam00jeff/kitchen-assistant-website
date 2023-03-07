@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
 
+{{--    @php($data = array($stocks))
+    @php(array_push($data, $suppliers))--}}
     <div class="py-12">
         @include('layouts.stock_navigation')
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -13,8 +15,8 @@
                     <div>
                         @if(Route::currentRouteName() == "store_stock")
                             <h1>New Stock Item</h1>
-                            <x-show_single_stock :$stocks/> {{--really want to also pass $suppliers here, doesnt seem to work--}}
-                        @else <x-showstock  :$stocks/>
+                            <x-show_single_stock :$stocks :$suppliers/> {{--really want to also pass $suppliers here, doesnt seem to work--}}
+                        @else <x-showstock  :$stocks :$suppliers/>
                         @endif
                     </div>
 
