@@ -76,7 +76,7 @@ use Illuminate\Support\Collection;
                                         id="callories" name="callories" type="text" value="{{$i['nf_calories']}}">
                                 </p>
                                 <p class="text-gray-500 text-base mt-2">
-                                    <label for="allergens">Allergens</label> (need logic here to check allergens table)
+                                    <label for="allergens">Allergens</label>
                                     <input
                                         class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
                                         id="allergens" name="allergens" type="text" value="{{session('allergens')}}, {{session('db_allergens')[0]['name']}}">

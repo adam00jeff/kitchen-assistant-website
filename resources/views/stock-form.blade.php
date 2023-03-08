@@ -19,7 +19,7 @@
             </div>
         @endif
 <br><br>
-        <form method="post" action="/stocks/confirm" class="" enctype="multipart/form-data">
+        <form method="post" action="/stocks/confirm" class="" enctype="multipart/form-data" >
             @csrf
             <div class="">
 
