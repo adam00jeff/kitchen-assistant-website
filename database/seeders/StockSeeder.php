@@ -14,6 +14,9 @@ class StockSeeder extends Seeder
      */
     public function run()
     {
-//
+/*        Stock::create([
+        need to seed 10-15 stocks from API call here
+
+        ]);*/
     }
 }
