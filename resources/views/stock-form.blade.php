@@ -5,7 +5,6 @@
         </h2>
     </x-slot>
     <div class="py-12">
-
     @include('layouts.stock_navigation')
     <div class="flex justify-center items-center p-2">
         <!-- if to catch errors and report to user -->
@@ -28,10 +27,8 @@
                            id="name" name="name" type="text" placeholder="stock name">
                 </p>
                 <p class="text-gray-700 mt-2 text-sm">
-{{--                    <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                           id="supplier" name="supplier" type="text" placeholder="stock supplier">--}}
                 {!! Form::select('suppliers', $suppliers, null, ['class' => 'form-control appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3','placeholder'=>'Select Supplier','id'=>'supplier', 'name'=>'supplier']) !!}
-                <div class="flex items-center justify-end mt-4 top-auto">
+                <div class="flex items-center justify-start mt-4 top-auto">
                     <a href="{{route('create_supplier')}}" class="btn btn-primary bg-gray-800 text-white text-xs px-2 py-2 rounded-md mb-2 mr-2 uppercase hover:underline">Add a New Supplier</a>
                 </div>
                 </p>
@@ -43,18 +40,10 @@
                     <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
                            id="info" name="info" type="text" placeholder="info">
                 </p>
-{{--                <p class="text-gray-500 text-base mt-2">
-                    {!! Form::select('allergens', $allergens, null,/* array('multiple'),*/ ['class' => 'form-control appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3','placeholder'=>'Select allergens','id'=>'db_allergens', 'name'=>'addMoreAllergenFields[0][allergen]'/*,'multiple'=>'multiple'*/]) !!}
-                    <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                           id="allergens" name="allergens" type="text" placeholder="Custom Allergens">
-                </p>--}}
-
-                <table  id="dynamicAddRemove">
-
-
+                <table  id="dynamicAddRemove" class="p-2">
                     <tr>
-                        <select name="addMoreAllergenFields[0][allergen]" id="allergens[0]" class="form-control col-md-12" required>
-                                <option value="" disabled selected>Select Allergen(s)</option>
+                        <select name="addMoreAllergenFields[0][allergen]" id="allergens[0]" class="form-control col-md-12 mb-3" required>
+                                <option value="" class=""disabled selected>Select Allergen(s)</option>
                             @foreach($allergens as $allergen)
                                 <option value="{{$allergen}}"=>{{$allergen}}</option>
                             @endforeach
@@ -63,8 +52,6 @@
                     </tr>
                 </table>
                 <button type="button" name="add" id="dynamic-ar" class="bg-gray-800 px-2 py-2 text-white text-xs rounded-md uppercase hover:underline">Add Another Allergen</button>
-
-
                 <div class="flex items-center justify-end mt-4 top-auto">
                     <button type="submit" class="bg-gray-800 text-white text-xs px-2 py-2 rounded-md mb-2 mr-2 uppercase hover:underline">
                         Check Stock

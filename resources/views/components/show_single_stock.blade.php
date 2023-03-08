@@ -1,14 +1,17 @@
 @php($stock=$stocks)
 @php($nutrient_array=$stock['nutrients'])
-<div>
-    <table>
-        <tr>
-            <th>Stock ID</th>
-            <th>Name</th>
-            <th>Supplier</th>
-            <th>Unit</th>
-            <th>Info</th>
-            <th>Allergens</th>
+<div class="">
+    <table class="w-full border-separate p-16 text-center text-sm text-gray-500 dark:text-gray-400">
+        <thead class="text-s text-gray-700 text-center uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr class="border-gray-700">
+            <th scope="col" class="px-6 py-3">Stock ID</th>
+            <th scope="col" class="px-6 py-3">Name</th>
+            <th scope="col" class="px-6 py-3">Picture</th>
+            <th scope="col" class="px-6 py-3">Supplier</th>
+            <th scope="col" class="px-6 py-3">Unit</th>
+            <th scope="col" class="px-6 py-3">Info</th>
+            <th scope="col" class="px-6 py-3 text-right">Allergens</th>
+            <th scope="col" class="px-6 py-3 text-right">Nutrients</th>
         </tr>
             <tr>
         <tr>
