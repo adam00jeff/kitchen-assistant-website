@@ -33,7 +33,14 @@ class StockFactory extends Factory
         'serving_qty' => rand(1,10),
         'info' => $this->faker->words(6,true),
             'callories' => rand(1,500),
-'nutrients'=>$nutrient_array,
+        'nutrients'=>array(
+            "Protein"=>array(
+                "value"=>0.1284,
+                "unit"=>"g"),
+            "Total lipid (fat)"=>array(
+                "value"=>0.1284,
+                "unit"=>"g"),
+        ),
         'allergens' => $this->faker->words(5, true),
             'image' => $this->faker->image,
         'user_id'=> rand(1,5),

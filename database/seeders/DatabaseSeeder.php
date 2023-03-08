@@ -31,6 +31,12 @@ class DatabaseSeeder extends Seeder
 
         ))->create();
         $this->call(UserSeeder::class);
+        User::factory(5)->state(new Sequence(
+            ['business_id'=>2],
+            ['business_id'=>3],
+            ['business_id'=>4],
+            ['business_id'=>5],
+            ['business_id'=>6]       ))->create();
         $this->call(StockSeeder::class);
         $this->call(RecipeSeeder::class);
         $this->call(DocumentSeeder::class);
@@ -39,16 +45,11 @@ class DatabaseSeeder extends Seeder
         $this->call(SupplierSeeder::class);
 
 
-        User::factory(5)->state(new Sequence(
-            ['business_id'=>2],
-            ['business_id'=>3],
-            ['business_id'=>4],
-            ['business_id'=>5],
-            ['business_id'=>6],
 
-        ))->create();
 
-        Stock::factory(50)->state(new Sequence(
+
+
+/*        Stock::factory(50)->state(new Sequence(
             ['user_id'=>1],
             ['user_id'=>2],
             ['user_id'=>3],
@@ -59,7 +60,7 @@ class DatabaseSeeder extends Seeder
             ['image'=>"https://nix-tag-images.s3.amazonaws.com/834_thumb.jpg"],
             ['image'=>"https://nix-tag-images.s3.amazonaws.com/115_thumb.jpg"],
             ['image'=>"https://nix-tag-images.s3.amazonaws.com/320_thumb.jpg"]
-        ))->create();
+        ))->create();*/
         Recipe::factory(50)->state(new Sequence(
             ['user_id'=>1],
             ['user_id'=>2],

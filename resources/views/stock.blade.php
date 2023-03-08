@@ -12,8 +12,8 @@
                     <div>
                         @if(Route::currentRouteName() == "store_stock")
                             <h1>New Stock Item</h1>
-                            <x-show_single_stock :$stocks :$suppliers/> {{--really want to also pass $suppliers here, doesnt seem to work--}}
-                        @else <x-showstock  :$stocks :$suppliers/>
+                            <x-show_single_stock :$stocks :$suppliers :$nutrients/> {{--really want to also pass $suppliers here, doesnt seem to work--}}
+                        @else <x-showstock  :$stocks :$suppliers :$nutrients/>
                         @endif
                     </div>
 

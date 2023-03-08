@@ -20,10 +20,17 @@ class showstock extends Component
      *
      * @return void
      */
-    public function __construct($stocks, $suppliers)
+    public $nutrients;
+    /**
+     * Create a new component instance.
+     *
+     * @return void
+     */
+    public function __construct($stocks, $suppliers, $nutrients)
     {
         $this->stocks=$stocks;
         $this->suppliers=$suppliers;
+        $this->nutrients=$nutrients;
     }
 
     /**

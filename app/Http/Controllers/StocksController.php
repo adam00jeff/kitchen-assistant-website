@@ -20,10 +20,12 @@ class StocksController extends Controller
     {
         $id = Auth::id();
         $busid = Auth::user()->business_id;
-        $stocks = Stock::all()->where('business_id', $busid);
+        $stocks = Stock::all();
+
+        $nutrients = Nutrient::all()->sortBy('type');
         $suppliers = Supplier::pluck('name','id')->toArray();
 /*        ddd($suppliers);*/
-        return view('stock', ['stocks' => $stocks,'suppliers'=>$suppliers]);
+        return view('stock', ['stocks' => $stocks,'suppliers'=>$suppliers, 'nutrients'=>$nutrients]);
     }
 
 
