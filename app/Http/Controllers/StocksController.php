@@ -37,6 +37,7 @@ class StocksController extends Controller
 
     public function confirm(Request $request)
     {
+/*        ddd($request);*/
         $validated = $request->validate([
             'name' => 'required|max:255',
             'supplier' => 'required|numeric',//supplier ID for now, to be replaced with plain text entry
@@ -51,8 +52,8 @@ class StocksController extends Controller
             "unit" => $request->unit,
             "supplier" => $supplier,
             "info" => $request->info,
-            "allergens" => $request->allergens,
-            "db_allergens" => Allergen::query()->where('id','=',$request->db_allergens)->get()->toArray()
+            "allergens" => $request->addMoreAllergenFields
+/*            "db_allergens" => Allergen::query()->where('id','=',$request->db_allergens)->get()->toArray()*/
         ];
         session()->put($sess);
         $appid = "9787f4f0";
@@ -70,8 +71,9 @@ class StocksController extends Controller
         ]);
         $data = json_decode($response, true);
         $allergens = Allergen::all();
+        $usrallergens = $request->addMoreAllergenFields;
         $nutrients = Nutrient::all()->sortBy('type');
-        return view('stock-confirm', ['data' => $data, 'nutrients' => $nutrients, 'supplier'=>$supplier,'allergens'=>$allergens]);
+        return view('stock-confirm', ['data' => $data, 'nutrients' => $nutrients, 'supplier'=>$supplier,'allergens'=>$allergens, 'usrallergens'=>$usrallergens]);
     }
 
     public function store(Request $request)

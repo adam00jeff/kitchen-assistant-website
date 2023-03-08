@@ -33,6 +33,8 @@ use Illuminate\Support\Collection;
                         <form method="POST" action="{{route('store_stock')}}" class="" enctype="multipart/form-data">
                             @csrf
                             <div class="">
+                                {{--{{print_r($usrallergens)}}--}}
+
                                 <p class="text-gray-700 text-sm">
                                     <img src="{{$photos['thumb']}}" alt="" class="m-5 w-20 max-w-xs">
                                     <label for="name">Name</label>
@@ -79,7 +81,7 @@ use Illuminate\Support\Collection;
                                     <label for="allergens">Allergens</label>
                                     <input
                                         class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                                        id="allergens" name="allergens" type="text" value="{{session('allergens')}}, {{session('db_allergens')[0]['name']}}">
+                                        id="allergens" name="allergens" type="text" value="@foreach($usrallergens as $a => $b ){{$b['allergen']}} @endforeach">
                                 </p>
                                 <p class="text-gray-500 text-base mt-2">
                                     <label for="Nutrients">Full Nutrients</label>
