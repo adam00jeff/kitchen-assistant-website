@@ -34,12 +34,9 @@ class RecipesController extends Controller
         $qty = $request->quantity;
         /*ddd($qty);*/
         $i=1;
-
         foreach ($req as $k=>$v){
             foreach ($v as $k2 => $v2) {
-
                 $req[$k][$k2] = $v2." ".$qty[$i];
-
             }
         $i++;
     }
