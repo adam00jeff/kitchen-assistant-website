@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Recipe;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,8 @@ class RecipesController extends Controller
 
     public function create_recipe()
     {
-        return view('recipes-form');
+        $stocks = Stock::all();
+        return view('recipes-form',['stocks' => $stocks]);
     }
     public function store_recipe(Request $request)
     {        $busid = Auth::user()->business_id;

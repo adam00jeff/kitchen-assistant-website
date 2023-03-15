@@ -45,16 +45,18 @@
                         <select name="addMoreAllergenFields[0][allergen]" id="allergens[0]" class="form-control col-md-12 mb-3" required>
                                 <option value="" class=""disabled selected>Select Allergen(s)</option>
                             @foreach($allergens as $allergen)
-                                <option value="{{$allergen}}"=>{{$allergen}}</option>
+                                <option value="{{$allergen}}">{{$allergen}}</option>
                             @endforeach
-                        </select><br>
+                        </select>
+                        {{--<button type="button" class="remove-input-field">Delete</button><br>--}}
                     </td>
                     </tr>
+
                 </table>
                 <button type="button" name="add" id="dynamic-ar" class="bg-gray-800 px-2 py-2 text-white text-xs rounded-md uppercase hover:underline">Add Another Allergen</button>
                 <div class="flex items-center justify-end mt-4 top-auto">
                     <button type="submit" class="bg-gray-800 text-white text-xs px-2 py-2 rounded-md mb-2 mr-2 uppercase hover:underline">
-                        Check Stock
+                        Continue
                     </button>
                 </div>
             </div>
@@ -69,9 +71,7 @@
         var i = 0;
         $("#dynamic-ar").click(function () {
             ++i;
-
-
-            $("#dynamicAddRemove").append('<select name="addMoreAllergenFields['+i+'][allergen]" id="allergens['+1+']" class="form-control col-md-12" required>@foreach($allergens as $allergen)<option value="{{ $allergen}}">{{ $allergen }}</option></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>@endforeach</select><br>'
+            $("#dynamicAddRemove").append('<tr><td><select name="addMoreAllergenFields['+i+'][allergen]" id="allergens['+1+']" class="form-control col-md-12" required>@foreach($allergens as $allergen)<option value="{{ $allergen}}">{{ $allergen }}</option>@endforeach</td></select><td><button type="button" class="remove-input-field">Delete</button></td></tr><br>'
 );
         });
         $(document).on('click', '.remove-input-field', function () {
