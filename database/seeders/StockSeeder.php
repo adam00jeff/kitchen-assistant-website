@@ -71,7 +71,16 @@ class StockSeeder extends Seeder
         $keys = $data;
         $nutrients = Nutrient::all()->sortBy('type')->toArray();
                     foreach($keys['foods'] as $i) {
+                        $nutrient_array = array();
                         $photos = $i['photo'];
+                        foreach($i['full_nutrients'] as $j) {
+                            foreach ($nutrients as $n) {
+                                if ($j['attr_id'] == $n['attr_id']){
+                                    $nutrient_array[$n['name']] = array('value' => $j['value'], 'unit' => $n['unit']);
+                                }
+                            }
+                        }
+
                         Stock::create([
                             'name' => $i['food_name'],
                             'supplier' => rand(1,10),
@@ -79,7 +88,7 @@ class StockSeeder extends Seeder
                             'serving_qty' => $i['serving_qty'],
                             'info' => "some information on this item",
                             'callories' => $i['nf_calories'],
-                            'nutrients'=> $i['full_nutrients'],
+                            'nutrients'=> $nutrient_array,
                             'allergens' => $this->faker->words(5, true),
                             'image' => $photos['thumb'],
                             'user_id'=> rand(1,5),

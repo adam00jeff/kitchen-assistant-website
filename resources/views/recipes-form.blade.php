@@ -66,7 +66,7 @@
         $("#dynamic-ar-ingredient").click(function () {
             ++i;
             $("#dynamicAddRemoveIngredient").append(
-                '<tr><td><select name="addMoreIngredients['+i+'][ingredient]" id="ingredients['+1+']" class="form-control col-md-12" required>@foreach($stocks as $stock)<option value="{{ $stock['id']}}">{{ $stock['name']}}</option>@endforeach</td></select><td><button type="button" class="remove-input-field">Delete</button></td></tr><br>');
+                '<tr><td><select name="addMoreIngredients['+i+'][ingredient]" id="ingredients['+1+']" class="form-control col-md-12" required>@foreach($stocks as $stock)<option value="{{ $stock['id']}}">{{ $stock['name']}}</option>@endforeach</select></td><td><input class="block bg-grey-lighter text-grey-darker border rounded"id="quantity" name="quantity" type="text" placeholder="quantity">{{$stock['unit']}}</td><td><button type="button" class="remove-input-field">Delete</button></td></tr><br>');
         });
         $(document).on('click', '.remove-input-field', function () {
             $(this).parents('tr').remove();

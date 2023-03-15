@@ -15,14 +15,15 @@
         @foreach($stocks as $stock)
             @php($nutrient_array=$stock['nutrients'])
             @php($s = $stock['supplier'])
-            @php($nutrient_array = array())
+{{--            @php($nutrient_array = array())
             @foreach($stock['nutrients'] as $j)
                 @foreach($nutrients as $n)
                     @if($j['attr_id']==$n['attr_id']&&$j['value']!=0)
                             <?php $nutrient_array = Arr::add($nutrient_array, $n['name'], array('value' => $j['value'], 'unit' => $n['unit'])) ?>
                     @endif
                 @endforeach
-            @endforeach
+            @endforeach--}}
+{{--            @php(ddd($nutrient_array));--}}
              <tr>
                 <td>{{$stock['id']}}</td>
                  <td><img src="{{$stock['image']}}" alt="" class="m-5 w-20 max-w-xs"></td>
@@ -31,8 +32,8 @@
                 <td>{{$stock['serving_unit'] }}</td>
                 <td>{{$stock['info']}}</td>
                 <td>{{$stock['allergens']}}</td>
-                 <td><textarea>@foreach($nutrient_array as $key=>$na){{$key}}{{$na['value']}}{{$na['unit']}}
-@endforeach
+                 <td><textarea>@foreach($nutrient_array as $k=>$v) {{$k}}@foreach($v as $k2 => $v2){{$v2}}@endforeach
+                         @endforeach
                      </textarea>
                  </td>
                  <td>

@@ -101,7 +101,8 @@ class StocksController extends Controller
         $stock->image = $photo;
         $stock->save();
         $suppliers = Supplier::pluck('name','id');
-        return view('stock', ['stocks' => $stock, 'suppliers'=>$suppliers]);
+        $nutrients = Nutrient::all()->sortBy('type');
+        return view('stock', ['stocks' => $stock, 'suppliers'=>$suppliers, 'nutrients'=>$nutrients]);
     }
     public function destroy_stock(Stock $stock)
     {

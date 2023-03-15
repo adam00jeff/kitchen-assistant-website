@@ -37,10 +37,11 @@ class DatabaseSeeder extends Seeder
             ['business_id'=>4],
             ['business_id'=>5],
             ['business_id'=>6]       ))->create();
+        $this->call(NutrientSeeder::class);
         $this->call(StockSeeder::class);
         $this->call(RecipeSeeder::class);
         $this->call(DocumentSeeder::class);
-        $this->call(NutrientSeeder::class);
+
         $this->call(AllergenSeeder::class);
         $this->call(SupplierSeeder::class);
 

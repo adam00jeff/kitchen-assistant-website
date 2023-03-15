@@ -17,7 +17,7 @@ use Illuminate\Support\Collection;
                     @foreach($keys['foods'] as $i)
                             <?php $foods = $i;
                             $photos = $foods['photo'];
-                            $apinutrients = $i['full_nutrients'];
+                            /*$apinutrients = $i['full_nutrients'];*/
                             $nutrient_array = array(); ?>
                         @foreach($i['full_nutrients'] as $j)
                             @foreach($nutrients as $n)
@@ -26,8 +26,8 @@ use Illuminate\Support\Collection;
                                 @endif
                             @endforeach
                         @endforeach
-                        @php($nutrient_collection = new Collection($nutrient_array))
                         @php(session(['nutrients'=>$nutrient_array]))
+                        @php($nutrient_collection = new Collection($nutrient_array))
                         @php(session(['photo'=>$photos['thumb']]))
                         {{--might need a foreach here for stock items with multiple food types--}}
                         <form method="POST" action="{{route('store_stock')}}" class="" enctype="multipart/form-data">
