@@ -9,7 +9,8 @@
         @foreach($recipes as $recipe)
             <tr>
                 <td class="px-6 py-3">{{$recipe['name']}}</td>
-                <td class="px-6 py-3">{{ $recipe['ingredients'] }}</td>
+
+                <td class="px-6 py-3">@if(is_string($recipe['ingredients'])){{$recipe['ingredients']}}@else @foreach($recipe['ingredients'] as $n) @foreach($n as $k => $v){{$v}}@endforeach @endforeach @endif</td>
                 <td class="border border border-gray-900 px-6 py-3">{{ $recipe['method'] }}</td>
                 <td>
                     <form method="POST" action="/recipes/{{$recipe->id}}">

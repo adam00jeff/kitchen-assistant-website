@@ -11,4 +11,7 @@ class Recipe extends Model
     protected $fillable =[
         'name','ingredients', 'method'
     ];
+    protected $casts = [
+        'ingredients'=>'array',
+    ];
 }
