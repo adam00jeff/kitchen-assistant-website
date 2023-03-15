@@ -22,14 +22,19 @@
             <form method="POST" action="/recipes" class="" enctype="multipart/form-data">
                 @csrf
                 <div class="">
+                    {{--Name--}}
                     <p class="text-gray-700 text-sm">
                         <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
                                id="name" name="name" type="text" placeholder="recipe name">
                     </p>
+
+                    {{--Ingredients - needs select from stock and + stock button--}}
                     <p class="text-gray-700 mt-2 text-sm">
                         <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
                                id="ingredients" name="ingredients" type="text" placeholder="ingredients">
                     </p>
+
+                    {{--Method, also should be dynamic--}}
                     <p class="text-gray-500 text-base mt-2">
                         <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
                                id="rmethod" name="rmethod" type="text" placeholder="method">
