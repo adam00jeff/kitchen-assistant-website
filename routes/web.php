@@ -41,8 +41,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/stock/{stock}', [\App\Http\Controllers\StocksController::class, 'destroy_stock'])->name('destroy_stock');
     //recipes
     Route::get('/recipes',[RecipesController::class, 'recipes_index'])->name('recipes');
-    Route::get('/recipes/create',[RecipesController::class, 'create'])->name('create_recipes');
-    Route::post('/recipes', [RecipesController::class, 'store'])->name('store_recipes');
+    Route::get('/recipes/create',[RecipesController::class, 'create_recipe'])->name('create_recipes');
+    Route::post('/recipes', [RecipesController::class, 'store_recipe'])->name('store_recipes');
+    Route::delete('/recipes/{recipe}', [\App\Http\Controllers\RecipesController::class, 'destroy_recipe'])->name('destroy_recipe');
 
     Route::get('/documents',[DocumentController::class, 'documents_index'])->name('documents');
     Route::get('/documents/create', [DocumentController::class, 'create_document'])->name('create_document');

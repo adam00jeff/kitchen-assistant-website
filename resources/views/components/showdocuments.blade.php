@@ -1,5 +1,5 @@
-<div>
-    <table>
+<div class="flex justify-center">
+    <table class="align-middle">
         <tr>
             <th>Document ID</th>
             <th>Name</th>
