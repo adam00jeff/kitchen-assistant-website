@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Document;
-use App\Models\Recepie;
+use App\Models\Recipe;
 use App\Models\Stock;
 use App\Models\User;
 use App\Models\Business;
@@ -23,7 +23,7 @@ class AdminController extends Controller
         $id = Auth::id();
         $businesses = Business::all();
         $users = User::all();
-        $recepies = Recepie::all();
+        $recepies = Recipe::all();
         $stocks = Stock::all();
         $documents = Document::all();
         return view('admin_panel',[

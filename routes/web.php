@@ -4,7 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ProfileController;
 
-use App\Http\Controllers\RecepiesController;
+use App\Http\Controllers\RecipesController;
 use App\Http\Controllers\StocksController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,9 +40,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/stock', [StocksController::class, 'store'])->name('store_stock');
     Route::delete('/stock/{stock}', [\App\Http\Controllers\StocksController::class, 'destroy_stock'])->name('destroy_stock');
 
-    Route::get('/recepies',[RecepiesController::class, 'recepie_index'])->name('recepies');
-    Route::get('/recepies/create',[RecepiesController::class, 'create'])->name('create_recepies');
-    Route::post('/recepies', [RecepiesController::class, 'store'])->name('store_recepies');
+    Route::get('/recipes',[RecipesController::class, 'recipe_index'])->name('recipes');
+    Route::get('/recipes/create',[RecipesController::class, 'create'])->name('create_recipes');
+    Route::post('/recipes', [RecipesController::class, 'store'])->name('store_recipes');
 
     Route::get('/documents',[DocumentController::class, 'documents_index'])->name('documents');
     Route::get('/documents/create', [DocumentController::class, 'create_document'])->name('create_document');

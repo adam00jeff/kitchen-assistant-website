@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recepie;
+use App\Models\Recipe;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RecepiesController extends Controller
+class RecipesController extends Controller
 {
-    public function recepie_index()
+    public function recipe_index()
     {
         $id = Auth::user()->business_id;
-        $recepies = Recepie::all()->where('business_id',$id);
-        return view('recepies',['recepies'=>$recepies]);
+        $recipes = Recipe::all()->where('business_id',$id);
+        return view('recipes',['recipes'=>$recipes]);
     }
 
     public function create()
     {
-        return view('recepies-form');
+        return view('recipes-form');
     }
     public function store(Request $request)
     {        $busid = Auth::user()->business_id;
@@ -29,13 +29,13 @@ class RecepiesController extends Controller
             'rmethod'=>'required|max:1000'
         ]);
 
-        $recepie = new Recepie;
-        $recepie->name = $request->name;
-        $recepie->ingredients = $request->ingredients;
-        $recepie->method = $request->rmethod;
-        $recepie->user_id = $id;
-        $recepie->business_id = $busid;
-        $recepie->save();
+        $recipe = new Recipe;
+        $recipe->name = $request->name;
+        $recipe->ingredients = $request->ingredients;
+        $recipe->method = $request->rmethod;
+        $recipe->user_id = $id;
+        $recipe->business_id = $busid;
+        $recipe->save();
         return response()->json(["msg" => "success"]);
     }
 }

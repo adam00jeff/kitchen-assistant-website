@@ -5,7 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Business;
 use App\Models\Document;
-use App\Models\Recepie;
+use App\Models\Recipe;
 use App\Models\Stock;
 use App\Models\supplier;
 use App\Models\User;
@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         ))->create();
         $this->call(UserSeeder::class);
         $this->call(StockSeeder::class);
-        $this->call(RecepieSeeder::class);
+        $this->call(RecipeSeeder::class);
         $this->call(DocumentSeeder::class);
         $this->call(NutrientSeeder::class);
         $this->call(AllergenSeeder::class);
@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
             ['image'=>"https://nix-tag-images.s3.amazonaws.com/115_thumb.jpg"],
             ['image'=>"https://nix-tag-images.s3.amazonaws.com/320_thumb.jpg"]
         ))->create();
-        Recepie::factory(50)->state(new Sequence(
+        Recipe::factory(50)->state(new Sequence(
             ['user_id'=>1],
             ['user_id'=>2],
             ['user_id'=>3],

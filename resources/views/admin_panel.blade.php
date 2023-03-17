@@ -18,7 +18,7 @@
                         <x-showusers :users="$users"/>
                         <br>
                         All Recepies
-                        <x-showrecepies :recepies="$recepies"/>
+                        <x-showrecepies :$recipes="$recipes"/>
                         <br>
                         All Stocks
                         <x-showstock :stocks="$stocks"/>

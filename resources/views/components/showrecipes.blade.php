@@ -6,12 +6,12 @@
             <th>Ingredients</th>
             <th>Method</th>
         </tr>
-        @foreach($recepies as $recepie)
+        @foreach($recipes as $recipe)
             <tr>
-                <td>{{$recepie['id']}}</td>
-                <td>{{$recepie['name']}}</td>
-                <td>{{ $recepie['ingredients'] }}</td>
-                <td>{{ $recepie['method'] }}</td>
+                <td>{{$recipe['id']}}</td>
+                <td>{{$recipe['name']}}</td>
+                <td>{{ $recipe['ingredients'] }}</td>
+                <td>{{ $recipe['method'] }}</td>
             </tr>
         @endforeach
     </table>

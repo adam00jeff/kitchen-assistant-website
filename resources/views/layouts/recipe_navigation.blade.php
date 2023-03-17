@@ -4,14 +4,14 @@
             <!-- Logo -->
             <!-- Navigation Links -->
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <x-nav-link :href="route('recepies')" :active="request()->routeIs('recepies')">
-                    {{ __('All Recepies') }}
+                <x-nav-link :href="route('recipes')" :active="request()->routeIs('recipes')">
+                    {{ __('All Recipes') }}
                 </x-nav-link>
-                <x-nav-link :href="route('create_recepies')" :active="request()->routeIs('create_recepies')">
-                    {{ __('Add Recepie') }}
+                <x-nav-link :href="route('create_recipes')" :active="request()->routeIs('create_recipes')">
+                    {{ __('Add Recipe') }}
                 </x-nav-link>
                 <x-nav-link :href="route('stock')" :active="request()->routeIs('stock')">
-                    {{ __('Recepie Info') }}
+                    {{ __('Recipe Info') }}
                 </x-nav-link>
                 <x-nav-link :href="route('stock')" :active="request()->routeIs('stock')">
                     {{ __('Other') }}
