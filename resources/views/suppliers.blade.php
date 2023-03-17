@@ -15,11 +15,11 @@
                     </div>
                     <div>
                         <x-showsuppliers :suppliers="$suppliers"/>
-                    </div>
-                    <x-nav-link :href="route('welcome')" :active="request()->routeIs('back')">
-                        {{ __('Back') }}
-                    </x-nav-link>
                 </div>
+                <x-nav-link :href="route('welcome')" :active="request()->routeIs('back')">
+                    {{ __('Back') }}
+                </x-nav-link>
             </div>
         </div>
+    </div>
 </x-app-layout>

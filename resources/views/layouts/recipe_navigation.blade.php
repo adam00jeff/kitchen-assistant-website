@@ -10,7 +10,7 @@
                 <x-nav-link :href="route('create_recipes')" :active="request()->routeIs('create_recipes')">
                     {{ __('Add Recipe') }}
                 </x-nav-link>
-                <x-nav-link :href="route('stock')" :active="request()->routeIs('stock')">
+                <x-nav-link :href="route('recipes')" :active="request()->routeIs('recipes')">
                     {{ __('Recipe Info') }}
                 </x-nav-link>
             </div>

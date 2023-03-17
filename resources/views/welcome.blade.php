@@ -12,7 +12,7 @@
 
 
 
-                    {{ __("You're logged in! test update") }}
+                    {{ __("You're logged in!") }}
                 </div>
             </div>
         </div>

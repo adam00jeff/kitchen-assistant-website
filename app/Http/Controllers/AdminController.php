@@ -8,6 +8,8 @@ use App\Models\Recipe;
 use App\Models\Stock;
 use App\Models\User;
 use App\Models\Business;
+use App\Models\Supplier;
+use App\Models\Nutrient;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,15 +25,19 @@ class AdminController extends Controller
         $id = Auth::id();
         $businesses = Business::all();
         $users = User::all();
-        $recepies = Recipe::all();
+        $recipes = Recipe::all();
         $stocks = Stock::all();
         $documents = Document::all();
+        $suppliers = Supplier::pluck('name','id')->toArray();
+        $nutrients = Nutrient::all()->sortBy('type');
         return view('admin_panel',[
             'businesses'=>$businesses,
             'users'=>$users,
-            'recepies'=>$recepies,
+            'recipes'=>$recipes,
             'stocks'=>$stocks,
-            'documents'=>$documents
+            'documents'=>$documents,
+            'suppliers'=>$suppliers,
+            'nutrients'=>$nutrients
         ]);
 
     }

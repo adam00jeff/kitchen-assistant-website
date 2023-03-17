@@ -10,11 +10,8 @@
                 <x-nav-link :href="route('create_document')" :active="request()->routeIs('create_document')">
                     {{ __('Add Document') }}
                 </x-nav-link>
-                <x-nav-link :href="route('documents')" :active="request()->routeIs('documents')">
+                <x-nav-link :href="route('documents')" {{--:active="request()->routeIs('documents')"--}}>
                     {{ __('Renewal Schedule') }}
-                </x-nav-link>
-                <x-nav-link :href="route('documents')" :active="request()->routeIs('documents')">
-                    {{ __('Other') }}
                 </x-nav-link>
             </div>
         </div>

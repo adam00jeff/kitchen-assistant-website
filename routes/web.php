@@ -29,6 +29,8 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'checkrole:admin'])->group(function (){
     Route::get('/admin_panel',[AdminController::class, 'index'])->name('admin_panel');
+    Route::delete('/business/{business}', [\App\Http\Controllers\BusinessController::class, 'destroy_business'])->name('destroy_business');
+    Route::delete('/users/{user}', [\App\Http\Controllers\UserController::class, 'destroy_user'])->name('destroy_user');
 
 });
 

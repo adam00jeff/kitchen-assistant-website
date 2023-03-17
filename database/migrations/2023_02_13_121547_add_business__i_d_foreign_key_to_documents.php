@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('documents', function (Blueprint $table) {
             $table->unsignedBigInteger('business_id');
 
-            $table->foreign('business_id')->references('id')->on('businesses');
+            $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');
         });
     }
 

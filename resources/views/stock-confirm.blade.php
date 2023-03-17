@@ -12,35 +12,29 @@ use Illuminate\Support\Collection;
             <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
                 <div>
                     <h2>Please Confrim Stock Information</h2>
-                    {{--                    {{print_r($session)}}--}}
-                    {{--                    {{session('name')}}--}}
                     {{--need to save nutrient array to $session for retreival in controller--}}
                     <?php $keys = $data; ?>
                     @foreach($keys['foods'] as $i)
                             <?php $foods = $i;
                             $photos = $foods['photo'];
-                            $apinutrients = $i['full_nutrients'];
-                            $nutrient_names = $nutrients;
+                            /*$apinutrients = $i['full_nutrients'];*/
                             $nutrient_array = array(); ?>
-{{--@php(print_r($keys))--}}
                         @foreach($i['full_nutrients'] as $j)
                             @foreach($nutrients as $n)
                                 @if($j['attr_id']==$n['attr_id']&&$j['value']!=0)
                                         <?php $nutrient_array = Arr::add($nutrient_array, $n['name'], array('value' => $j['value'], 'unit' => $n['unit'])) ?>
-                                    {{--                     {{array_add($nutrient_array, '$n[\'name\']', array($j['value']=>$n['unit']))}}--}}
-                                    {{--                                        {{$n['name']}} {{$j['value'] }} {{$n['unit']}}<br>--}}
                                 @endif
                             @endforeach
                         @endforeach
-                        @php($nutrient_collection = new Collection($nutrient_array))
                         @php(session(['nutrients'=>$nutrient_array]))
+                        @php($nutrient_collection = new Collection($nutrient_array))
                         @php(session(['photo'=>$photos['thumb']]))
-
-{{--                        {{print_r(session('nutrients'))}}--}}
                         {{--might need a foreach here for stock items with multiple food types--}}
                         <form method="POST" action="{{route('store_stock')}}" class="" enctype="multipart/form-data">
                             @csrf
                             <div class="">
+                                {{--{{print_r($usrallergens)}}--}}
+
                                 <p class="text-gray-700 text-sm">
                                     <img src="{{$photos['thumb']}}" alt="" class="m-5 w-20 max-w-xs">
                                     <label for="name">Name</label>
@@ -52,7 +46,8 @@ use Illuminate\Support\Collection;
                                     <label for="supplier">Supplier</label>
                                     <input
                                         class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                                        id="supplier" name="supplier" type="text" value="{{session('supplier')}}">
+                                        id="supplier" name="supplier" type="text" value="{{$supplier['name']}}">
+
                                 </p>
                                 <p class="text-gray-500 text-base mt-2">
                                     <label for="serving_unit">Unit</label>
@@ -83,10 +78,10 @@ use Illuminate\Support\Collection;
                                         id="callories" name="callories" type="text" value="{{$i['nf_calories']}}">
                                 </p>
                                 <p class="text-gray-500 text-base mt-2">
-                                    <label for="allergens">Allergens</label> (need logic here to check allergens table)
+                                    <label for="allergens">Allergens</label>
                                     <input
                                         class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                                        id="allergens" name="allergens" type="text" value="{{session('allergens')}}">
+                                        id="allergens" name="allergens" type="text" value="@foreach($usrallergens as $a => $b ){{$b['allergen']}} @endforeach">
                                 </p>
                                 <p class="text-gray-500 text-base mt-2">
                                     <label for="Nutrients">Full Nutrients</label>

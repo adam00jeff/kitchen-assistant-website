@@ -26,7 +26,7 @@ class SupplierController extends Controller
      */
     public function create_supplier()
     {
-        return view('supplier-form');
+       return view('supplier-form');
     }
 
     /**

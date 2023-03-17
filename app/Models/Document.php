@@ -9,6 +9,6 @@ class Document extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'name','type', 'file_location', 'doc_date', 'renewal_period'
+        'name','display_name','type', 'file_location', 'doc_date', 'renewal_period'
     ];
 }

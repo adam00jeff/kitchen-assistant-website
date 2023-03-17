@@ -19,7 +19,50 @@
                 </div>
             @endif
             <!-- main form for new product -->
-            <form method="POST" action="/documents" class="" enctype="multipart/form-data">
+            <div class="container mt-5">
+                <form action="{{route('store_document')}}" method="post" enctype="multipart/form-data">
+                    <h3 class="text-center mb-5">Upload File</h3>
+                    @csrf
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <p class="text-gray-700 mt-2 text-sm">
+                        <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                               id="name" name="name" type="text" placeholder="document name">
+                    </p>
+                    <p class="text-gray-700 mt-2 text-sm">
+                        <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                               id="type" name="type" type="text" placeholder="document type">
+                    </p>
+                    <p class="text-gray-700 mt-2 text-sm">
+                        <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                               id="doc_date" name="doc_date" type="date" placeholder="document date">
+                    </p>
+                    <p class="text-gray-700 mt-2 text-sm">
+                        <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                               id="renewal_period" name="renewal_period" type="text" placeholder="renewal period">
+                    </p>
+                    <div class="custom-file">
+                        <input type="file" name="file" class="custom-file-input" id="chooseFile">
+                        <label class="custom-file-label" for="chooseFile">Select file</label>
+                    </div>
+                    <button type="submit" name="submit" class="btn btn-primary btn-block mt-4">
+                        Upload Files
+                    </button>
+                </form>
+            </div>
+            {{--            <form method="POST" action="/documents" class="" enctype="multipart/form-data">
                 @csrf
                 <div class="">
                     <p class="text-gray-700 text-sm">
@@ -50,7 +93,8 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            </form>--}}
+
         </div>
     </div>
 </x-app-layout>

@@ -4,7 +4,6 @@
             {{ Auth::user()->name }}'s stock
         </h2>
     </x-slot>
-
     <div class="py-12">
         @include('layouts.stock_navigation')
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -13,10 +12,9 @@
                     <div>
                         @if(Route::currentRouteName() == "store_stock")
                             <h1>New Stock Item</h1>
-                            <x-show_single_stock :stocks="$stocks"/>
-                        @else <x-showstock :stocks="$stocks"/>
+                            <x-show_single_stock :$stocks :$suppliers :$nutrients/>
+                        @else <x-showstock  :$stocks :$suppliers :$nutrients/>
                         @endif
-
                     </div>
 
                 </div>
@@ -27,8 +25,9 @@
                 @else
                     <x-nav-link :href="route('welcome')" :active="request()->routeIs('back')">
                     {{ __('Back') }}
-                </x-nav-link>
-                    @endif
+                    </x-nav-link>
+                @endif
+
             </div>
         </div>
     </div>

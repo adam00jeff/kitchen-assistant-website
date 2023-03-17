@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Business;
-use App\Http\Requests\StoreBusinessRequest;
-use App\Http\Requests\UpdateBusinessRequest;
+use App\Models\User;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Response;
 
-class BusinessController extends Controller
+class UserController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -32,10 +33,10 @@ class BusinessController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreBusinessRequest $request
+     * @param StoreUserRequest $request
      * @return Response
      */
-    public function store(StoreBusinessRequest $request)
+    public function store(StoreUserRequest $request)
     {
         //
     }
@@ -43,10 +44,10 @@ class BusinessController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Business $business
+     * @param User $User
      * @return Response
      */
-    public function show(Business $business)
+    public function show(User $user)
     {
         //
     }
@@ -54,10 +55,10 @@ class BusinessController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Business $business
+     * @param User $user
      * @return Response
      */
-    public function edit(Business $business)
+    public function edit(User $user)
     {
         //
     }
@@ -65,11 +66,11 @@ class BusinessController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateBusinessRequest $request
-     * @param Business $business
+     * @param UpdateUserRequest $request
+     * @param User $user
      * @return Response
      */
-    public function update(UpdateBusinessRequest $request, Business $business)
+    public function update(UpdateUserRequest $request, User $user)
     {
         //
     }
@@ -77,13 +78,16 @@ class BusinessController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Business $business
+     * @param User $user
      * @return Response
      */
-    public function destroy_business(Business $business)
+    public function destroy_user(User $user)
     {
-        $business->delete();
-        $business = Business::all();
-        return redirect()->back();
+        {
+            $user->delete();
+            $users = User::all();
+            return redirect()->back();
+        }
     }
 }
+

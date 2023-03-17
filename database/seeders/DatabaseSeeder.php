@@ -31,24 +31,26 @@ class DatabaseSeeder extends Seeder
 
         ))->create();
         $this->call(UserSeeder::class);
-        $this->call(StockSeeder::class);
-        $this->call(RecipeSeeder::class);
-        $this->call(DocumentSeeder::class);
-        $this->call(NutrientSeeder::class);
-        $this->call(AllergenSeeder::class);
-        $this->call(SupplierSeeder::class);
-
-
         User::factory(5)->state(new Sequence(
             ['business_id'=>2],
             ['business_id'=>3],
             ['business_id'=>4],
             ['business_id'=>5],
-            ['business_id'=>6],
+            ['business_id'=>6]       ))->create();
+        $this->call(NutrientSeeder::class);
+        $this->call(StockSeeder::class);
+        $this->call(RecipeSeeder::class);
+        $this->call(DocumentSeeder::class);
 
-        ))->create();
+        $this->call(AllergenSeeder::class);
+        $this->call(SupplierSeeder::class);
 
-        Stock::factory(50)->state(new Sequence(
+
+
+
+
+
+/*        Stock::factory(50)->state(new Sequence(
             ['user_id'=>1],
             ['user_id'=>2],
             ['user_id'=>3],
@@ -59,7 +61,7 @@ class DatabaseSeeder extends Seeder
             ['image'=>"https://nix-tag-images.s3.amazonaws.com/834_thumb.jpg"],
             ['image'=>"https://nix-tag-images.s3.amazonaws.com/115_thumb.jpg"],
             ['image'=>"https://nix-tag-images.s3.amazonaws.com/320_thumb.jpg"]
-        ))->create();
+        ))->create();*/
         Recipe::factory(50)->state(new Sequence(
             ['user_id'=>1],
             ['user_id'=>2],
@@ -68,7 +70,7 @@ class DatabaseSeeder extends Seeder
             ['user_id'=>5],
 
         ))->create();
-        Document::factory(50)->state(new Sequence(
+/*        Document::factory(50)->state(new Sequence(
             ['renewal_period'=>'annual'],
             ['renewal_period'=>'quarterly']
         ))->state(new Sequence(
@@ -78,7 +80,7 @@ class DatabaseSeeder extends Seeder
             ['user_id'=>4],
             ['user_id'=>5],
 
-        ))->create();
+        ))->create();*/
         Supplier::factory(10)->create();
 
 
