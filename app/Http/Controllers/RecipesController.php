@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RecipesController extends Controller
 {
-    public function recipe_index()
+    public function recipes_index()
     {
         $id = Auth::user()->business_id;
         $recipes = Recipe::all()->where('business_id',$id);

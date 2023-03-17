@@ -33,20 +33,25 @@ Route::middleware(['auth', 'checkrole:admin'])->group(function (){
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    //stock
     Route::get('/stock',[StocksController::class, 'stock_index'])->name('stock');
-    Route::get('/stock/suppliers',[StocksController::class, 'get_suppliers'])->name('suppliers');
     Route::get('/stocks/create', [StocksController::class, 'create'])->name('create_stock');
     Route::post('/stocks/confirm', [StocksController::class, 'confirm'])->name('confirm_stock');
     Route::post('/stock', [StocksController::class, 'store'])->name('store_stock');
     Route::delete('/stock/{stock}', [\App\Http\Controllers\StocksController::class, 'destroy_stock'])->name('destroy_stock');
-
-    Route::get('/recipes',[RecipesController::class, 'recipe_index'])->name('recipes');
+    //recipes
+    Route::get('/recipes',[RecipesController::class, 'recipes_index'])->name('recipes');
     Route::get('/recipes/create',[RecipesController::class, 'create'])->name('create_recipes');
     Route::post('/recipes', [RecipesController::class, 'store'])->name('store_recipes');
 
     Route::get('/documents',[DocumentController::class, 'documents_index'])->name('documents');
     Route::get('/documents/create', [DocumentController::class, 'create_document'])->name('create_document');
     Route::post('/documents', [DocumentController::class, 'store_document'])->name('store_document');
+
+    Route::get('/suppliers',[\App\Http\Controllers\SupplierController::class, 'suppliers_index'])->name('suppliers');
+    Route::get('/suppliers/create',[\App\Http\Controllers\SupplierController::class, 'create_supplier'])->name('create_supplier');
+    Route::post('/suppliers', [\App\Http\Controllers\SupplierController::class, 'store_supplier'])->name('store_supplier');
+    Route::delete('/suppliers/{supplier}', [\App\Http\Controllers\SupplierController::class, 'destroy_supplier'])->name('destroy_supplier');
 });
 
 Route::middleware('auth')->group(function () {

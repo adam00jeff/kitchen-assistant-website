@@ -13,9 +13,10 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function suppliers_index()
     {
-        //
+        $suppliers = Supplier::all();
+        return view('suppliers', ['suppliers' => $suppliers]);
     }
 
     /**
@@ -23,9 +24,9 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create_supplier()
     {
-        //
+        return view('supplier-form');
     }
 
     /**
@@ -34,9 +35,16 @@ class SupplierController extends Controller
      * @param  \App\Http\Requests\StoresupplierRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoresupplierRequest $request)
+    public function store_supplier(StoresupplierRequest $request)
     {
-        //
+        $supplier = new Supplier;
+        $supplier->name = $request->name;
+        $supplier->address = $request->address;
+        $supplier->phone = $request->phone;
+        $supplier->email= $request->email;
+        $supplier->save();
+        $suppliers = Supplier::all();
+        return view('suppliers', ['suppliers' => $suppliers]);
     }
 
     /**
@@ -79,8 +87,10 @@ class SupplierController extends Controller
      * @param  \App\Models\supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(supplier $supplier)
+    public function destroy_supplier(supplier $supplier)
     {
-        //
+        $supplier->delete();
+        $suppliers = Supplier::all();
+        return view('suppliers', ['suppliers' => $suppliers]);
     }
 }
