@@ -46,15 +46,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/recipes/create',[RecipesController::class, 'create_recipe'])->name('create_recipes');
     Route::post('/recipes', [RecipesController::class, 'store_recipe'])->name('store_recipes');
     Route::delete('/recipes/{recipe}', [\App\Http\Controllers\RecipesController::class, 'destroy_recipe'])->name('destroy_recipe');
-
+    //documents
     Route::get('/documents',[DocumentController::class, 'documents_index'])->name('documents');
     Route::get('/documents/create', [DocumentController::class, 'create_document'])->name('create_document');
     Route::post('/documents', [DocumentController::class, 'store_document'])->name('store_document');
-
+    //suppliers
     Route::get('/suppliers',[\App\Http\Controllers\SupplierController::class, 'suppliers_index'])->name('suppliers');
     Route::get('/suppliers/create',[\App\Http\Controllers\SupplierController::class, 'create_supplier'])->name('create_supplier');
     Route::post('/suppliers', [\App\Http\Controllers\SupplierController::class, 'store_supplier'])->name('store_supplier');
     Route::delete('/suppliers/{supplier}', [\App\Http\Controllers\SupplierController::class, 'destroy_supplier'])->name('destroy_supplier');
+    //compliance
 });
 
 Route::middleware('auth')->group(function () {
