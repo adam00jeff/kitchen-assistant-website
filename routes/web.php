@@ -56,6 +56,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/suppliers', [\App\Http\Controllers\SupplierController::class, 'store_supplier'])->name('store_supplier');
     Route::delete('/suppliers/{supplier}', [\App\Http\Controllers\SupplierController::class, 'destroy_supplier'])->name('destroy_supplier');
     //compliance
+    Route::get('/compliance',[\App\Http\Controllers\ComplianceController::class, 'compliance_index'])->name('compliance');
 });
 
 Route::middleware('auth')->group(function () {

@@ -28,6 +28,9 @@
                     <x-nav-link :href="route('documents')" :active="request()->routeIs('documents')">
                         {{ __('Your Documents') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('compliance')" :active="request()->routeIs('compliance')">
+                        {{ __('Compliance Reports') }}
+                    </x-nav-link>
                 </div>
             </div>
             <!-- Settings Dropdown -->
