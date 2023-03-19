@@ -13,13 +13,28 @@
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900 dark:text-gray-100">
-                            <div>
-
+                            <div>@if(Route::currentRouteName() == "compliance")
+                                <p>
+                                    <a href="{{ route('supplierreport')}}" class="">Supplier Reports</a><br>
+                                    - Allergen Information <br>
+                                    - Contacts List<br>
+                                    - Staff Training<br>
+                                    - Incident Reports<br>
+                                    - Food Hygiene Rating<br>
+                                    - Daily/ Monthly Checks<br>
+                                </p>
+                                     @elseif(Route::currentRouteName() == "supplierreport")
+                                    Your Suppliers Report:
+                                    <x-supplierreports :$suppliers/>
+                                     @else
+                                    Your Suppliers Report:
+                                    <x-supplierreports :$suppliers/>
+                                @endif
                             </div>
 
                         </div>
-                        <x-nav-link :href="route('documents')" :active="request()->routeIs('documents')">
-                            {{ __('Back to Documents') }}
+                        <x-nav-link :href="route('compliance')" :active="request()->routeIs('compliance')">
+                            {{ __('Back to Compliance') }}
                         </x-nav-link>
                     </div>
                 </div>

@@ -57,6 +57,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/suppliers/{supplier}', [\App\Http\Controllers\SupplierController::class, 'destroy_supplier'])->name('destroy_supplier');
     //compliance
     Route::get('/compliance',[\App\Http\Controllers\ComplianceController::class, 'compliance_index'])->name('compliance');
+    Route::get('/compliance/supplierreports',[\App\Http\Controllers\ComplianceController::class, 'supplier_reports'])->name('supplierreport');
 });
 
 Route::middleware('auth')->group(function () {
