@@ -25,10 +25,9 @@
                                 </p>
                                      @elseif(Route::currentRouteName() == "supplierreport")
                                     Your Suppliers Report:
-                                    <x-supplierreports :$suppliers/>
+                                    <x-supplierreports :$suppliers :$currentsuppliers/>
                                      @else
-                                    Your Suppliers Report:
-                                    <x-supplierreports :$suppliers/>
+                                     Nothing here right now
                                 @endif
                             </div>
 
