@@ -81,7 +81,7 @@ class StockSeeder extends Seeder
                                 }
                             }
                         }
-                        $allergenstr = Arr::random($allergens).' '.Arr::random($allergens).' '.Arr::random($allergens);
+
                         Stock::create([
                             'name' => $i['food_name'],
                             'supplier' => rand(1,10),
@@ -90,7 +90,7 @@ class StockSeeder extends Seeder
                             'info' => "some information on this item",
                             'callories' => $i['nf_calories'],
                             'nutrients'=> $nutrient_array,
-                            'allergens' => $allergenstr,
+                            'allergens' => Arr::random($allergens,rand(0,5)),
                             'image' => $photos['thumb'],
                             'user_id'=> rand(1,5),
                             'business_id'=> rand(1,5)

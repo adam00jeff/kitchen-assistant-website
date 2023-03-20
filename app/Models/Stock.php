@@ -13,5 +13,6 @@ class Stock extends Model
     ];
     protected $casts = [
       'nutrients'=>'array',
+        'allergens'=>'array'
     ];
 }

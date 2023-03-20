@@ -31,7 +31,14 @@
                 <td>{{$suppliers[$s] }}</td>
                 <td>{{$stock['serving_unit'] }}</td>
                 <td>{{$stock['info']}}</td>
-                <td>{{$stock['allergens']}}</td>
+                <td>
+                    <?php if($stock['allergens']!=null){
+                            foreach ($stock['allergens'] as $k => $v){?>
+                    {{$v}} <?php
+                                    }
+                           }
+                         ?>
+                </td>
                  <td><textarea>@foreach($nutrient_array as $k=>$v) {{$k}}@foreach($v as $k2 => $v2){{$v2}}@endforeach
                          @endforeach
                      </textarea>

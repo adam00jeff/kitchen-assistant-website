@@ -23,10 +23,12 @@
                                     }
                                     }?></td>
                         <td><?php foreach($stock as $k=>$v){
-                            if ($v['supplier']==$supplier['id']) {
-                                ?>{{$v['allergens']}}, <?php
-                                                  }
-                                                  }?></td>
+                                        if ($v['supplier']==$supplier['id']) {
+                                            foreach ($v['allergens'] as $k=>$v){
+                                                ?>{{$v}} <?php
+                                            }
+                                        }
+                                    }?></td>
 {{--                        <td>
                             <form method="POST" action="/suppliers/{{$supplier['id']}}">
                                 {{ csrf_field() }}
