@@ -24,26 +24,23 @@ class ComplianceController extends Controller
         $stocks = Stock::all()->toArray();
         $i=0;
         $filtered = collect();
-        $currentsuppliers = collect();
-        $instocksuppliers = collect();
+        $instock = collect();
         foreach ($stocks as $s){
             $p = $s['supplier'];
             $n = $s['name'];
             $filtered->put($n,$p);
         }
-        if (!$instocksuppliers->isEmpty()) {
-            /*do nothing */
-        }
-        else foreach($filtered as $k => $v){
-                if($instocksuppliers->contains($k,$v)){
+       foreach($filtered as $name => $supplierID){
+                if($instock->contains($name,$supplierID)){
                     /*do nothing*/
-                }
-            else {
-                $value = Supplier::query()->where('id',$v)->get()->toArray();
-                $instocksuppliers->push($value[0]);
-            }
+                    $i++;
+                } else {
+                $value = Supplier::query()->where('id',$supplierID)->get()->toArray();
+                $instock->put($value[0]['id'],$value[0]);
+                    $i++;
+                        }
         }
-        return view('compliance',['suppliers' => $suppliers,"documents"=>$documents,'currentsuppliers'=>$currentsuppliers,'stock'=>$stocks, 'instocksuppliers'=>$instocksuppliers]);
+        return view('compliance',['suppliers' => $suppliers,"documents"=>$documents,'stock'=>$stocks, 'instock'=>$instock]);
     }
 
 }

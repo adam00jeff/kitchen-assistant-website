@@ -10,7 +10,7 @@
                     <th>Phone</th>
                     <th>Email</th>
                 </tr>
-                @foreach($currentsuppliers as $supplier)
+                @foreach($instock as $supplier)
                     <tr>
                         <td>{{$supplier['id']}}</td>
                         <td>{{$supplier['name']}}</td>
@@ -18,7 +18,7 @@
                         <td>{{$supplier['phone'] }}</td>
                         <td>{{$supplier['email'] }}</td>
                         <td>
-                            <form method="POST" action="/suppliers/{{$supplier->id}}">
+                            <form method="POST" action="/suppliers/{{$supplier['id']}}">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <div class="flex items-center justify-start mt-4 top-auto form-group">

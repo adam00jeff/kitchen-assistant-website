@@ -12,9 +12,16 @@ class supplierreports extends Component
      *
      * @return void
      */
-    public function __construct($suppliers)
+    public $instock;
+    /**
+     * Create a new component instance.
+     *
+     * @return void
+     */
+    public function __construct($suppliers, $instock)
     {
         $this->suppliers=$suppliers;
+        $this->instock=$instock;
     }
 
     /**
