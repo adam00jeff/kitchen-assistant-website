@@ -1,17 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Document;
 use App\Models\Stock;
 use App\Models\supplier;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Http;
+
 
 class ComplianceController extends Controller
 {
@@ -20,7 +14,7 @@ class ComplianceController extends Controller
         $id = Auth::user()->business_id;
         $documents = Document::all()->where('business_id',$id);
         $suppliers = Supplier::all();
-        return view('compliance',['documents'=>$documents],['suppliers' => $suppliers]);
+        return view('compliance',['documents'=>$documents,'suppliers' => $suppliers]);
     }
     public function supplier_reports()
     {
@@ -43,7 +37,7 @@ class ComplianceController extends Controller
                 $test->push(Supplier::query()->where('id', $f['supplier'])->get());
             }
         }
-        return view('compliance',['suppliers' => $suppliers],["documents"=>$documents],['currentsuppliers'=>$currentsuppliers],['stock'=>$stocks]);
+        return view('compliance',['suppliers' => $suppliers,"documents"=>$documents,'currentsuppliers'=>$currentsuppliers,'stock'=>$stocks]);
     }
 
 }
