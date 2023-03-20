@@ -47,6 +47,7 @@ class StocksController extends Controller
         $getsupplier = Supplier::query()->where('id','=',$request->supplier)->get();
         $thissupplier = $getsupplier->toArray();
         $supplier =$thissupplier['0'];
+
         $sess = [
             "name" => $request->name,
             "unit" => $request->unit,
@@ -78,6 +79,13 @@ class StocksController extends Controller
 
     public function store(Request $request)
     {
+        $a = session('allergens');
+        $allergens = array();
+        foreach ($a as $k=>$v){
+            foreach($v as $k=> $v){
+                array_push($allergens,$v);
+            }
+        }
         $id = Auth::id();
         $busid = Auth::user()->business_id;
         $s = Supplier::query()->where('name','=',$request->supplier)->get();
@@ -93,7 +101,8 @@ class StocksController extends Controller
         $stock->serving_unit = $serving_unit;
         $stock->serving_qty = $serving_qty;
         $stock->info = $request->info;
-        $stock->allergens = $request->allergens;
+        $stock->allergens = $allergens;
+
         $stock->callories=$request->callories;
         $stock->user_id = $id;
         $stock->business_id = $busid;
