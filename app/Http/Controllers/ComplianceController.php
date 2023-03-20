@@ -20,24 +20,30 @@ class ComplianceController extends Controller
     {
         $id = Auth::user()->business_id;
         $documents = Document::all()->where('business_id',$id);
-        $suppliers = Supplier::all();
-        $stocks = Stock::all();
+        $suppliers = Supplier::all()->toArray();
+        $stocks = Stock::all()->toArray();
         $i=0;
         $filtered = collect();
         $currentsuppliers = collect();
-        $test = collect();
+        $instocksuppliers = collect();
         foreach ($stocks as $s){
-            $filtered->push($s->only(['id','supplier']));
+            $p = $s['supplier'];
+            $n = $s['name'];
+            $filtered->put($n,$p);
         }
-        foreach($filtered as $f){
-            if($test->contains('id',$f['supplier'])){
-
-            }
+        if (!$instocksuppliers->isEmpty()) {
+            /*do nothing */
+        }
+        else foreach($filtered as $k => $v){
+                if($instocksuppliers->contains($k,$v)){
+                    /*do nothing*/
+                }
             else {
-                $test->push(Supplier::query()->where('id', $f['supplier'])->get());
+                $value = Supplier::query()->where('id',$v)->get()->toArray();
+                $instocksuppliers->push($value[0]);
             }
         }
-        return view('compliance',['suppliers' => $suppliers,"documents"=>$documents,'currentsuppliers'=>$currentsuppliers,'stock'=>$stocks]);
+        return view('compliance',['suppliers' => $suppliers,"documents"=>$documents,'currentsuppliers'=>$currentsuppliers,'stock'=>$stocks, 'instocksuppliers'=>$instocksuppliers]);
     }
 
 }
