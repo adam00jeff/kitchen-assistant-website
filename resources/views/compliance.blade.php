@@ -13,6 +13,7 @@
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900 dark:text-gray-100">
+
                             <div>@if(Route::currentRouteName() == "compliance")
                                 <p>
                                     <a href="{{ route('supplierreport')}}" class="">Supplier Reports</a><br>
@@ -25,8 +26,7 @@
                                 </p>
                                      @elseif(Route::currentRouteName() == "supplierreport")
                                     Your Suppliers Report:
-
-                                    <x-supplierreports :$suppliers :$instock/>
+                                    <x-supplierreports :$suppliers :$instock :$stock/>
                                      @else
                                      Nothing here right now
                                 @endif
