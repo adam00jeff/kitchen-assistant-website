@@ -14,7 +14,7 @@
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900 dark:text-gray-100">
 
-                            <div>@if(Route::currentRouteName() == "compliance")
+                            <div class="grid justify-center">@if(Route::currentRouteName() == "compliance")
                                 <p>
                                     <a href="{{ route('supplierreport')}}" class="">Supplier Reports</a><br>
                                     - Allergen Information <br>
@@ -27,15 +27,20 @@
                                      @elseif(Route::currentRouteName() == "supplierreport")
                                     Your Suppliers Report:
                                     <x-supplierreports :$suppliers :$instock :$stock/>
+                                    <div class="grid justify-center">
+                                    <x-nav-link :href="route('compliance')" :active="request()->routeIs('compliance')">
+                                        {{ __('Back to Compliance') }}
+                                    </x-nav-link>
+                                    </div>
                                      @else
                                      Nothing here right now
-                                @endif
+                                   @endif
                             </div>
 
                         </div>
-                        <x-nav-link :href="route('compliance')" :active="request()->routeIs('compliance')">
-                            {{ __('Back to Compliance') }}
-                        </x-nav-link>
+
+
+
                     </div>
                 </div>
 

@@ -44,9 +44,11 @@
     </div>
     <div class="border">
         <p>
+        <div class="grid justify-center">
             <x-nav-link :href="route('compliance')" :active="request()->routeIs('compliance')">
                 {{ __('Back to Compliance') }}
-            </x-nav-link><br>
+            </x-nav-link>
+        </div>
         <h2>Full Supplier List:</h2>
         <x-showsuppliers :$suppliers/>
         </p>

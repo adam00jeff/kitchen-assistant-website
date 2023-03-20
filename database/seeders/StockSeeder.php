@@ -69,6 +69,7 @@ class StockSeeder extends Seeder
         ]);
         $data = json_decode($response, true);
         $keys = $data;
+        $allergens = ['cereals','celery','gluten','wheat','rye','barley','oats','crustaceans','prawns','crab','lobster','eggs','fish','lupin','milk','molluscs','squid','mussels','cockels','whelks','snails','mustard','nuts','peanuts'];
         $nutrients = Nutrient::all()->sortBy('type')->toArray();
                     foreach($keys['foods'] as $i) {
                         $nutrient_array = array();
@@ -80,7 +81,7 @@ class StockSeeder extends Seeder
                                 }
                             }
                         }
-
+                        $allergenstr = Arr::random($allergens).' '.Arr::random($allergens).' '.Arr::random($allergens);
                         Stock::create([
                             'name' => $i['food_name'],
                             'supplier' => rand(1,10),
@@ -89,7 +90,7 @@ class StockSeeder extends Seeder
                             'info' => "some information on this item",
                             'callories' => $i['nf_calories'],
                             'nutrients'=> $nutrient_array,
-                            'allergens' => $this->faker->words(5, true),
+                            'allergens' => $allergenstr,
                             'image' => $photos['thumb'],
                             'user_id'=> rand(1,5),
                             'business_id'=> rand(1,5)
