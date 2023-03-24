@@ -10,7 +10,9 @@
             <tr>
                 <td class="px-6 py-3">{{$recipe['name']}}</td>
 
-                <td class="px-6 py-3">@if(is_string($recipe['ingredients'])){{$recipe['ingredients']}}@else @foreach($recipe['ingredients'] as $n) @foreach($n as $k => $v){{$k}}{{$v}} grm<br>@endforeach @endforeach @endif</td>
+                <td class="px-6 py-3">@if(is_string($recipe['ingredients'])){{$recipe['ingredients']}}@else<textarea> @foreach($recipe['ingredients'] as $n) @foreach($n as $k => $v)
+{{$k}}{{$v}} grm
+@endforeach @endforeach</textarea> @endif</td>
                 <td class="border border border-gray-900 px-6 py-3"><textarea>@foreach($recipe['method'] as $m)
 {{ $m }}
 @endforeach</textarea></td>

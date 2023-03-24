@@ -16,7 +16,9 @@
                     @endforeach
                 </td>
                 <td>
-                    //found in recipe
+                    @foreach($recipes as $recipe)
+                        {{$recipe['name']}},
+                    @endforeach
                 </td>
                 <td>
                     //supplied by

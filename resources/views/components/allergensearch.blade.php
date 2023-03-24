@@ -13,7 +13,7 @@
     </div>
     <div>
         @if(Route::currentRouteName() == "allergensearch")
-        <x-searchedallergens :$allergens/>
+        <x-searchedallergens :$allergens :$stocks :$suppliers :$recipes />
         @endif
     </div>
 </div>

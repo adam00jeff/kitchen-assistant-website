@@ -26,7 +26,7 @@
                                 </p>
                                      @elseif(Route::currentRouteName() == "supplierreport")
                                     Your Suppliers Report:
-                                    <x-supplierreports :$suppliers :$instock :$stock/>
+                                    <x-supplierreports :$suppliers :$instock :$stocks />
                                     <div class="grid justify-center">
                                     <x-nav-link :href="route('compliance')" :active="request()->routeIs('compliance')">
                                         {{ __('Back to Compliance') }}

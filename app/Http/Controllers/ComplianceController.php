@@ -50,7 +50,9 @@ class ComplianceController extends Controller
         $id = Auth::user()->business_id;
         $allergens = Allergen::all();
         $suppliers = Supplier::all();
-        return view('compliance',['allergens'=>$allergens,'suppliers' => $suppliers]);
+        $stocks = Stock::all();
+        $recipes = $recipes = Recipe::all()->where('business_id',$id);
+        return view('compliance',['allergens' => $allergens, 'stocks'=>$stocks,'suppliers' => $suppliers, 'recipes'=>$recipes]);
     }
     public function allergen_search(Request $request)
     {
@@ -63,12 +65,30 @@ class ComplianceController extends Controller
             ->get();
         $suppliers = Supplier::all();
         $recipes = Recipe::all()->where('business_id',$id);
+        $searchedrecipes = collect();
+        foreach ($recipes as $recipe){
+            foreach ($stocks as $s) {
+                $stockname = $s -> name;
+                $ing = $recipe->ingredients;
+                foreach ($ing as $key => $value){
+                    foreach($value as $ingredient=>$v){
+                        if( $ingredient == $stockname){
+                            if(!$searchedrecipes->contains('name',$recipe->name))
+                            $searchedrecipes->push($recipe);
+                            }
+                    }
+                }
+            }
+        }
+        //ddd($searchedrecipes);
+        //get recipes that have ingreditents matching stocks
+
         //get the search value from the request
         //search in the allergen table for matches
         $allergens = Allergen::query()->where('name', 'LIKE', "%" . $search . "%")
 /*            ->orWhere('***', 'LIKE', "%" . $search . "%")
             ->orWhere('***', 'LIKE', "%" . $search . "%")*/
             ->get();
-        return view('compliance', ['allergens' => $allergens, 'stocks'=>$stocks,'suppliers' => $suppliers, 'recipes'=>$recipes]);
+        return view('compliance', ['allergens' => $allergens, 'stocks'=>$stocks,'suppliers' => $suppliers, 'recipes'=>$searchedrecipes]);
     }
 }
