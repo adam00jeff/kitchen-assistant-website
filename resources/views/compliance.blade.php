@@ -17,7 +17,7 @@
                             <div class="grid justify-center">@if(Route::currentRouteName() == "compliance")
                                 <p>
                                     <a href="{{ route('supplierreport')}}" class="">Supplier Reports</a><br>
-                                    - Allergen Information <br>
+                                    <a href="{{ route('allergeninformation')}}" class="">Allergen Information</a><br>
                                     - Contacts List<br>
                                     - Staff Training<br>
                                     - Incident Reports<br>
@@ -32,6 +32,16 @@
                                         {{ __('Back to Compliance') }}
                                     </x-nav-link>
                                     </div>
+                                    @elseif(Route::currentRouteName() == "allergeninformation"|| Route::currentRouteName() == "allergensearch")
+                                    <H2 class="grid text-center">Allergens: </H2>
+                                <x-allergensearch :$allergens :$stocks :$suppliers :$recipes/>
+                                        On Menu Allergens <br>
+                                        On Premises Allergens <br>
+                                        <div class="grid justify-center">
+                                            <x-nav-link :href="route('compliance')" :active="request()->routeIs('compliance')">
+                                                {{ __('Back to Compliance') }}
+                                            </x-nav-link>
+                                        </div>
                                      @else
                                      Nothing here right now
                                    @endif

@@ -58,6 +58,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //compliance
     Route::get('/compliance',[\App\Http\Controllers\ComplianceController::class, 'compliance_index'])->name('compliance');
     Route::get('/compliance/supplierreports',[\App\Http\Controllers\ComplianceController::class, 'supplier_reports'])->name('supplierreport');
+    Route::get('/compliance/allergeninformation',[\App\Http\Controllers\ComplianceController::class, 'allergen_information'])->name('allergeninformation');
+    //search
+    Route::get('/compliance/allergensearch',[\App\Http\Controllers\ComplianceController::class, 'allergen_search'])->name('allergensearch');
+
 });
 
 Route::middleware('auth')->group(function () {

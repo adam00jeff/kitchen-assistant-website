@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Allergen;
 use App\Models\Document;
+use App\Models\Recipe;
 use App\Models\Stock;
 use App\Models\supplier;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 
 class ComplianceController extends Controller
@@ -42,5 +45,30 @@ class ComplianceController extends Controller
         }
         return view('compliance',['suppliers' => $suppliers,"documents"=>$documents,'stock'=>$stocks, 'instock'=>$instock]);
     }
-
+    public function allergen_information()
+    {
+        $id = Auth::user()->business_id;
+        $allergens = Allergen::all();
+        $suppliers = Supplier::all();
+        return view('compliance',['allergens'=>$allergens,'suppliers' => $suppliers]);
+    }
+    public function allergen_search(Request $request)
+    {
+        $search = $request->input('search');
+        $id = Auth::user()->business_id;
+  /*      $stocks = Stock::all()->toArray();*/
+        $stocks = Stock::query()->where('allergens', 'LIKE', "%" . $search . "%")
+            /*            ->orWhere('***', 'LIKE', "%" . $search . "%")
+                        ->orWhere('***', 'LIKE', "%" . $search . "%")*/
+            ->get();
+        $suppliers = Supplier::all();
+        $recipes = Recipe::all()->where('business_id',$id);
+        //get the search value from the request
+        //search in the allergen table for matches
+        $allergens = Allergen::query()->where('name', 'LIKE', "%" . $search . "%")
+/*            ->orWhere('***', 'LIKE', "%" . $search . "%")
+            ->orWhere('***', 'LIKE', "%" . $search . "%")*/
+            ->get();
+        return view('compliance', ['allergens' => $allergens, 'stocks'=>$stocks,'suppliers' => $suppliers, 'recipes'=>$recipes]);
+    }
 }
