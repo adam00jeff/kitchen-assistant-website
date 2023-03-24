@@ -21,22 +21,22 @@ class RecipesController extends Controller
         $stocks = Stock::all();
         return view('recipes-form',['stocks' => $stocks]);
     }
+
     public function store_recipe(Request $request)
     {        $busid = Auth::user()->business_id;
         $id = Auth::id();
         $validated = $request->validate([
-            'name' => 'required|max:255',
-            /*'ingredients' => 'required|max:255',//supplier ID for now, to be replaced with plain text entry*/
-            'rmethod'=>'required|max:1000'
+            'name' => 'required|max:255'
+/*            'ingredients[]' => 'required|max:255',//supplier ID for now, to be replaced with plain text entry
+            'rmethod[]'=>'required|max:1000'*/
         ]);
 
-        $req = $request->addMoreIngredients;
+        $req = array();
         $qty = $request->quantity;
-        /*ddd($qty);*/
         $i=1;
-        foreach ($req as $k=>$v){
+        foreach ($request->addMoreIngredients as $k=>$v){
             foreach ($v as $k2 => $v2) {
-                $req[$k][$k2] = $v2." ".$qty[$i];
+                $req[][$v2] = " ".$qty[$i];
             }
         $i++;
     }

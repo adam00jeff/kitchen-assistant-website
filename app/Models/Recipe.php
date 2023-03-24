@@ -13,5 +13,6 @@ class Recipe extends Model
     ];
     protected $casts = [
         'ingredients'=>'array',
+        'method'=>'array'
     ];
 }

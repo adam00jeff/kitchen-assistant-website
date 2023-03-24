@@ -40,7 +40,7 @@
                     <table  id="dynamicAddRemoveStep" class="p-2">
                         <tr>
                             <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                                   id="rmethod" name="rmethod" type="text" placeholder="Step 1">
+                                   id="rmethod[0]" name="rmethod[0]" type="text" placeholder="Step 1">
                         </tr>
                     </table>
                     <button type="button" name="addStep" id="dynamic-ar-step" class="bg-gray-800 px-2 py-2 text-white text-xs rounded-md uppercase hover:underline">Add Another Step</button>
@@ -63,6 +63,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
         let i = 0;
+        let x =1;
         let step = 2;
         let stepcount=2;
         let deletecount=0;
@@ -74,7 +75,7 @@
         });
         $("#dynamic-ar-step").click(function () {
             $("#dynamicAddRemoveStep").append(
-                '<tr><td><input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="rmethod" name="rmethod" type="text" placeholder="Step '+step+'"></td><td></td><td><button type="button" class="remove-step-field">Delete</button></td></tr><br>');
+                '<tr><td><input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="rmethod['+x+']" name="rmethod['+x+']" type="text" placeholder="Step '+step+'"></td><td></td><td><button type="button" class="remove-step-field">Delete</button></td></tr><br>');
             ++step;
             ++stepcount;
         });

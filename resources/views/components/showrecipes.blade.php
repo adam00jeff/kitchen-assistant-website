@@ -10,8 +10,19 @@
             <tr>
                 <td class="px-6 py-3">{{$recipe['name']}}</td>
 
-                <td class="px-6 py-3">@if(is_string($recipe['ingredients'])){{$recipe['ingredients']}}@else @foreach($recipe['ingredients'] as $n) @foreach($n as $k => $v){{$v}} grm<br>@endforeach @endforeach @endif</td>
-                <td class="border border border-gray-900 px-6 py-3">{{ $recipe['method'] }}</td>
+                <td class="px-6 py-3"><?php
+                    /*ddd($recipe['ingredients']);*/ ?>
+{{--                    @if(count($recipe['ingredients'])>=1)
+                        @php($a=$recipe['ingredients']){{$a}}
+                    @else @foreach($recipe['ingredients'] as $n)
+                        @foreach($n as $k => $v){{$v}} grm
+                        <br>
+                        @endforeach
+                    @endforeach
+                    @endif</td>--}}
+                <td class="border border border-gray-900 px-6 py-3"><textarea>@foreach($recipe['method'] as $m)
+{{ $m }}
+@endforeach</textarea></td>
                 <td>
                     <form method="POST" action="/recipes/{{$recipe->id}}">
                         {{ csrf_field() }}

@@ -56,7 +56,7 @@ class StockSeeder extends Seeder
         $appid = "9787f4f0";
         $appkey = "5b11621e62674c09602b3d94977c8172";
         $endpoint = "https://trackapi.nutritionix.com/v2/natural/nutrients";
-        $gotquery = "apple rice grape mango chocolate flour lemon sugar walnuts white-chocolate, tomatoes, oregano thyme basil olives oil salt pepper";
+        $gotquery = "apple rice grape mango chocolate flour lemon sugar walnuts white-chocolate, tomatoes, oregano thyme basil olives oil salt pepper yeast rosemary";
         $response = Http::withHeaders([
             "x-app-id" => $appid,
             "x-app-key" => $appkey
