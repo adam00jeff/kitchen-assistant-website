@@ -21,12 +21,19 @@
                                     if ($v['supplier']==$supplier['id']) {
                                         ?>{{$v['name']}}, <?php
                                     }
-                                    }?></td>
-                        <td><?php foreach($stock as $k=>$v){
+                                    }?>
+                        </td>
+                        <td><?php
+                            foreach($stock as $k=>$v){
                                         if ($v['supplier']==$supplier['id']) {
-                                            foreach ($v['allergens'] as $k=>$v){
-                                                ?>{{$v}} <?php
+                                        $pushed = array();
+                                            foreach ($v['allergens'] as $v){
+                                                if(!in_array($v,$pushed)){
+                                                    $pushed[] = $v;
+                                                }
                                             }
+                                            foreach($pushed as $p){
+                                                ?>{{$p}} <?php }
                                         }
                                     }?></td>
 {{--                        <td>
