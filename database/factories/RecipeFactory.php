@@ -23,7 +23,12 @@ class RecipeFactory extends Factory
         $stock = Stock::pluck('name')->toArray();
         $fnl = array();
         foreach ($stock as $s){
-            $fnl[] = $s." ".$this->faker->numberBetween(25,2000);
+            $fnl[][$s] = " ".$this->faker->numberBetween(25,2000);
+
+/*
+            foreach ($v as $k2 => $v2) {
+                $req[][$v2] = " ".$qty[$i];
+            }*/
         }
 
         return [

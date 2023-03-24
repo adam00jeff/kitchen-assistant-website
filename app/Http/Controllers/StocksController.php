@@ -31,7 +31,6 @@ class StocksController extends Controller
     {
         $suppliers = Supplier::pluck('name','id');
         $allergens = Allergen::pluck('name','id');
-        ddd($suppliers);
         return view('stock-form', ['suppliers'=>$suppliers,'allergens'=>$allergens]);
     }
 
