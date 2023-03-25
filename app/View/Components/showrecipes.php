@@ -8,15 +8,17 @@ use Illuminate\View\Component;
 
 class showrecipes extends Component
 {
+    public $stocks;
     public $recipes;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($recipes)
+    public function __construct($recipes, $stocks)
     {
        $this->recipes=$recipes;
+       $this->stocks=$stocks;
     }
 
     /**

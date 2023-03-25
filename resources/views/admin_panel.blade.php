@@ -21,7 +21,7 @@
                         <x-showusers :users="$users"/>
                         <br>
                         All Recipes:
-                        <x-showrecipes :recipes="$recipes"/>
+                        <x-showrecipes :recipes="$recipes" :$stocks/>
                         <br>
                         All Stocks:
                         <x-showstock :stocks="$stocks" :suppliers="$suppliers" :nutrients="$nutrients"/>
