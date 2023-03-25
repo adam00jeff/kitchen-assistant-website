@@ -34,7 +34,17 @@
                                         {{ __('Back to Compliance') }}
                                     </x-nav-link>
                                     </div>
-                            @elseif(Route::currentRouteName() == "allergeninformation"|| Route::currentRouteName() == "allergensearch")
+                            @elseif(Route::currentRouteName() == "allergensearch")
+                                <div class="flex-grid justify-center">
+                                    <H2 >Allergens: </H2>
+                                    <x-allergensearch :$allergens :$stocks :$suppliers :$recipes/>
+                                    <div class="grid justify-center">
+                                        <x-nav-link :href="route('compliance')" :active="request()->routeIs('compliance')">
+                                            {{ __('Back to Compliance') }}
+                                        </x-nav-link>
+                                    </div>
+                                </div>
+                            @elseif(Route::currentRouteName() == "allergeninformation")
                                      <div class="flex-grid justify-center">
                                     <H2 >Allergens: </H2>
                                 <x-allergensearch :$allergens :$stocks :$suppliers :$recipes/>

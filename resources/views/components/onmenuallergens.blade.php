@@ -8,29 +8,29 @@
             <th scope="col" class="px-6 py-3">Supplied by (Supplier):</th>
         </tr>
         <?php
-            $menuallergens = collect();
+        $menuallergens = collect();
 
-            $these = collect();
-            //get a list of recipes used
-        foreach ($recipes as $recipe){
+        $these = collect();
+        //get a list of recipes used
+        foreach ($recipes as $recipe) {
             //find the ingredients in each recipe
-            foreach($recipe->ingredients as $key => $ingredient){
-                foreach ($ingredient as $name => $quantity){
+            foreach ($recipe->ingredients as $key => $ingredient) {
+                foreach ($ingredient as $name => $quantity) {
                     //find stock item matching the ingredient
                     //check if stock item exists
-                    if($stocks->contains('name',$name)){
+                    if ($stocks->contains('name', $name)) {
                         //get the correct stock object
-                        $t = $stocks->where('name',$name);
+                        $t = $stocks->where('name', $name);
                         //get the allergens of the stock
-                        foreach ($t as $keys=>$v){
+                        foreach ($t as $keys => $v) {
                             //iterate through the allergens, adding to array
-                            foreach ($v->allergens as $a => $b){
-                                if(!$menuallergens->contains($b)){
+                            foreach ($v->allergens as $a => $b) {
+                                if (!$menuallergens->contains($b)) {
                                     $menuallergens->push($b);
-                            }
+                                }
                             }
                         }
-                }
+                    }
                 }
             }
         } ?>
@@ -39,46 +39,45 @@
                 <td class="px-6 py-3">{{$allergen}}</td>
                 <td><?php
                         $allergenrecipes = collect();
-                        foreach ($recipes as $recipe){
-                            foreach($recipe->ingredients as $ingredient){
-                                foreach($ingredient as $k=>$v){
-                                    if($stocks->contains('name',$k)) {
-                                        $t = $stocks->where('name',$k);
+                        foreach ($recipes as $recipe) {
+                            foreach ($recipe->ingredients as $ingredient) {
+                                foreach ($ingredient as $k => $v) {
+                                    if ($stocks->contains('name', $k)) {
+                                        $t = $stocks->where('name', $k);
                                         //get the allergens of the stock
-                                        foreach ($t as $keys=>$v){
+                                        foreach ($t as $keys => $v) {
                                             //iterate through the allergens, adding to array
-                                            foreach ($v->allergens as $a => $b){
-                                                if ($b == $allergen){
-                                                    if(!$allergenrecipes->contains($recipe))
+                                            foreach ($v->allergens as $a => $b) {
+                                                if ($b == $allergen) {
+                                                    if (!$allergenrecipes->contains($recipe))
                                                         $allergenrecipes->push($recipe);
-                                                }
-                                                }
                                                 }
                                             }
                                         }
                                     }
-                                    }
+                                }
+                            }
+                        }
                         ?>
-@foreach($allergenrecipes as $allergenrecipe)
-                    {{$allergenrecipe->name}}<br>
+                    @foreach($allergenrecipes as $allergenrecipe)
+                        {{$allergenrecipe->name}}<br>
                     @endforeach
                 </td>
-                <td>
-
-                    @foreach($stocks as $stock)
-                        {{$stock['name']}}<br>
-                    @endforeach
-                </td>
-
-                <td>
-                    @foreach($suppliers as $supplier)
-    {{--                    {{$supplier[0]['name']}},<br>--}}
-                    @endforeach
-                </td>
+                <td>@foreach($stocks as $stock)
+                            <?php $thisallergens = $stock->allergens;foreach ($thisallergens as $a){
+                        if ($a == $allergen){ ?>{{$stock['name']}}<br><?php } }?>
+                    @endforeach</td>
+                <td>@foreach($stocks as $stock)
+                            <?php $thisallergens = $stock->allergens;foreach ($thisallergens as $a){
+                        if ($a == $allergen){
+                            foreach ($suppliers as $supplier) {
+                                if ($supplier->id==$stock['supplier']){
+                                echo $supplier->name."<br>";
+                            }}
+                            }?><?php } ?>
+                    @endforeach</td>
             </tr>
         @endforeach
     </table>
-    <x-nav-link :href="route('allergeninformation')" :active="request()->routeIs('allergeninformation')">
-        {{ __('Clear Search Results') }}
-    </x-nav-link>
+
 </div>
