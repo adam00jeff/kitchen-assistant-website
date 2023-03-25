@@ -18,7 +18,7 @@
                                 <p>
                                     <a href="{{ route('supplierreport')}}" class="">Supplier Reports</a><br>
                                     <a href="{{ route('allergeninformation')}}" class="">Allergen Information</a><br>
-                                    - Contacts List<br>
+                                    <a href="{{ route('contactslist')}}" class="">Contacts List</a><br>
                                     - Staff Training<br>
                                     - Incident Reports<br>
                                     - Food Hygiene Rating<br>
@@ -52,16 +52,22 @@
                                     On Menu Allergens: <br>
                                 <x-onmenuallergens :$allergens :$stocks :$suppliers :$recipes/>
                                 </div>
-                                        On Premises Allergens <br>
                                         <div class="grid justify-center">
                                             <x-nav-link :href="route('compliance')" :active="request()->routeIs('compliance')">
                                                 {{ __('Back to Compliance') }}
                                             </x-nav-link>
                                         </div>
                                          </div>
+                            @elseif(Route::currentRouteName() == "contactslist")
+                                <div>
+                                    <h2>Contacts</h2><br>
+                                    <x-showcontacts :$contacts/>
+                            <h2>Suppliers</h2>
+                                <x-showsuppliers :$suppliers/>
                                      @else
                                      Nothing here right now
                                    @endif
+                                    </div>
                             </div>
 
                         </div>

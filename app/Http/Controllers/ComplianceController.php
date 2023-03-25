@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Allergen;
+use App\Models\Contact;
 use App\Models\Document;
 use App\Models\Recipe;
 use App\Models\Stock;
@@ -18,7 +19,8 @@ class ComplianceController extends Controller
         $documents = Document::all()->where('business_id',$id);
         $suppliers = Supplier::all();
         $stocks = Stock::all();
-        return view('compliance',['documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers]);
+        $contacts = Contact::all();
+        return view('compliance',['documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers, 'contacts'=>$contacts]);
     }
     public function supplier_reports()
     {
@@ -56,6 +58,7 @@ class ComplianceController extends Controller
         $recipes = $recipes = Recipe::all()->where('business_id',$id);
         return view('compliance',['allergens' => $allergens, 'stocks'=>$stocks,'suppliers' => $suppliers, 'recipes'=>$recipes]);
     }
+
     public function allergen_search(Request $request)
     {
         $search = $request->input('search');

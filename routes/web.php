@@ -59,6 +59,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/compliance',[\App\Http\Controllers\ComplianceController::class, 'compliance_index'])->name('compliance');
     Route::get('/compliance/supplierreports',[\App\Http\Controllers\ComplianceController::class, 'supplier_reports'])->name('supplierreport');
     Route::get('/compliance/allergeninformation',[\App\Http\Controllers\ComplianceController::class, 'allergen_information'])->name('allergeninformation');
+    //contacts
+    Route::get('/contactslist',[\App\Http\Controllers\ContactController::class, 'contact_information'])->name('contactslist');
+    Route::get('/contactslist/create',[\App\Http\Controllers\ContactController::class, 'create_contact'])->name('create_contact');
+    Route::post('/contactslist', [\App\Http\Controllers\ContactController::class, 'store_contact'])->name('store_contact');
+    Route::delete('/contactslist/{contact}', [\App\Http\Controllers\ContactController::class, 'destroy_contact'])->name('destroy_contact');
     //search
     Route::get('/compliance/allergensearch',[\App\Http\Controllers\ComplianceController::class, 'allergen_search'])->name('allergensearch');
 
