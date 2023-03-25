@@ -17,14 +17,14 @@
 {{--                        <td>{{$supplier['address']}}</td>--}}
                         <td>{{$supplier['phone'] }}</td>
                         <td>{{$supplier['email'] }}</td>
-                        <td><?php foreach($stock as $k=>$v){
+                        <td><?php foreach($stocks as $k=>$v){
                                     if ($v['supplier']==$supplier['id']) {
                                         ?>{{$v['name']}}, <?php
                                     }
                                     }?>
                         </td>
                         <td><?php
-                            foreach($stock as $k=>$v){
+                            foreach($stocks as $k=>$v){
                                         if ($v['supplier']==$supplier['id']) {
                                         $pushed = array();
                                             foreach ($v['allergens'] as $v){

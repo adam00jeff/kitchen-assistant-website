@@ -17,18 +17,20 @@ class ComplianceController extends Controller
         $id = Auth::user()->business_id;
         $documents = Document::all()->where('business_id',$id);
         $suppliers = Supplier::all();
-        return view('compliance',['documents'=>$documents,'suppliers' => $suppliers]);
+        $stocks = Stock::all();
+        return view('compliance',['documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers]);
     }
     public function supplier_reports()
     {
         $id = Auth::user()->business_id;
         $documents = Document::all()->where('business_id',$id);
         $suppliers = Supplier::all()->toArray();
-        $stocks = Stock::all()->toArray();
+        $stocksarray = Stock::all()->toArray();
+        $stocks = Stock::all();
         $i=0;
         $filtered = collect();
         $instock = collect();
-        foreach ($stocks as $s){
+        foreach ($stocksarray as $s){
             $p = $s['supplier'];
             $n = $s['name'];
             $filtered->put($n,$p);
@@ -43,7 +45,7 @@ class ComplianceController extends Controller
                     $i++;
                         }
         }
-        return view('compliance',['suppliers' => $suppliers,"documents"=>$documents,'stock'=>$stocks, 'instock'=>$instock]);
+        return view('compliance',['suppliers' => $suppliers,"documents"=>$documents,'stocks'=>$stocks, 'instock'=>$instock]);
     }
     public function allergen_information()
     {
