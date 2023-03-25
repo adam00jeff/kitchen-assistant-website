@@ -12,18 +12,23 @@
                 <td class="px-6 py-3">{{$allergen['name']}}</td>
                 <td>
                     @foreach($stocks as $stock)
-                        {{$stock['name']}}
+                        {{$stock['name']}}<br>
                     @endforeach
                 </td>
                 <td>
                     @foreach($recipes as $recipe)
-                        {{$recipe['name']}},
+                        {{$recipe['name']}},<br>
                     @endforeach
                 </td>
                 <td>
-                    //supplied by
+                    @foreach($suppliers as $supplier)
+                        {{$supplier[0]['name']}},<br>
+                    @endforeach
                 </td>
             </tr>
         @endforeach
     </table>
+    <x-nav-link :href="route('allergeninformation')" :active="request()->routeIs('allergeninformation')">
+        {{ __('Clear Search Results') }}
+    </x-nav-link>
 </div>

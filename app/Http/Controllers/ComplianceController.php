@@ -65,7 +65,13 @@ class ComplianceController extends Controller
             /*            ->orWhere('***', 'LIKE', "%" . $search . "%")
                         ->orWhere('***', 'LIKE', "%" . $search . "%")*/
             ->get();
-        $suppliers = Supplier::all();
+            $suppliers = collect();
+        foreach($stocks as $stock) {
+            $value = $stock->supplier;
+            $suppliers->push(Supplier::query()->where('id', $value)->get());
+
+        }
+
         $recipes = Recipe::all()->where('business_id',$id);
         $searchedrecipes = collect();
         foreach ($recipes as $recipe){
