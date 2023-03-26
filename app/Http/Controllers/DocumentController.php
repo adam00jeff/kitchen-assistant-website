@@ -29,7 +29,8 @@ class DocumentController extends Controller
     {
         $startDate = Carbon::today();
         $id = Auth::user()->business_id;
-        $documents = Document::all()->where('business_id',$id)->where('renewal_date','=',$startDate);
+        $documents = Document::all()->where('business_id',$id)->where('renewal_date','<=',$startDate);
+
         return view('welcome',['documents'=>$documents]);
     }
 
