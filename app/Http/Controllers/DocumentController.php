@@ -43,6 +43,7 @@ class DocumentController extends Controller
      */
     public function store_document(Request $request)
     {
+
         $request->validate([
           /*  'file' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048'*/
         ]);
@@ -51,7 +52,9 @@ class DocumentController extends Controller
         $document = new Document;
         if ($request->file()) {
             $fileName = time() . '_' . $request->file->getClientOriginalName();
+
             $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+
     /*            $document->name = time() . '_' . $request->file->getClientOriginalName();*/
             $document->name= $fileName;
             $document->display_name=$request->name;

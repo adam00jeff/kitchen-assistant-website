@@ -46,5 +46,15 @@ class DocumentSeeder extends Seeder
             'user_id'=>1,
             'business_id'=>1
         ]);
+        Document::create([
+            'name' => "1679826052_sfbb-diary-03-staff-training-record.pdf",
+            'display_name' => "Staff Training Record",
+            'type' => "Staff Training",
+            'file_location'=>"/storage/uploads/1679826052_sfbb-diary-03-staff-training-record.pdf",
+            'doc_date'=>'2023-01-26',
+            'renewal_period'=>'Annual',
+            'user_id'=>1,
+            'business_id'=>1
+        ]);
     }
 }

@@ -58,6 +58,15 @@ class ComplianceController extends Controller
         $recipes = $recipes = Recipe::all()->where('business_id',$id);
         return view('compliance',['allergens' => $allergens, 'stocks'=>$stocks,'suppliers' => $suppliers, 'recipes'=>$recipes]);
     }
+    public function staff_training()
+    {
+        $id = Auth::user()->business_id;
+        $documents = Document::all()->where('business_id',$id);
+        $suppliers = Supplier::all();
+        $stocks = Stock::all();
+        $contacts = Contact::all();
+        return view('compliance',['documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers, 'contacts'=>$contacts]);
+    }
 
     public function allergen_search(Request $request)
     {

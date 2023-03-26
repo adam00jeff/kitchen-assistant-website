@@ -19,7 +19,7 @@
                                     <a href="{{ route('supplierreport')}}" class="">Supplier Reports</a><br>
                                     <a href="{{ route('allergeninformation')}}" class="">Allergen Information</a><br>
                                     <a href="{{ route('contactslist')}}" class="">Contacts List</a><br>
-                                    - Staff Training<br>
+                                    <a href="{{ route('stafftraining')}}" class="">Staff Training Records</a><br>
                                     - Incident Reports<br>
                                     - Food Hygiene Rating<br>
                                     - Daily/ Monthly Checks<br>
@@ -64,26 +64,34 @@
                                     <x-showcontacts :$contacts/>
                             <h2>Suppliers</h2>
                                 <x-showsuppliers :$suppliers/>
-                                     @else
+                                </div>
+                            @elseif(Route::currentRouteName() == "stafftraining")
+                                <div>
+                                    Staff Training
+
+                                </div>
+                            @else
                                      Nothing here right now
-                                   @endif
-                                    </div>
-                            </div>
+                            @endif
+                                </div>
+
+                        <x-nav-link :href="route('welcome')" :active="request()->routeIs('back')">
+                            {{ __('Home') }}
+                        </x-nav-link>
+                    </div>
 
                         </div>
 
 
 
                     </div>
-                </div>
 
+
+                </div>
 
 
             </div>
 
-            <x-nav-link :href="route('welcome')" :active="request()->routeIs('back')">
-                {{ __('Home') }}
-            </x-nav-link>
         </div>
     </div>
 </div>
