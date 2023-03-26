@@ -12,7 +12,7 @@
                 <div class="grid justify-center">
                     <a href="{{ route('overduedocuments')}}" class=""><h1>Over Due Documents</h1></a>
                     @if(Route::currentRouteName() == "overduedocuments")
-                        these are overdue
+                        <x-overduedocuments :$documents/>
                     @endif
                     <h1>UpComing Documents</h1>
                     <h1>Recent Incidents</h1>

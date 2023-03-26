@@ -12,7 +12,7 @@
             <th scope="col" class="px-6 py-3">Name</th>
             <th scope="col" class="px-6 py-3">Document Type</th>
             <th scope="col" class="px-6 py-3">Document Date</th>
-            <th scope="col" class="px-6 py-3">Renewal Type</th>
+            <th scope="col" class="px-6 py-3">Renewal Date</th>
             <th scope="col" class="px-6 py-3"></th>
             <th scope="col" class="px-6 py-3">Document Preview</th>
         </tr>
@@ -21,7 +21,7 @@
                 <td>{{$document['display_name']}}</td>
                 <td>{{$document['type'] }}</td>
                 <td>{{$document['doc_date'] }}</td>
-                <td>{{$document['renewal_period'] }}</td>
+                <td>{{$document['renewal_date'] }}</td>
                 <td>
                     <form method="POST" action="/documents/{{$document->id}}">
                         {{ csrf_field() }}

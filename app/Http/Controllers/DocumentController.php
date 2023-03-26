@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Document;
 use App\Http\Requests\StoreDocumentRequest;
 use App\Http\Requests\UpdateDocumentRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -26,8 +27,9 @@ class DocumentController extends Controller
     }
     public function overdue_documents()
     {
+        $startDate = Carbon::today();
         $id = Auth::user()->business_id;
-        $documents = Document::all()->where('business_id',$id);
+        $documents = Document::all()->where('business_id',$id)->where('renewal_date','=',$startDate);
         return view('welcome',['documents'=>$documents]);
     }
 
@@ -67,7 +69,7 @@ class DocumentController extends Controller
             $document->file_location = '/storage/' . $filePath;
             $document->type = $request->type;
             $document->doc_date = $request->doc_date;
-            $document->renewal_period = $request->renewal_period;
+            $document->renewal_date = $request->renewal_date;
             $document->user_id = $id;
             $document->business_id = $busid;
             $document->save();

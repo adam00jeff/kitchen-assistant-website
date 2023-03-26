@@ -46,12 +46,14 @@
                                id="type" name="type" type="text" placeholder="document type">
                     </p>
                     <p class="text-gray-700 mt-2 text-sm">
+                        <label for="Document Date">Document Date</label>
                         <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
                                id="doc_date" name="doc_date" type="date" placeholder="document date">
                     </p>
                     <p class="text-gray-700 mt-2 text-sm">
+                        <label for="Renewal Date">Renewal Date</label>
                         <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                               id="renewal_period" name="renewal_period" type="text" placeholder="renewal period">
+                               id="renewal_date" name="renewal_date" type="date" placeholder="renewal date">
                     </p>
                     <div class="custom-file">
                         <input type="file" name="file" class="custom-file-input" id="chooseFile">

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('file_location')->nullable();
             $table->date('doc_date');
-            $table->string('renewal_period');
+            $table->date('renewal_date');
             $table->timestamps();
         });
     }
