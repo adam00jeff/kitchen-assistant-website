@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StockSeeder::class);
         $this->call(RecipeSeeder::class);
         $this->call(DocumentSeeder::class);
-
+        $this->call(ContactSeeder::class);
         $this->call(AllergenSeeder::class);
         $this->call(SupplierSeeder::class);
 
