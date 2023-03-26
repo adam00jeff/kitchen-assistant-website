@@ -13,14 +13,14 @@
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900 dark:text-gray-100">
-
-                            <div class="flex justify-center">@if(Route::currentRouteName() == "compliance")
+                            @if(Route::currentRouteName() == "compliance")
+                            <div class="flex justify-center">
                                 <p>
                                     <a href="{{ route('supplierreport')}}" class="">Supplier Reports</a><br>
                                     <a href="{{ route('allergeninformation')}}" class="">Allergen Information</a><br>
                                     <a href="{{ route('contactslist')}}" class="">Contacts List</a><br>
                                     <a href="{{ route('stafftraining')}}" class="">Staff Training Records</a><br>
-                                    - Incident Reports<br>
+                                    <a href="{{ route('incidentreports')}}" class="">Incident Reports</a><br>
                                     - Food Hygiene Rating<br>
                                     - Daily/ Monthly Checks<br>
                                 </p>
@@ -34,29 +34,23 @@
                                     </x-nav-link>
                                 </div>
                             @elseif(Route::currentRouteName() == "allergensearch")
-                                <div class="flex-grid justify-center">
+                                <div class="">
                                     <H2 >Allergens: </H2>
                                     <x-allergensearch :$allergens :$stocks :$suppliers :$recipes/>
-                                </div>
-                                    <div class="grid justify-start">
                                         <x-nav-link :href="route('compliance')" :active="request()->routeIs('compliance')">
                                             {{ __('Back to Compliance') }}
                                         </x-nav-link>
                                     </div>
-
                             @elseif(Route::currentRouteName() == "allergeninformation")
-                                     <div class="flex-grid justify-center">
+                                     <div>
                                     <H2 >Allergens: </H2>
                                 <x-allergensearch :$allergens :$stocks :$suppliers :$recipes/>
-                                <div class="gird justify-left">
                                     On Menu Allergens: <br>
                                 <x-onmenuallergens :$allergens :$stocks :$suppliers :$recipes/>
-                                </div>
-                                        <div class="grid justify-center">
-                                            <x-nav-link :href="route('compliance')" :active="request()->routeIs('compliance')">
+                                <x-nav-link :href="route('compliance')" :active="request()->routeIs('compliance')">
                                                 {{ __('Back to Compliance') }}
                                             </x-nav-link>
-                                        </div>
+
                                          </div>
                             @elseif(Route::currentRouteName() == "contactslist")
                                 <div>
@@ -71,6 +65,17 @@
                                     <p>
                                     You Should ensure each Staff Member has an upto date training record:
                                 <x-showusers :$users :$documents :$businesses/>
+                                    </p>
+
+                                    <x-nav-link :href="route('compliance')" :active="request()->routeIs('compliance')">
+                                        {{ __('Back to Compliance') }}
+                                    </x-nav-link>
+                                </div>
+                            @elseif(Route::currentRouteName() == "incidentreports")
+                                <div>
+                                    <h1 class="flex justify-center">Incident Reports</h1>
+                                    <p>
+
                                     </p>
 
                                     <x-nav-link :href="route('compliance')" :active="request()->routeIs('compliance')">

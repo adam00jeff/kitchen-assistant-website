@@ -23,7 +23,8 @@ class ContactController extends Controller
         $id = Auth::user()->business_id;
         $allergens = Allergen::all();
         $suppliers = Supplier::all();
-        $stocks = Stock::all();
+        $busid = Auth::user()->business_id;
+        $stocks = Stock::all()->where('business_id', $busid);
         $contacts = Contact::all();
         $recipes = $recipes = Recipe::all()->where('business_id',$id);
         return view('compliance',['allergens' => $allergens, 'stocks'=>$stocks,'suppliers' => $suppliers, 'recipes'=>$recipes, 'contacts'=>$contacts]);

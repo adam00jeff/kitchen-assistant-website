@@ -21,7 +21,8 @@ class ComplianceController extends Controller
         $documents = Document::all()->where('business_id',$id);
         $users = User::all()->where('business_id',$id);
         $suppliers = Supplier::all();
-        $stocks = Stock::all();
+        $busid = Auth::user()->business_id;
+        $stocks = Stock::all()->where('business_id', $busid);
         $contacts = Contact::all();
         return view('compliance',['documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers, 'contacts'=>$contacts, 'users'=>$users]);
     }
@@ -31,7 +32,8 @@ class ComplianceController extends Controller
         $documents = Document::all()->where('business_id',$id);
         $suppliers = Supplier::all()->toArray();
         $stocksarray = Stock::all()->toArray();
-        $stocks = Stock::all();
+        $busid = Auth::user()->business_id;
+        $stocks = Stock::all()->where('business_id', $busid);
         $i=0;
         $filtered = collect();
         $instock = collect();
@@ -57,7 +59,8 @@ class ComplianceController extends Controller
         $id = Auth::user()->business_id;
         $allergens = Allergen::all();
         $suppliers = Supplier::all();
-        $stocks = Stock::all();
+        $busid = Auth::user()->business_id;
+        $stocks = Stock::all()->where('business_id', $busid);
         $recipes = $recipes = Recipe::all()->where('business_id',$id);
         return view('compliance',['allergens' => $allergens, 'stocks'=>$stocks,'suppliers' => $suppliers, 'recipes'=>$recipes]);
     }
@@ -67,18 +70,29 @@ class ComplianceController extends Controller
         $documents = Document::all()->where('business_id',$id);
         $businesses = Business::all()->where('id',$id);
         $suppliers = Supplier::all();
-        $stocks = Stock::all();
+        $busid = Auth::user()->business_id;
+        $stocks = Stock::all()->where('business_id', $busid);
         $contacts = Contact::all();
         $users = User::all()->where('business_id',$id);
         return view('compliance',['businesses'=>$businesses,'documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers, 'contacts'=>$contacts, 'users'=>$users]);
     }
-
+    public function incident_reports()
+    {
+        $id = Auth::user()->business_id;
+        $allergens = Allergen::all();
+        $suppliers = Supplier::all();
+        $busid = Auth::user()->business_id;
+        $stocks = Stock::all()->where('business_id', $busid);
+        $recipes = $recipes = Recipe::all()->where('business_id',$id);
+        return view('compliance',['allergens' => $allergens, 'stocks'=>$stocks,'suppliers' => $suppliers, 'recipes'=>$recipes]);
+    }
     public function allergen_search(Request $request)
     {
         $search = $request->input('search');
         $id = Auth::user()->business_id;
   /*      $stocks = Stock::all()->toArray();*/
-        $stocks = Stock::query()->where('allergens', 'LIKE', "%" . $search . "%")
+        $busid = Auth::user()->business_id;
+        $stocks = Stock::query()->where('business_id', $busid)->where('allergens', 'LIKE', "%" . $search . "%")
             /*            ->orWhere('***', 'LIKE', "%" . $search . "%")
                         ->orWhere('***', 'LIKE', "%" . $search . "%")*/
             ->get();

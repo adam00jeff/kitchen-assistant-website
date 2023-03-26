@@ -60,6 +60,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/compliance/supplierreports',[\App\Http\Controllers\ComplianceController::class, 'supplier_reports'])->name('supplierreport');
     Route::get('/compliance/allergeninformation',[\App\Http\Controllers\ComplianceController::class, 'allergen_information'])->name('allergeninformation');
     Route::get('/compliance/stafftraining',[\App\Http\Controllers\ComplianceController::class, 'staff_training'])->name('stafftraining');
+    Route::get('/compliance/incidentreports',[\App\Http\Controllers\ComplianceController::class, 'incident_reports'])->name('incidentreports');
     //contacts
     Route::get('/contactslist',[\App\Http\Controllers\ContactController::class, 'contact_information'])->name('contactslist');
     Route::get('/contactslist/create',[\App\Http\Controllers\ContactController::class, 'create_contact'])->name('create_contact');

@@ -13,13 +13,15 @@ class RecipesController extends Controller
     {
         $id = Auth::user()->business_id;
         $recipes = Recipe::all()->where('business_id',$id);
-        $stocks = Stock::all();
+        $busid = Auth::user()->business_id;
+        $stocks = Stock::all()->where('business_id', $busid);
         return view('recipes',['recipes'=>$recipes, 'stocks'=>$stocks]);
     }
 
     public function create_recipe()
     {
-        $stocks = Stock::all();
+        $busid = Auth::user()->business_id;
+        $stocks = Stock::all()->where('business_id', $busid);
         return view('recipes-form',['stocks' => $stocks]);
     }
 

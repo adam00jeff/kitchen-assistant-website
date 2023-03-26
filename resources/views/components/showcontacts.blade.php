@@ -2,15 +2,15 @@
     <a href="{{route('create_contact')}}" class="btn btn-primary btn-block bg-gray-800 text-white text-xs px-2 py-2 rounded-md mb-2 mr-2 uppercase hover:underline">Add Contact</a>
 </div>
 
-
+<br>
 <div class="flex justify-center">
-    <div>
-    <table class="align-middle">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-s text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Email</th>
+            <th scope="col" class="px-6 py-3">Name</th>
+            <th scope="col" class="px-6 py-3">Address</th>
+            <th scope="col" class="px-6 py-3">Phone</th>
+            <th scope="col" class="px-6 py-3">Email</th>
         </tr>
         @foreach($contacts as $contact)
             <tr>
