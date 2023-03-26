@@ -18,7 +18,7 @@
                         <x-showbusiness :businesses="$businesses"/>
                         <br>
                         All Users:
-                        <x-showusers :users="$users"/>
+                        <x-showusers :users="$users" :$documents/>
                         <br>
                         All Recipes:
                         <x-showrecipes :recipes="$recipes" :$stocks/>

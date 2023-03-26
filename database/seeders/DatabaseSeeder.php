@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
 
         ))->create();
         $this->call(UserSeeder::class);
-        User::factory(5)->state(new Sequence(
+        User::factory(30)->state(new Sequence(
             ['business_id'=>2],
             ['business_id'=>3],
             ['business_id'=>4],

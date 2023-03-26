@@ -9,14 +9,16 @@ use Illuminate\View\Component;
 class showusers extends Component
 {
     public $users;
+    public $documents;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($users)
+    public function __construct($users, $documents)
     {
         $this->users = $users;
+        $this->documents = $documents;
     }
 
     /**

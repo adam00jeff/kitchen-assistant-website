@@ -7,6 +7,7 @@ use App\Models\Document;
 use App\Models\Recipe;
 use App\Models\Stock;
 use App\Models\supplier;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -17,10 +18,11 @@ class ComplianceController extends Controller
     {
         $id = Auth::user()->business_id;
         $documents = Document::all()->where('business_id',$id);
+        $users = User::all()->where('business_id',$id);
         $suppliers = Supplier::all();
         $stocks = Stock::all();
         $contacts = Contact::all();
-        return view('compliance',['documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers, 'contacts'=>$contacts]);
+        return view('compliance',['documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers, 'contacts'=>$contacts, 'users'=>$users]);
     }
     public function supplier_reports()
     {
@@ -65,7 +67,8 @@ class ComplianceController extends Controller
         $suppliers = Supplier::all();
         $stocks = Stock::all();
         $contacts = Contact::all();
-        return view('compliance',['documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers, 'contacts'=>$contacts]);
+        $users = User::all()->where('business_id',$id);
+        return view('compliance',['documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers, 'contacts'=>$contacts, 'users'=>$users]);
     }
 
     public function allergen_search(Request $request)
