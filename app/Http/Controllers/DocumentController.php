@@ -24,6 +24,12 @@ class DocumentController extends Controller
         $documents = Document::all()->where('business_id',$id);
         return view('documents',['documents'=>$documents]);
     }
+    public function overdue_documents()
+    {
+        $id = Auth::user()->business_id;
+        $documents = Document::all()->where('business_id',$id);
+        return view('welcome',['documents'=>$documents]);
+    }
 
     /**
      * Show the form for creating a new resource.

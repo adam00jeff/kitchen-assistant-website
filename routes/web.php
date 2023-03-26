@@ -50,6 +50,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/documents',[DocumentController::class, 'documents_index'])->name('documents');
     Route::get('/documents/create', [DocumentController::class, 'create_document'])->name('create_document');
     Route::post('/documents', [DocumentController::class, 'store_document'])->name('store_document');
+    Route::get('/documents/overduedocuments',[\App\Http\Controllers\DocumentController::class, 'overdue_documents'])->name('overduedocuments');
     //suppliers
     Route::get('/suppliers',[\App\Http\Controllers\SupplierController::class, 'suppliers_index'])->name('suppliers');
     Route::get('/suppliers/create',[\App\Http\Controllers\SupplierController::class, 'create_supplier'])->name('create_supplier');
