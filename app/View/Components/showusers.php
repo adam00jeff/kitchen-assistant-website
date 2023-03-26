@@ -10,15 +10,17 @@ class showusers extends Component
 {
     public $users;
     public $documents;
+    public $businesses;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($users, $documents)
+    public function __construct($users, $documents, $businesses)
     {
         $this->users = $users;
         $this->documents = $documents;
+        $this->businesses =$businesses;
     }
 
     /**

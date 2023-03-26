@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Allergen;
+use App\Models\Business;
 use App\Models\Contact;
 use App\Models\Document;
 use App\Models\Recipe;
@@ -64,11 +65,12 @@ class ComplianceController extends Controller
     {
         $id = Auth::user()->business_id;
         $documents = Document::all()->where('business_id',$id);
+        $businesses = Business::all()->where('id',$id);
         $suppliers = Supplier::all();
         $stocks = Stock::all();
         $contacts = Contact::all();
         $users = User::all()->where('business_id',$id);
-        return view('compliance',['documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers, 'contacts'=>$contacts, 'users'=>$users]);
+        return view('compliance',['businesses'=>$businesses,'documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers, 'contacts'=>$contacts, 'users'=>$users]);
     }
 
     public function allergen_search(Request $request)

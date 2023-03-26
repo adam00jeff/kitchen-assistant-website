@@ -43,7 +43,7 @@
                                             {{ __('Back to Compliance') }}
                                         </x-nav-link>
                                     </div>
-                                </div>
+
                             @elseif(Route::currentRouteName() == "allergeninformation")
                                      <div class="flex-grid justify-center">
                                     <H2 >Allergens: </H2>
@@ -61,19 +61,18 @@
                             @elseif(Route::currentRouteName() == "contactslist")
                                 <div>
                                     <h2>Contacts</h2><br>
-                                    <x-showcontacts :$contacts/>
+                                    <x-showcontacts :$contacts />
                             <h2>Suppliers</h2>
-                                <x-showsuppliers :$suppliers/>
+                                <x-showsuppliers :$suppliers />
                                 </div>
                             @elseif(Route::currentRouteName() == "stafftraining")
                                 <div>
                                     <h1 class="flex justify-center">Staff Training</h1>
                                     <p>
                                     You Should ensure each Staff Member has an upto date training record:
-                                <x-showusers :$users :$documents/>
+                                <x-showusers :$users :$documents :$businesses/>
                                     </p>
-                                </div>
-                                <div class="grid justify-center">
+
                                     <x-nav-link :href="route('compliance')" :active="request()->routeIs('compliance')">
                                         {{ __('Back to Compliance') }}
                                     </x-nav-link>

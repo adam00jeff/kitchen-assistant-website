@@ -6,12 +6,16 @@
             @can('edit-user')
             <th scope="col" class="px-6 py-3">User ID</th>
                 <th scope="col" class="px-6 py-3">Admin?</th>
+                    <th scope="col" class="px-6 py-3">Business</th>
             @endcan
             @endif
             <th scope="col" class="px-6 py-3">Name</th>
             <th scope="col" class="px-6 py-3">Email</th>
+
                 <th> </th>
+                @if(!Route::currentRouteName() == "admin_panel")
                 <th scope="col" class="px-6 py-3">Training Record</th>
+                @endif
 
         </tr>
         @foreach($users as $user)
@@ -20,6 +24,14 @@
                 @can('edit-user')
                 <td>{{$user['id']}}</td>
                     <td>{{$user['is_admin'] }}</td>
+                    <td>
+                        <?php foreach($businesses as $business) {
+                            if($business->id==$user['business_id']){
+                               ?>{{$business->name}}<?php
+                            }
+                        }
+?>
+                    </td>
                 @endcan
                 @endif
                 <td>{{$user['name']}}</td>
@@ -38,13 +50,15 @@
                 </td>
                     @endcan
                 <td>
+                    @if(Route::currentRouteName() == "stafftraining")
                     <?php
                         foreach ($documents as $document) {
                             if($document->type=='Staff Training'){
                                ?> <iframe src="{{URL::to('/')}}{{$document['file_location']}}" width="100%" height="100%"></iframe> <?php
                         }}
-
                     ?>
+                    @endif
+
                 </td>
             </tr>
         @endforeach
