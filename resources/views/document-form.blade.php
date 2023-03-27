@@ -41,14 +41,15 @@
                         <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
                                id="name" name="name" type="text" placeholder="document name">
                     </p>
+
                     <p class="text-gray-700 mt-2 text-sm">
                         {{ Form::label('document type','Document Type')}}
-                        {{ Form::select('animal', array(
+                        {{ Form::select('type', array(
                         'other' => 'Please Select a Type:',
-                        'incident_report' => 'Incident Report',
+                        'Incident Report' => array( 'incident_report'=>'Incident Report'),
                         'Compliance' => array('compliance_checks' => 'Check Sheets'),
-                        'Staff training' => array('spaniel' => 'Spaniel'),
-                        ),'Other', array('id'=> 'type', 'name' => 'type','class' => 'appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3'))}}
+                        'Staff Training: (select trained staff member) ' => $users),
+                        null, array('id'=> 'type', 'name' => 'type','class' => 'appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3'))}}
                     </p>
                     <p class="text-gray-700 mt-2 text-sm">
                         <label for="Document Date">Document Date</label>

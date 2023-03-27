@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Document;
 use App\Http\Requests\StoreDocumentRequest;
 use App\Http\Requests\UpdateDocumentRequest;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -56,7 +57,9 @@ class DocumentController extends Controller
      */
     public function create_document()
     {
-        return view('document-form');
+        $busid = Auth::user()->business_id;
+        $users = User::where('business_id','=',$busid)->pluck('name','id')->toArray();
+        return view('document-form',['users'=>$users]);
     }
 
     /**
@@ -79,7 +82,14 @@ class DocumentController extends Controller
             $document->name= $fileName;
             $document->display_name=$request->name;
             $document->file_location = '/storage/' . $filePath;
-            $document->type = $request->type;
+            $intcheck = $request->type;
+            if (is_numeric($intcheck)){
+                $doctype = User::all()->where('id','=',$request->type)->pluck('name')->toArray();
+                $doctype = implode("",$doctype);
+                $document->type = "Training: ".$doctype;
+            }else{
+                $document->type = $request->type;
+            }
             $document->doc_date = $request->doc_date;
             $document->renewal_date = $request->renewal_date;
             $document->user_id = $id;
