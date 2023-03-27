@@ -19,7 +19,7 @@ class DocumentSeeder extends Seeder
        Document::create([
             'name' => "1678034417_Hazard Analysis and Critical Control Point HACCP.pdf",
             'display_name' => "HCCAP plan",
-            'type' => "compliance",
+            'type' => "HCCAP Plan",
             'file_location'=>"/storage/uploads/1678034417_Hazard Analysis and Critical Control Point HACCP.pdf",
             'doc_date'=>'2020-01-01',
            'renewal_date'=>'2022-01-02',
@@ -49,7 +49,7 @@ class DocumentSeeder extends Seeder
         Document::create([
             'name' => "1679826052_sfbb-diary-03-staff-training-record.pdf",
             'display_name' => "Staff Training Record",
-            'type' => "Staff Training",
+            'type' => "Training Guidance",
             'file_location'=>"/storage/uploads/1679826052_sfbb-diary-03-staff-training-record.pdf",
             'doc_date'=>'2023-01-26',
             'renewal_date'=>'2023-12-02',

@@ -46,10 +46,16 @@
                         {{ Form::label('document type','Document Type')}}
                         {{ Form::select('type', array(
                         'other' => 'Please Select a Type:',
-                        'Incident Report' => array( 'incident_report'=>'Incident Report'),
-                        'Compliance' => array('compliance_checks' => 'Check Sheets'),
-                        'Staff Training: (select trained staff member) ' => $users),
-                        null, array('id'=> 'type', 'name' => 'type','class' => 'appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3'))}}
+                        'HCCAP PLAN' => array( 'HCCAP Plan'=>'HCCAP Plan'),
+                        'Incident Report' => array( 'Incident Report'=>'Incident Report'),
+                        'Compliance' => array('Compliance Checks' => 'Compliance Checks','Weekly Temperatures'=>'Weekly Temperatures'),
+                        'Staff Training' => array('Team Training Documents'=>'Team Training Documents','Training Guidance'=>'Training Guidance','Staff Training: (Employee) ' => $users,),
+                        'Other' => array('Guidance'=>'Guidance')),null,
+                        array(
+                            'id'=> 'type',
+                             'name' => 'type',
+                             'class' => 'appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3'
+                             ),)}}
                     </p>
                     <p class="text-gray-700 mt-2 text-sm">
                         <label for="Document Date">Document Date</label>
