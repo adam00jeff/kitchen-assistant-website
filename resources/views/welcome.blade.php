@@ -10,8 +10,13 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                 <div class="grid justify-center">
-                    <a href="{{ route('overduedocuments')}}" class=""><h1>Over Due Documents</h1></a>
+                    @if(Route::currentRouteName() == "welcome")
+                    <a href="{{ route('overduedocuments')}}" class="hover:bg-blue-200"><h1>Overdue Documents</h1></a>
+                    @endif
                     @if(Route::currentRouteName() == "overduedocuments")
+                        <x-nav-link :href="route('welcome')">
+                            {{ __('Hide Overdue Documents') }}
+                        </x-nav-link>
                         <x-overduedocuments :$documents/>
                     @endif
                     <h1>UpComing Documents</h1>
