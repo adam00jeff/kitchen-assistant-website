@@ -42,8 +42,13 @@
                                id="name" name="name" type="text" placeholder="document name">
                     </p>
                     <p class="text-gray-700 mt-2 text-sm">
-                        <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                               id="type" name="type" type="text" placeholder="document type">
+                        {{ Form::label('document type','Document Type')}}
+                        {{ Form::select('animal', array(
+                        'other' => 'Please Select a Type:',
+                        'incident_report' => 'Incident Report',
+                        'Compliance' => array('compliance_checks' => 'Check Sheets'),
+                        'Staff training' => array('spaniel' => 'Spaniel'),
+                        ),'Other', array('id'=> 'type', 'name' => 'type','class' => 'appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3'))}}
                     </p>
                     <p class="text-gray-700 mt-2 text-sm">
                         <label for="Document Date">Document Date</label>
@@ -64,39 +69,6 @@
                     </button>
                 </form>
             </div>
-            {{--            <form method="POST" action="/documents" class="" enctype="multipart/form-data">
-                @csrf
-                <div class="">
-                    <p class="text-gray-700 text-sm">
-                        <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                               id="name" name="name" type="text" placeholder="document name">
-                    </p>
-                    <p class="text-gray-700 mt-2 text-sm">
-                        <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                               id="type" name="type" type="text" placeholder="document type">
-                    </p>
-                    <p class="text-gray-500 text-base mt-2">
-                        <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                               id="file_location" name="file_location" type="text" placeholder="file">
-                    </p>
-                    <p class="text-gray-700 mt-2 text-sm">
-                        <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                               id="doc_date" name="doc_date" type="date" placeholder="document date">
-                    </p>
-                    <p class="text-gray-700 mt-2 text-sm">
-                        <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                               id="renewal_period" name="renewal_period" type="text" placeholder="renewal period">
-                    </p>
-
-
-                    <div class="flex items-center justify-end mt-4 top-auto">
-                        <button type="submit" class="bg-gray-800 text-white text-xs px-2 py-2 rounded-md mb-2 mr-2 uppercase hover:underline">
-                            Add New
-                        </button>
-                    </div>
-                </div>
-            </form>--}}
-
         </div>
     </div>
 </x-app-layout>
