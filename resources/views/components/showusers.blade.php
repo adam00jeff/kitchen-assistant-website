@@ -19,7 +19,7 @@
 
         </tr>
         @foreach($users as $user)
-            <tr>
+            <tr class="bg-blue-200">
                 @if(Route::currentRouteName() == "admin_panel")
                 @can('edit-user')
                 <td>{{$user['id']}}</td>
@@ -34,7 +34,7 @@
                     </td>
                 @endcan
                 @endif
-                <td>{{$user['name']}}</td>
+                <td >{{$user['name']}}</td>
                 <td>{{$user['email'] }}</td>
                     @can('edit-user')
                 <td>
@@ -51,16 +51,24 @@
                     @endcan
                 <td>
                     @if(Route::currentRouteName() == "stafftraining")
-                    <?php
-                        foreach ($documents as $document) {
-                            $type = explode( " ",$document->type);
-                            if(is_array($type) && count($type))
-                            ddd($type[1]);
-                            if($type[1]==$user['name']){
-                               ?> <iframe src="{{URL::to('/')}}{{$document['file_location']}}" width="100%" height="100%"></iframe> <?php
-                        }}
-                    ?>
-                    @endif
+                    @foreach($documents as $document)
+                        <?php
+                            $type = explode(" ",$document->type);
+                            if (gettype($type)=='array'){
+                                if(count($type) > 1){
+
+                                    if ($type[1] == $user['name']){
+                                   ?>{{$user['name']."'s Record:"}}
+                            <iframe src="{{URL::to('/')}}{{$document['file_location']}}" width="100%" height="100%"></iframe><br>
+                            <?php
+                                    }else{
+
+                            }
+                                }
+                            }
+                        ?>
+                        @endforeach
+                            @endif
 
                 </td>
             </tr>

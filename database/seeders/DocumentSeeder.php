@@ -47,10 +47,10 @@ class DocumentSeeder extends Seeder
             'business_id'=>1
         ]);
         Document::create([
-            'name' => "1679826052_sfbb-diary-03-staff-training-record.pdf",
+            'name' => "1679920885_sfbb-diary-03-staff-training-record.pdf",
             'display_name' => "Staff Training Record",
             'type' => "Training Guidance",
-            'file_location'=>"/storage/uploads/1679826052_sfbb-diary-03-staff-training-record.pdf",
+            'file_location'=>"/storage/uploads/1679920885_sfbb-diary-03-staff-training-record.pdf",
             'doc_date'=>'2023-01-26',
             'renewal_date'=>'2023-12-02',
             'user_id'=>1,
