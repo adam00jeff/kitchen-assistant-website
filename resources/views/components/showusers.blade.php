@@ -51,24 +51,28 @@
                     @endcan
                 <td>
                     @if(Route::currentRouteName() == "stafftraining")
+                    @php($found = False)
                     @foreach($documents as $document)
                         <?php
                             $type = explode(" ",$document->type);
                             if (gettype($type)=='array'){
                                 if(count($type) > 1){
-
                                     if ($type[1] == $user['name']){
+                                        $found = True;
                                    ?>{{$user['name']."'s Record:"}}
                             <iframe src="{{URL::to('/')}}{{$document['file_location']}}" width="100%" height="100%"></iframe><br>
                             <?php
                                     }else{
-
+                                //do nothing
                             }
                                 }
                             }
                         ?>
                         @endforeach
+                        @if(!$found)
+                            <label class="text-xl text-red-600">No Training Documents Found!</label>
                             @endif
+                        @endif
 
                 </td>
             </tr>
