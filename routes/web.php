@@ -23,9 +23,10 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/dashboard', function () {
+/*Route::get('/dashboard', function () {
     return view('welcome');
-})->middleware(['auth', 'verified'])->name('welcome');
+})->middleware(['auth', 'verified'])->name('welcome');*/
+Route::get('/dashboard',[\App\Http\Controllers\DocumentController::class, 'welcome'])->name('welcome')->middleware(['auth', 'verified']);
 
 Route::middleware(['auth', 'checkrole:admin'])->group(function (){
     Route::get('/admin_panel',[AdminController::class, 'index'])->name('admin_panel');
@@ -51,6 +52,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/documents/create', [DocumentController::class, 'create_document'])->name('create_document');
     Route::post('/documents', [DocumentController::class, 'store_document'])->name('store_document');
     Route::get('/documents/overduedocuments',[\App\Http\Controllers\DocumentController::class, 'overdue_documents'])->name('overduedocuments');
+    Route::get('/documents/upcomingdocuments',[\App\Http\Controllers\DocumentController::class, 'upcoming_documents'])->name('upcomingdocuments');
     //suppliers
     Route::get('/suppliers',[\App\Http\Controllers\SupplierController::class, 'suppliers_index'])->name('suppliers');
     Route::get('/suppliers/create',[\App\Http\Controllers\SupplierController::class, 'create_supplier'])->name('create_supplier');

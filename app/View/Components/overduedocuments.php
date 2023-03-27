@@ -6,15 +6,15 @@ use Illuminate\View\Component;
 
 class overduedocuments extends Component
 {
-    public $documents;
+    public $overduedocuments;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($documents)
+    public function __construct($overduedocuments)
     {
-        $this->documents=$documents;
+        $this->overduedocuments=$overduedocuments;
     }
 
     /**

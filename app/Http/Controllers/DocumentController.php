@@ -19,6 +19,16 @@ class DocumentController extends Controller
      *
      * @return Response
      */
+    public function welcome()
+    {
+        $startDate = Carbon::today();
+        $upcoming = Carbon::today()->addWeeks(2);
+        $id = Auth::user()->business_id;
+        $documents = Document::all()->where('business_id',$id);
+        $upcomingdocuments = $this->get_upcoming();
+        $overduedocuments = $this->get_overdue();
+        return view('welcome',['documents'=>$documents, 'overduedocuments'=>$overduedocuments, 'upcomingdocuments'=>$upcomingdocuments]);
+    }
     public function documents_index()
     {
         $id = Auth::user()->business_id;
@@ -27,13 +37,18 @@ class DocumentController extends Controller
     }
     public function overdue_documents()
     {
-        $startDate = Carbon::today();
+        $startDate = Carbon::today()->addWeeks(2);
         $id = Auth::user()->business_id;
-        $documents = Document::all()->where('business_id',$id)->where('renewal_date','<=',$startDate);
-
-        return view('welcome',['documents'=>$documents]);
+        $overduedocuments = $this->get_overdue();
+        $upcomingdocuments = $this->get_upcoming();
+        return view('welcome',['upcomingdocuments'=>$upcomingdocuments,'overduedocuments'=>$overduedocuments]);
     }
-
+    public function upcoming_documents()
+    {
+        $overduedocuments = $this->get_overdue();
+        $upcomingdocuments = $this->get_upcoming();
+        return view('welcome',['upcomingdocuments'=>$upcomingdocuments,'overduedocuments'=>$overduedocuments]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -52,7 +67,6 @@ class DocumentController extends Controller
      */
     public function store_document(Request $request)
     {
-
         $request->validate([
           /*  'file' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048'*/
         ]);
@@ -61,10 +75,7 @@ class DocumentController extends Controller
         $document = new Document;
         if ($request->file()) {
             $fileName = time() . '_' . $request->file->getClientOriginalName();
-
             $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
-
-    /*            $document->name = time() . '_' . $request->file->getClientOriginalName();*/
             $document->name= $fileName;
             $document->display_name=$request->name;
             $document->file_location = '/storage/' . $filePath;
@@ -135,4 +146,22 @@ class DocumentController extends Controller
         ->with('success', $document->name.' has been removed')
             ->with('documents',['documents'=>$documents]);
     }
+    function get_upcoming(){
+        $startDate = Carbon::today();
+        $upcoming = Carbon::today()->addWeeks(2);
+        $id = Auth::user()->business_id;
+        $upcomingdocuments = Document::all()
+            ->where('business_id',$id)
+            ->where('renewal_date','>=',$startDate)
+            ->where('renewal_date','<=',$upcoming);
+        return $upcomingdocuments;
+    }
+    function get_overdue(){
+        $startDate = Carbon::today();
+        $id = Auth::user()->business_id;
+        $overduedocuments = Document::all()
+        ->where('business_id',$id)
+        ->where('renewal_date','<=',$startDate);
+        return $overduedocuments;
+}
 }
