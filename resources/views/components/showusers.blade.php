@@ -53,7 +53,10 @@
                     @if(Route::currentRouteName() == "stafftraining")
                     <?php
                         foreach ($documents as $document) {
-                            if($document->type=='Staff Training'){
+                            $type = explode( " ",$document->type);
+                            if(is_array($type) && count($type))
+                            ddd($type[1]);
+                            if($type[1]==$user['name']){
                                ?> <iframe src="{{URL::to('/')}}{{$document['file_location']}}" width="100%" height="100%"></iframe> <?php
                         }}
                     ?>
