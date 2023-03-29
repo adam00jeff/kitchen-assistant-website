@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Document;
 use App\Http\Requests\StoreDocumentRequest;
 use App\Http\Requests\UpdateDocumentRequest;
+use App\Models\IncidentReport;
 use App\Models\User;
 
 use Carbon\Carbon;
@@ -28,7 +29,8 @@ class DocumentController extends Controller
         $documents = Document::all()->where('business_id',$id);
         $upcomingdocuments = $this->get_upcoming();
         $overduedocuments = $this->get_overdue();
-        return view('welcome',['documents'=>$documents, 'overduedocuments'=>$overduedocuments, 'upcomingdocuments'=>$upcomingdocuments]);
+        $recentincidents = $this->get_recentincidents();
+        return view('welcome',['documents'=>$documents, 'overduedocuments'=>$overduedocuments, 'upcomingdocuments'=>$upcomingdocuments,'incidentreports'=>$recentincidents]);
     }
     public function documents_index()
     {
@@ -174,4 +176,12 @@ class DocumentController extends Controller
         ->where('renewal_date','<=',$startDate);
         return $overduedocuments;
 }
+    function get_recentincidents(){
+        $recent = Carbon::today()->subWeeks(2);
+        $id = Auth::user()->business_id;
+        $recentincidents = IncidentReport::all()
+            ->where('business_id',$id)
+            ->where('date_of_incident','>=',$recent);
+        return $recentincidents;
+    }
 }

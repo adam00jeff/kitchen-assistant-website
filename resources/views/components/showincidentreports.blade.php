@@ -15,7 +15,7 @@
             <th scope="col" class="px-6 py-3">Delete:</th>
             @endcan
         </tr>
-        @if(Route::currentRouteName() == "incidentreports")
+        @if(Route::currentRouteName() == "incidentreports"||Route::currentRouteName() == "recentincidents")
             @foreach($incidentreports as $incidentreport)
                 <tr @if($incidentreport->severity=='High') class="bg-red-400 text-gray-700 " @elseif($incidentreport->severity=='Medium')class="bg-orange-400" @elseif($incidentreport->severity=='Low') class="bg-yellow-200" @endif>
                     <td class="">{{$incidentreport->date_of_report}}</td>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Document;
 use App\Models\IncidentReport;
 use App\Http\Requests\StoreIncidentReportRequest;
 use App\Http\Requests\UpdateIncidentReportRequest;
@@ -89,5 +90,38 @@ class IncidentReportController extends Controller
         $busid = Auth::user()->business_id;
         $incidentreports = IncidentReport::all()->where('business_id',$busid);
         return view('compliance',['incidentreports'=>$incidentreports]);
+    }
+    public function recent_incidents()
+    {
+        $overduedocuments = $this->get_overdue();
+        $upcomingdocuments = $this->get_upcoming();
+        $recent = $this->get_recentincidents();
+        return view('welcome',['incidentreports'=>$recent,'upcomingdocuments'=>$upcomingdocuments,'overduedocuments'=>$overduedocuments]);
+    }
+    function get_recentincidents(){
+        $recent = Carbon::today()->subWeeks(2);
+        $id = Auth::user()->business_id;
+        $recentincidents = IncidentReport::all()
+            ->where('business_id',$id)
+            ->where('date_of_incident','>=',$recent);
+        return $recentincidents;
+    }
+    function get_upcoming(){
+        $startDate = Carbon::today();
+        $upcoming = Carbon::today()->addWeeks(2);
+        $id = Auth::user()->business_id;
+        $upcomingdocuments = Document::all()
+            ->where('business_id',$id)
+            ->where('renewal_date','>=',$startDate)
+            ->where('renewal_date','<=',$upcoming);
+        return $upcomingdocuments;
+    }
+    function get_overdue(){
+        $startDate = Carbon::today();
+        $id = Auth::user()->business_id;
+        $overduedocuments = Document::all()
+            ->where('business_id',$id)
+            ->where('renewal_date','<=',$startDate);
+        return $overduedocuments;
     }
 }

@@ -8,8 +8,12 @@
     if(!$overduedocuments->isEmpty()){
         $overduecount = $overduedocuments->count();
     }
+
     if(!$upcomingdocuments->isEmpty()){
         $upcomingcount = $upcomingdocuments->count();
+    }
+    if(!$incidentreports->isEmpty()){
+        $reportscount = $incidentreports->count();
     }
     ?>
     <div class="py-12">
@@ -32,7 +36,7 @@
                     @endif
                         @if(Route::currentRouteName() == "welcome")
                             <div class="p-3 mb-6">
-                                <a href="{{ route('upcomingdocuments')}}" @if($upcomingdocuments->isEmpty()) class="text-xl p-4" @else class=" text-xl p-4" @endif>Upcoming Documents @if(!$upcomingdocuments->isEmpty())<label class="bg-orange-300 text-center text-xl pt-1 p-2 border rounded-2xl"> ( {{$upcomingcount}} )</label>@endif</a>
+                                <a href="{{ route('upcomingdocuments')}}" @if(!$upcomingdocuments->isEmpty()) class="text-xl p-4" @else class=" text-xl p-4" @endif>Upcoming Documents @if(!$upcomingdocuments->isEmpty())<label class="bg-orange-300 text-center text-xl pt-1 p-2 border rounded-2xl"> ( {{$upcomingcount}} )</label>@endif</a>
                             </div>
                         @endif
                         @if(Route::currentRouteName() == "upcomingdocuments")
@@ -44,7 +48,21 @@
                                 <x-overduedocuments :$overduedocuments/>
                             </div>
                         @endif
-                    <h1 class=" p-2 text-blue-600">Recent Incidents</h1>
+                        @if(Route::currentRouteName() == "welcome")
+                            <div class="p-3 mb-6">
+                                <a href="{{ route('recentincidents')}}" @if(!$incidentreports->isEmpty()) class="text-xl p-4" @else class=" text-xl p-4" @endif>Recent Incidents @if(!$incidentreports->isEmpty())<label class="bg-orange-300 text-center text-xl pt-1 p-2 border rounded-2xl"> ( {{$reportscount}} )</label>@endif</a>
+                            </div>
+                        @endif
+                        @if(Route::currentRouteName() == "recentincidents")
+                            <div class="p-3 mb-6">
+                                <x-nav-link :href="route('welcome')">
+                                    {{ __('Hide Recent Incidents') }}
+
+                                </x-nav-link>
+                                <x-showincidentreports :$incidentreports/>
+
+                            </div>
+                        @endif
                     <h1 class=" p-2 text-blue-600">Something Else</h1>
                 </div>
                 </div>
