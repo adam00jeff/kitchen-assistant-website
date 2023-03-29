@@ -78,8 +78,12 @@
                             @elseif(Route::currentRouteName() == "incidentreports")
                                 <div>
                                     <h1 class="flex justify-center">Incident Reports</h1>
-                                    <p>
+                                    <div class="flex items-center justify-start mt-4 top-auto">
+                                        <a href="{{route('create_incidentreport')}}" class="btn btn-primary btn-block bg-gray-800 text-white text-xs px-2 py-2 rounded-md mb-2 mr-2 uppercase hover:underline">New Incident</a>
+                                    </div>
 
+                                    <p>
+                                        <x-showincidentreports />
                                     </p>
 
                                     <x-nav-link :href="route('compliance')" :active="request()->routeIs('compliance')">

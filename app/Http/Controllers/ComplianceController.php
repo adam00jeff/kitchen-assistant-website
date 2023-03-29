@@ -76,16 +76,7 @@ class ComplianceController extends Controller
         $users = User::all()->where('business_id',$id);
         return view('compliance',['businesses'=>$businesses,'documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers, 'contacts'=>$contacts, 'users'=>$users]);
     }
-    public function incident_reports()
-    {
-        $id = Auth::user()->business_id;
-        $allergens = Allergen::all();
-        $suppliers = Supplier::all();
-        $busid = Auth::user()->business_id;
-        $stocks = Stock::all()->where('business_id', $busid);
-        $recipes = $recipes = Recipe::all()->where('business_id',$id);
-        return view('compliance',['allergens' => $allergens, 'stocks'=>$stocks,'suppliers' => $suppliers, 'recipes'=>$recipes]);
-    }
+
     public function allergen_search(Request $request)
     {
         $search = $request->input('search');
