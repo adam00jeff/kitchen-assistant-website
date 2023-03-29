@@ -5,6 +5,7 @@ use App\Models\Allergen;
 use App\Models\Business;
 use App\Models\Contact;
 use App\Models\Document;
+use App\Models\IncidentReport;
 use App\Models\Recipe;
 use App\Models\Stock;
 use App\Models\supplier;
@@ -21,10 +22,11 @@ class ComplianceController extends Controller
         $documents = Document::all()->where('business_id',$id);
         $users = User::all()->where('business_id',$id);
         $suppliers = Supplier::all();
+        $incidentreports = IncidentReport::all()->where('business_id',$id);
         $busid = Auth::user()->business_id;
         $stocks = Stock::all()->where('business_id', $busid);
         $contacts = Contact::all();
-        return view('compliance',['documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers, 'contacts'=>$contacts, 'users'=>$users]);
+        return view('compliance',['documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers, 'contacts'=>$contacts, 'users'=>$users, 'incidentreports'=>$incidentreports]);
     }
     public function supplier_reports()
     {

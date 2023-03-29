@@ -6,14 +6,15 @@ use Illuminate\View\Component;
 
 class showincidentreports extends Component
 {
+    public $incidentreports;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($incidentreports)
     {
-        //
+        $this->incidentreports = $incidentreports;
     }
 
     /**

@@ -14,7 +14,9 @@ class IncidentReportController extends Controller
 {
     public function incident_reports()
     {
-        return view('compliance');
+        $busid = Auth::user()->business_id;
+        $incidentreports = IncidentReport::all()->where('business_id',$busid);
+        return view('compliance',['incidentreports'=>$incidentreports]);
     }
     public function create_incidentreport()
     {
@@ -30,6 +32,7 @@ class IncidentReportController extends Controller
         $incidentreport->date_of_incident = $request->report_date;
         $incidentreport->time_of_incident = $request->report_time;
         $incidentreport->incident_type = $request->incident_type;
+        $incidentreport->severity= $request->severity;
         $incidentreport->location=$request->incident_location;
         $incidentreport->description=$request->incident_description;
         $incidentreport->action_taken=$request->action_taken;
@@ -80,8 +83,11 @@ class IncidentReportController extends Controller
      * @param  \App\Models\IncidentReport  $incidentReport
      * @return \Illuminate\Http\Response
      */
-    public function destroy(IncidentReport $incidentReport)
+    public function destroy_incidentreport(incidentreport $incidentreport)
     {
-        //
+        $incidentreport->delete();
+        $busid = Auth::user()->business_id;
+        $incidentreports = IncidentReport::all()->where('business_id',$busid);
+        return view('compliance',['incidentreports'=>$incidentreports]);
     }
 }

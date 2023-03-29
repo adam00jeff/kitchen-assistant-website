@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('date_of_incident');
             $table->string('time_of_incident');
             $table->string('incident_type');
+            $table->string('severity');
             $table->string('location');
             $table->string('description');
             $table->string('action_taken');

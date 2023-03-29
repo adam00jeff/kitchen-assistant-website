@@ -44,6 +44,15 @@
                         </select>
                     </p>
                     <p class="text-gray-700 text-sm">
+                        <label for="severity">Severity:</label>
+                        <select name="severity" id="severity" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3">
+                            <option value="">--- Please Select ---</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </p>
+                    <p class="text-gray-700 text-sm">
                         <label for="incident_location">Incident Location:</label>
                         <textarea id="incident_location" name="incident_location" placeholder="Front of House/ Back of House/ Supplier Address/ ect" rows="2" cols="50" class="appearance-none resize-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"></textarea>
                     </p>
