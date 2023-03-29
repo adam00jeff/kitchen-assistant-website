@@ -22,4 +22,8 @@ class IncidentreportController extends Controller
         $recipes = Recipe::all()->where('business_id',$id);
         return view('compliance',['allergens' => $allergens, 'stocks'=>$stocks,'suppliers' => $suppliers, 'recipes'=>$recipes]);
     }
+    public function create_incidentreport()
+    {
+        return view('incidentreport-form');
+    }
 }
