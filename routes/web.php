@@ -66,6 +66,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //incident reports
     Route::get('/incidentreports',[\App\Http\Controllers\IncidentreportController::class, 'incident_reports'])->name('incidentreports');
     Route::get('/incidentreports/create',[\App\Http\Controllers\IncidentreportController::class, 'create_incidentreport'])->name('create_incidentreport');
+    Route::post('/incidentreports', [\App\Http\Controllers\IncidentreportController::class, 'store_incidentreport'])->name('store_incidentreport');
     //contacts
     Route::get('/contactslist',[\App\Http\Controllers\ContactController::class, 'contact_information'])->name('contactslist');
     Route::get('/contactslist/create',[\App\Http\Controllers\ContactController::class, 'create_contact'])->name('create_contact');

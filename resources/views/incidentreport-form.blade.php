@@ -18,7 +18,7 @@
                 </div>
             @endif
             <!-- main form for new product -->
-            <form method="POST" action="/incidentreport" class="" enctype="multipart/form-data">
+            <form method="POST" action="/incidentreports" class="" enctype="multipart/form-data">
                 @csrf
                 <div class="">
                     <p class="text-gray-700 text-sm">

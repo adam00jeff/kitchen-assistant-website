@@ -6,9 +6,11 @@ use App\Models\Document;
 use App\Http\Requests\StoreDocumentRequest;
 use App\Http\Requests\UpdateDocumentRequest;
 use App\Models\User;
+
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+
+
+
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Storage;
@@ -22,8 +24,6 @@ class DocumentController extends Controller
      */
     public function welcome()
     {
-        $startDate = Carbon::today();
-        $upcoming = Carbon::today()->addWeeks(2);
         $id = Auth::user()->business_id;
         $documents = Document::all()->where('business_id',$id);
         $upcomingdocuments = $this->get_upcoming();
