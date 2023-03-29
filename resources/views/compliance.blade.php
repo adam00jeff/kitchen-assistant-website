@@ -50,7 +50,6 @@
                                 <x-nav-link :href="route('compliance')" :active="request()->routeIs('compliance')">
                                                 {{ __('Back to Compliance') }}
                                             </x-nav-link>
-
                                          </div>
                             @elseif(Route::currentRouteName() == "contactslist")
                                 <div>

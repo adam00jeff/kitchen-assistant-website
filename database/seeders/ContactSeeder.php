@@ -20,6 +20,7 @@ class ContactSeeder extends Seeder
             'address' => "local EHO Office",
             'phone' => "0113 113 113",
             'email' => "email@EHO.com",
+            'business_id' => 1,
         ]);
     }
 }

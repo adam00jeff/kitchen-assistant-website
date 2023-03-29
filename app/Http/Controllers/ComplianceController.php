@@ -93,16 +93,12 @@ class ComplianceController extends Controller
   /*      $stocks = Stock::all()->toArray();*/
         $busid = Auth::user()->business_id;
         $stocks = Stock::query()->where('business_id', $busid)->where('allergens', 'LIKE', "%" . $search . "%")
-            /*            ->orWhere('***', 'LIKE', "%" . $search . "%")
-                        ->orWhere('***', 'LIKE', "%" . $search . "%")*/
             ->get();
             $suppliers = collect();
         foreach($stocks as $stock) {
             $value = $stock->supplier;
             $suppliers->push(Supplier::query()->where('id', $value)->get());
-
         }
-
         $recipes = Recipe::all()->where('business_id',$id);
         $searchedrecipes = collect();
         foreach ($recipes as $recipe){
@@ -119,14 +115,7 @@ class ComplianceController extends Controller
                 }
             }
         }
-        //ddd($searchedrecipes);
-        //get recipes that have ingreditents matching stocks
-
-        //get the search value from the request
-        //search in the allergen table for matches
         $allergens = Allergen::query()->where('name', 'LIKE', "%" . $search . "%")
-/*            ->orWhere('***', 'LIKE', "%" . $search . "%")
-            ->orWhere('***', 'LIKE', "%" . $search . "%")*/
             ->get();
         return view('compliance', ['allergens' => $allergens, 'stocks'=>$stocks,'suppliers' => $suppliers, 'recipes'=>$searchedrecipes]);
     }
