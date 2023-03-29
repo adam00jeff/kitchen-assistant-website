@@ -58,6 +58,11 @@
                             <h2>Suppliers</h2>
                                 <x-showsuppliers :$suppliers />
                                 </div>
+                            @elseif(Route::currentRouteName() == "store_contact")
+                                <div>
+                                    <h2>Contact Stored Successfully</h2>
+                                    <x-showcontacts :$contacts />
+                                </div>
                             @elseif(Route::currentRouteName() == "stafftraining")
                                 <div>
                                     <h1 class="flex justify-center">Staff Training</h1>
