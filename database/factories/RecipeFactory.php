@@ -24,11 +24,6 @@ class RecipeFactory extends Factory
         $fnl = array();
         foreach ($stock as $s){
             $fnl[][$s] = " ".$this->faker->numberBetween(25,2000);
-
-/*
-            foreach ($v as $k2 => $v2) {
-                $req[][$v2] = " ".$qty[$i];
-            }*/
         }
 
         return [

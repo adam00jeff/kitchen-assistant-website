@@ -16,9 +16,7 @@ class AllergenSeeder extends Seeder
     public function run()
     {
         Allergen::truncate();
-
         $csvFile = fopen(base_path("public/storage/csv/Allergens.csv"),"r");
-
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ",")) !==FALSE) {
             if (!$firstline){

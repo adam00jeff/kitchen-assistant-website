@@ -17,9 +17,7 @@ class NutrientSeeder extends Seeder
     public function run()
     {
         Nutrient::truncate();
-
         $csvFile = fopen(base_path("public/storage/csv/Nutritionix_Full_Nutrient.csv"),"r");
-
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ",")) !==FALSE) {
             if (!$firstline){
