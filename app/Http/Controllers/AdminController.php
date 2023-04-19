@@ -10,17 +10,20 @@ use App\Models\User;
 use App\Models\Business;
 use App\Models\Supplier;
 use App\Models\Nutrient;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Populates the admin view with db information
      *
-     * @return Response
+     * @return Application|Factory|View
      */
-    public function index()
+    public function index(): View|Factory|Application
     {
         $id = Auth::id();
         $businesses = Business::all();
@@ -28,6 +31,9 @@ class AdminController extends Controller
         $recipes = Recipe::all();
         $stocks = Stock::all();
         $documents = Document::all();
+        /**
+         * gets only supplier name and ID pairs
+         */
         $suppliers = Supplier::pluck('name','id')->toArray();
         $nutrients = Nutrient::all()->sortBy('type');
         return view('admin_panel',[

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Business;
 use App\Http\Requests\StoreBusinessRequest;
 use App\Http\Requests\UpdateBusinessRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 
 class BusinessController extends Controller
@@ -12,9 +13,9 @@ class BusinessController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return void
      */
-    public function index()
+    public function index(): void
     {
         //
     }
@@ -22,9 +23,9 @@ class BusinessController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return void
      */
-    public function create()
+    public function create(): void
     {
         //
     }
@@ -33,9 +34,9 @@ class BusinessController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StoreBusinessRequest $request
-     * @return Response
+     * @return void
      */
-    public function store(StoreBusinessRequest $request)
+    public function store(StoreBusinessRequest $request): void
     {
         //
     }
@@ -44,9 +45,9 @@ class BusinessController extends Controller
      * Display the specified resource.
      *
      * @param Business $business
-     * @return Response
+     * @return void
      */
-    public function show(Business $business)
+    public function show(Business $business): void
     {
         //
     }
@@ -55,9 +56,9 @@ class BusinessController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Business $business
-     * @return Response
+     * @return void
      */
-    public function edit(Business $business)
+    public function edit(Business $business): void
     {
         //
     }
@@ -67,9 +68,9 @@ class BusinessController extends Controller
      *
      * @param UpdateBusinessRequest $request
      * @param Business $business
-     * @return Response
+     * @return void
      */
-    public function update(UpdateBusinessRequest $request, Business $business)
+    public function update(UpdateBusinessRequest $request, Business $business): void
     {
         //
     }
@@ -78,9 +79,9 @@ class BusinessController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Business $business
-     * @return Response
+     * @return RedirectResponse
      */
-    public function destroy_business(Business $business)
+    public function destroy_business(Business $business): RedirectResponse
     {
         $business->delete();
         $business = Business::all();

@@ -10,13 +10,21 @@ use App\Models\Recipe;
 use App\Models\Stock;
 use App\Models\supplier;
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 
 class ComplianceController extends Controller
 {
-    public function compliance_index()
+    /**
+     * Gets relevant compliance information
+     * finds info related to business ID in tables
+     * @return Application|Factory|View
+     */
+    public function compliance_index(): View|Factory|Application
     {
         $id = Auth::user()->business_id;
         $documents = Document::all()->where('business_id',$id);
@@ -28,7 +36,14 @@ class ComplianceController extends Controller
         $contacts = Contact::all();
         return view('compliance',['documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers, 'contacts'=>$contacts, 'users'=>$users, 'incidentreports'=>$incidentreports]);
     }
-    public function supplier_reports()
+
+    /**
+     * Gets suppliers, documents and stock
+     * passes to arrays where required
+     * finds which stock items are from wich supplier and passes to view
+     * @return Application|Factory|View
+     */
+    public function supplier_reports(): View|Factory|Application
     {
         $id = Auth::user()->business_id;
         $documents = Document::all()->where('business_id',$id);
@@ -36,27 +51,46 @@ class ComplianceController extends Controller
         $stocksarray = Stock::all()->toArray();
         $busid = Auth::user()->business_id;
         $stocks = Stock::all()->where('business_id', $busid);
+        /**
+         * set up variables for associating stock with suppliers
+         */
         $i=0;
         $filtered = collect();
         $instock = collect();
+        /**
+         * get only supplier id's for stock and pass to collection
+         */
         foreach ($stocksarray as $s){
             $p = $s['supplier'];
             $n = $s['name'];
             $filtered->put($n,$p);
         }
+        /**
+         * get check if collection contains entry already
+         */
        foreach($filtered as $name => $supplierID){
                 if($instock->contains($name,$supplierID)){
-                    /*do nothing*/
+                    /**
+                     * do nothing
+                     */
                     $i++;
+                    /**
+                     * if entry does not exist it adds as new array entry
+                     */
                 } else {
                 $value = Supplier::query()->where('id',$supplierID)->get()->toArray();
                 $instock->put($value[0]['id'],$value[0]);
                     $i++;
-                        }
+                }
         }
         return view('compliance',['suppliers' => $suppliers,"documents"=>$documents,'stocks'=>$stocks, 'instock'=>$instock]);
     }
-    public function allergen_information()
+
+    /**
+     * Gets allergens and related information from db
+     * @return Application|Factory|View
+     */
+    public function allergen_information(): View|Factory|Application
     {
         $id = Auth::user()->business_id;
         $allergens = Allergen::all();
@@ -66,7 +100,12 @@ class ComplianceController extends Controller
         $recipes = $recipes = Recipe::all()->where('business_id',$id);
         return view('compliance',['allergens' => $allergens, 'stocks'=>$stocks,'suppliers' => $suppliers, 'recipes'=>$recipes]);
     }
-    public function staff_training()
+
+    /**
+     * gets all documents to associated with staff members
+     * @return Application|Factory|View
+     */
+    public function staff_training(): View|Factory|Application
     {
         $id = Auth::user()->business_id;
         $documents = Document::all()->where('business_id',$id);
