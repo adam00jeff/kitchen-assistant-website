@@ -30,7 +30,12 @@ class RecipesController extends Controller
         $id = Auth::id();
         $validated = $request->validate([
             'name' => 'required|max:255',
-           'addMoreIngredients' => 'required'
+           'addMoreIngredients' => 'required',
+            'method' => 'required'
+        ], [
+            'name.required'=> 'A Recipe Name is Required',
+            'addMoreIngredients.required' => 'At least 1 Ingredient is Required',
+            'method.required'=>'At least 1 Method Step is Required'
         ]);
         $req = array();
         $qty = $request->quantity;
