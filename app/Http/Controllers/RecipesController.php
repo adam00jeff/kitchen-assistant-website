@@ -29,11 +29,9 @@ class RecipesController extends Controller
     {        $busid = Auth::user()->business_id;
         $id = Auth::id();
         $validated = $request->validate([
-            'name' => 'required|max:255'
-/*            'ingredients[]' => 'required|max:255',//supplier ID for now, to be replaced with plain text entry
-            'rmethod[]'=>'required|max:1000'*/
+            'name' => 'required|max:255',
+           'addMoreIngredients' => 'required'
         ]);
-
         $req = array();
         $qty = $request->quantity;
         $i=1;
@@ -42,7 +40,8 @@ class RecipesController extends Controller
                 $req[][$v2] = " ".$qty[$i];
             }
         $i++;
-    }
+        }
+/*        ddd($request->rmethod);*/
         $recipe = new Recipe;
         $recipe->name = $request->name;
         $recipe->ingredients = $req;
@@ -50,12 +49,15 @@ class RecipesController extends Controller
         $recipe->user_id = $id;
         $recipe->business_id = $busid;
         $recipe->save();
-        return response()->json(["msg" => "success"]);
+        $stocks = Stock::all()->where('business_id', $busid);
+        return view('recipes', ['recipes' => $recipe, 'stocks'=> $stocks]);
     }
     public function destroy_recipe(recipe $recipe)
     {
+        $busid = Auth::user()->business_id;
         $recipe->delete();
         $recipes = Recipe::all();
-        return view('recipes', ['recipes' => $recipes]);
+        $stocks = Stock::all()->where('business_id', $busid);
+        return view('recipes', ['recipes' => $recipes, 'stocks'=> $stocks]);
     }
 }

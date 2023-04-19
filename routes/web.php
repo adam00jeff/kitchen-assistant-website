@@ -23,9 +23,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-/*Route::get('/dashboard', function () {
-    return view('welcome');
-})->middleware(['auth', 'verified'])->name('welcome');*/
 Route::get('/dashboard',[\App\Http\Controllers\DocumentController::class, 'welcome'])->name('welcome')->middleware(['auth', 'verified']);
 
 Route::middleware(['auth', 'checkrole:admin'])->group(function (){

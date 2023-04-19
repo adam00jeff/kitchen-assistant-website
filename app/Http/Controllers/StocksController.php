@@ -36,7 +36,6 @@ class StocksController extends Controller
 
     public function confirm(Request $request)
     {
-/*        ddd($request);*/
         $validated = $request->validate([
             'name' => 'required|max:255',
             'supplier' => 'required|numeric',//supplier ID for now, to be replaced with plain text entry

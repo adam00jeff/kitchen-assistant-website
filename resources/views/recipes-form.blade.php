@@ -76,6 +76,7 @@
         $("#dynamic-ar-step").click(function () {
             $("#dynamicAddRemoveStep").append(
                 '<tr><td><input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="rmethod['+x+']" name="rmethod['+x+']" type="text" placeholder="Step '+step+'"></td><td></td><td><button type="button" class="remove-step-field">Delete</button></td></tr><br>');
+            ++x;
             ++step;
             ++stepcount;
         });
