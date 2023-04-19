@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Allergen;
 use App\Models\Nutrient;
 use App\Models\Stock;
 use App\Models\Supplier;
-use App\Models\Allergen;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 
 class StocksController extends Controller
@@ -22,16 +18,16 @@ class StocksController extends Controller
         $busid = Auth::user()->business_id;
         $stocks = Stock::all()->where('business_id', $busid);
         $nutrients = Nutrient::all()->sortBy('type');
-        $suppliers = Supplier::pluck('name','id')->toArray();
-        return view('stock', ['stocks' => $stocks,'suppliers'=>$suppliers, 'nutrients'=>$nutrients]);
+        $suppliers = Supplier::pluck('name', 'id')->toArray();
+        return view('stock', ['stocks' => $stocks, 'suppliers' => $suppliers, 'nutrients' => $nutrients]);
     }
 
 
     public function create()
     {
-        $suppliers = Supplier::pluck('name','id');
-        $allergens = Allergen::pluck('name','id');
-        return view('stock-form', ['suppliers'=>$suppliers,'allergens'=>$allergens]);
+        $suppliers = Supplier::pluck('name', 'id');
+        $allergens = Allergen::pluck('name', 'id');
+        return view('stock-form', ['suppliers' => $suppliers, 'allergens' => $allergens]);
     }
 
     public function confirm(Request $request)
@@ -41,13 +37,13 @@ class StocksController extends Controller
             'supplier' => 'required|numeric',//supplier ID for now, to be replaced with plain text entry
             'unit' => 'required|max:50',
             'info' => 'required',
-        ],['info.required' => 'Please add Stock Information'
+        ], ['info.required' => 'Please add Stock Information'
 
         ]);
         $gotquery = $request->name;
-        $getsupplier = Supplier::query()->where('id','=',$request->supplier)->get();
+        $getsupplier = Supplier::query()->where('id', '=', $request->supplier)->get();
         $thissupplier = $getsupplier->toArray();
-        $supplier =$thissupplier['0'];
+        $supplier = $thissupplier['0'];
 
         $sess = [
             "name" => $request->name,
@@ -55,7 +51,7 @@ class StocksController extends Controller
             "supplier" => $supplier,
             "info" => $request->info,
             "allergens" => $request->addMoreAllergenFields
-/*            "db_allergens" => Allergen::query()->where('id','=',$request->db_allergens)->get()->toArray()*/
+            /*            "db_allergens" => Allergen::query()->where('id','=',$request->db_allergens)->get()->toArray()*/
         ];
         session()->put($sess);
         $appid = "9787f4f0";
@@ -73,29 +69,29 @@ class StocksController extends Controller
         ]);
         $data = json_decode($response, true);
 
-        if (array_key_exists('message',$data)) {
-            $suppliers = Supplier::pluck('name','id');
-            $allergens = Allergen::pluck('name','id');
-            return view('stock-form', ['suppliers'=>$suppliers,'allergens'=>$allergens, 'data'=>$data, 'failMsg'=>'Ingredient not found in database']);
+        if (array_key_exists('message', $data)) {
+            $suppliers = Supplier::pluck('name', 'id');
+            $allergens = Allergen::pluck('name', 'id');
+            return view('stock-form', ['suppliers' => $suppliers, 'allergens' => $allergens, 'data' => $data, 'failMsg' => 'Ingredient not found in database']);
         }
         $allergens = Allergen::all();
         $usrallergens = $request->addMoreAllergenFields;
         $nutrients = Nutrient::all()->sortBy('type');
-        return view('stock-confirm', ['data' => $data, 'nutrients' => $nutrients, 'supplier'=>$supplier,'allergens'=>$allergens, 'usrallergens'=>$usrallergens]);
+        return view('stock-confirm', ['data' => $data, 'nutrients' => $nutrients, 'supplier' => $supplier, 'allergens' => $allergens, 'usrallergens' => $usrallergens]);
     }
 
     public function store(Request $request)
     {
         $a = session('allergens');
         $allergens = array();
-        foreach ($a as $k=>$v){
-            foreach($v as $k=> $v){
-                array_push($allergens,$v);
+        foreach ($a as $k => $v) {
+            foreach ($v as $k => $v) {
+                array_push($allergens, $v);
             }
         }
         $id = Auth::id();
         $busid = Auth::user()->business_id;
-        $s = Supplier::query()->where('name','=',$request->supplier)->get();
+        $s = Supplier::query()->where('name', '=', $request->supplier)->get();
         $s1 = $s->toArray();
         $supplier = $s1['0'];
         $nutrients = session('nutrients');
@@ -110,22 +106,23 @@ class StocksController extends Controller
         $stock->info = $request->info;
         $stock->allergens = $allergens;
 
-        $stock->callories=$request->callories;
+        $stock->callories = $request->callories;
         $stock->user_id = $id;
         $stock->business_id = $busid;
         $stock->nutrients = $nutrients;
         $stock->image = $photo;
         $stock->save();
-        $suppliers = Supplier::pluck('name','id');
+        $suppliers = Supplier::pluck('name', 'id');
         $nutrients = Nutrient::all()->sortBy('type');
-        return view('stock', ['stocks' => $stock, 'suppliers'=>$suppliers, 'nutrients'=>$nutrients]);
+        return view('stock', ['stocks' => $stock, 'suppliers' => $suppliers, 'nutrients' => $nutrients]);
     }
+
     public function destroy_stock(Stock $stock)
     {
         $stock->delete();
         $id = Auth::id();
         $busid = Auth::user()->business_id;
         $stocks = Stock::all()->where('business_id', $busid);
-        return redirect()->route('stock', ['stocks' => $stocks])->with('success','deleted');
+        return redirect()->route('stock', ['stocks' => $stocks])->with('success', 'deleted');
     }
 }

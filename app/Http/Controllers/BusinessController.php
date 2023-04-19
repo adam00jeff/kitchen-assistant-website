@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Business;
 use App\Http\Requests\StoreBusinessRequest;
 use App\Http\Requests\UpdateBusinessRequest;
+use App\Models\Business;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
 
 class BusinessController extends Controller
 {

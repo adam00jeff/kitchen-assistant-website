@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Allergen;
 use App\Models\Business;
 use App\Models\Contact;
@@ -27,14 +28,14 @@ class ComplianceController extends Controller
     public function compliance_index(): View|Factory|Application
     {
         $id = Auth::user()->business_id;
-        $documents = Document::all()->where('business_id',$id);
-        $users = User::all()->where('business_id',$id);
+        $documents = Document::all()->where('business_id', $id);
+        $users = User::all()->where('business_id', $id);
         $suppliers = Supplier::all();
-        $incidentreports = IncidentReport::all()->where('business_id',$id);
+        $incidentreports = IncidentReport::all()->where('business_id', $id);
         $busid = Auth::user()->business_id;
         $stocks = Stock::all()->where('business_id', $busid);
         $contacts = Contact::all();
-        return view('compliance',['documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers, 'contacts'=>$contacts, 'users'=>$users, 'incidentreports'=>$incidentreports]);
+        return view('compliance', ['documents' => $documents, 'stocks' => $stocks, 'suppliers' => $suppliers, 'contacts' => $contacts, 'users' => $users, 'incidentreports' => $incidentreports]);
     }
 
     /**
@@ -46,7 +47,7 @@ class ComplianceController extends Controller
     public function supplier_reports(): View|Factory|Application
     {
         $id = Auth::user()->business_id;
-        $documents = Document::all()->where('business_id',$id);
+        $documents = Document::all()->where('business_id', $id);
         $suppliers = Supplier::all()->toArray();
         $stocksarray = Stock::all()->toArray();
         $busid = Auth::user()->business_id;
@@ -54,38 +55,35 @@ class ComplianceController extends Controller
         /**
          * set up variables for associating stock with suppliers
          */
-        $i=0;
+        $i = 0;
         $filtered = collect();
         $instock = collect();
         /**
          * get only supplier id's for stock and pass to collection
          */
-        foreach ($stocksarray as $s){
+        foreach ($stocksarray as $s) {
             $p = $s['supplier'];
             $n = $s['name'];
-            $filtered->put($n,$p);
+            $filtered->put($n, $p);
         }
         /**
          * get check if collection contains entry already
          */
-       foreach($filtered as $name => $supplierID){
-                if($instock->contains($name,$supplierID)){
-                    /**
-                     * do nothing
-                     */
-                    $i++;
-                    /**
-                     * if entry does not exist it adds as new array entry
-                     */
-                } else {
-                $value = Supplier::query()->where('id',$supplierID)->get()->toArray();
-                $instock->put($value[0]['id'],$value[0]);
-                    $i++;
-                }
+        foreach ($filtered as $name => $supplierID) {
+            if ($instock->contains($name, $supplierID)) {
+                /**
+                 * do nothing
+                 */
+                $i++;
+//                 if entry does not exist it adds as new array entry
+            } else {
+                $value = Supplier::query()->where('id', $supplierID)->get()->toArray();
+                $instock->put($value[0]['id'], $value[0]);
+                $i++;
+            }
         }
-        return view('compliance',['suppliers' => $suppliers,"documents"=>$documents,'stocks'=>$stocks, 'instock'=>$instock]);
+        return view('compliance', ['suppliers' => $suppliers, "documents" => $documents, 'stocks' => $stocks, 'instock' => $instock]);
     }
-
     /**
      * Gets allergens and related information from db
      * @return Application|Factory|View
@@ -97,8 +95,8 @@ class ComplianceController extends Controller
         $suppliers = Supplier::all();
         $busid = Auth::user()->business_id;
         $stocks = Stock::all()->where('business_id', $busid);
-        $recipes = $recipes = Recipe::all()->where('business_id',$id);
-        return view('compliance',['allergens' => $allergens, 'stocks'=>$stocks,'suppliers' => $suppliers, 'recipes'=>$recipes]);
+        $recipes = $recipes = Recipe::all()->where('business_id', $id);
+        return view('compliance', ['allergens' => $allergens, 'stocks' => $stocks, 'suppliers' => $suppliers, 'recipes' => $recipes]);
     }
 
     /**
@@ -108,47 +106,58 @@ class ComplianceController extends Controller
     public function staff_training(): View|Factory|Application
     {
         $id = Auth::user()->business_id;
-        $documents = Document::all()->where('business_id',$id);
-        $businesses = Business::all()->where('id',$id);
+        $documents = Document::all()->where('business_id', $id);
+        $businesses = Business::all()->where('id', $id);
         $suppliers = Supplier::all();
         $busid = Auth::user()->business_id;
         $stocks = Stock::all()->where('business_id', $busid);
         $contacts = Contact::all();
-        $users = User::all()->where('business_id',$id);
-        return view('compliance',['businesses'=>$businesses,'documents'=>$documents,'stocks'=>$stocks, 'suppliers' => $suppliers, 'contacts'=>$contacts, 'users'=>$users]);
+        $users = User::all()->where('business_id', $id);
+        return view('compliance', ['businesses' => $businesses, 'documents' => $documents, 'stocks' => $stocks, 'suppliers' => $suppliers, 'contacts' => $contacts, 'users' => $users]);
     }
 
-    public function allergen_search(Request $request)
+    /**
+     * allows users to search allergen database and view information on their use and supply
+     * @param Request $request
+     * @return Application|Factory|View
+     */
+    public function allergen_search(Request $request): View|Factory|Application
     {
         $search = $request->input('search');
         $id = Auth::user()->business_id;
-  /*      $stocks = Stock::all()->toArray();*/
         $busid = Auth::user()->business_id;
+//        finds stock items which have allergens matching the search string
         $stocks = Stock::query()->where('business_id', $busid)->where('allergens', 'LIKE', "%" . $search . "%")
             ->get();
-            $suppliers = collect();
-        foreach($stocks as $stock) {
+//        created new collection for grouping data to suppliers
+        $suppliers = collect();
+//        iterates through selected stock, adding to collection
+        foreach ($stocks as $stock) {
             $value = $stock->supplier;
             $suppliers->push(Supplier::query()->where('id', $value)->get());
         }
-        $recipes = Recipe::all()->where('business_id',$id);
+        $recipes = Recipe::all()->where('business_id', $id);
+//        creates new collection for recipes with searched allergen
         $searchedrecipes = collect();
-        foreach ($recipes as $recipe){
+        foreach ($recipes as $recipe) {
             foreach ($stocks as $s) {
-                $stockname = $s -> name;
+//                compares stock allergen to stock in recipe
+                $stockname = $s->name;
                 $ing = $recipe->ingredients;
-                foreach ($ing as $key => $value){
-                    foreach($value as $ingredient=>$v){
-                        if( $ingredient == $stockname){
-                            if(!$searchedrecipes->contains('name',$recipe->name))
-                            $searchedrecipes->push($recipe);
-                            }
+                foreach ($ing as $key => $value) {
+                    foreach ($value as $ingredient => $v) {
+                        if ($ingredient == $stockname) {
+//                            adds found allergen if not already present
+                            if (!$searchedrecipes->contains('name', $recipe->name))
+                                $searchedrecipes->push($recipe);
+                        }
                     }
                 }
             }
         }
+//        gets allergens from DB matching search query
         $allergens = Allergen::query()->where('name', 'LIKE', "%" . $search . "%")
             ->get();
-        return view('compliance', ['allergens' => $allergens, 'stocks'=>$stocks,'suppliers' => $suppliers, 'recipes'=>$searchedrecipes]);
+        return view('compliance', ['allergens' => $allergens, 'stocks' => $stocks, 'suppliers' => $suppliers, 'recipes' => $searchedrecipes]);
     }
 }

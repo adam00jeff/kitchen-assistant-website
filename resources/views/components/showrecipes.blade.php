@@ -20,11 +20,11 @@
                                    <?php $unit = $value->serving_unit ?>
                                 @endif
                             @endforeach
-                                {{$k}}{{$v}} {{$unit}}
+                                {{$k}}{{$v}} {{$unit}}<br>
                             @endforeach
                         @endforeach{{--</textarea>--}}
                     @endif</td>
-                <td class="border border border-gray-900 px-6 py-3"><textarea>@foreach($recipe['method'] as $m)
+                <td class=""><textarea>@foreach($recipe['method'] as $m)
 {{ $m }}
 @endforeach</textarea></td>
                 <td>

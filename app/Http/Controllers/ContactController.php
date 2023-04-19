@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Allergen;
-use App\Models\Contact;
 use App\Http\Requests\StoreContactRequest;
 use App\Http\Requests\UpdateContactRequest;
+use App\Models\Allergen;
+use App\Models\Contact;
 use App\Models\Recipe;
 use App\Models\Stock;
 use App\Models\supplier;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,11 +19,11 @@ use Illuminate\Support\Facades\DB;
 class ContactController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Gets contact information and relevant other data
      *
-     * @return Response
+     * @return Application|Factory|View
      */
-    public function contact_information()
+    public function contact_information(): View|Factory|Application
     {
         $id = Auth::user()->business_id;
         $allergens = Allergen::all();
@@ -28,35 +31,35 @@ class ContactController extends Controller
         $busid = Auth::user()->business_id;
         $stocks = Stock::all()->where('business_id', $busid);
         $contacts = Contact::all()->where('business_id', $busid);
-        $recipes = Recipe::all()->where('business_id',$id);
-        return view('compliance',['allergens' => $allergens, 'stocks'=>$stocks,'suppliers' => $suppliers, 'recipes'=>$recipes, 'contacts'=>$contacts]);
+        $recipes = Recipe::all()->where('business_id', $id);
+        return view('compliance', ['allergens' => $allergens, 'stocks' => $stocks, 'suppliers' => $suppliers, 'recipes' => $recipes, 'contacts' => $contacts]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new contact.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
-    public function create_contact()
+    public function create_contact(): View|Factory|Application
     {
         return view('contact-form');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created contact in storage.
      *
      * @param StoreContactRequest $request
-     * @return Response
+     * @return Application|Factory|View
      */
-    public function store_contact(StoreContactRequest $request)
+    public function store_contact(StoreContactRequest $request): View|Factory|Application
     {
         $id = Auth::user()->business_id;
         $contact = new Contact();
         $contact->name = $request->name;
         $contact->address = $request->address;
         $contact->phone = $request->phone;
-        $contact->email= $request->email;
-        $contact->business_id=$id;
+        $contact->email = $request->email;
+        $contact->business_id = $id;
         $contact->save();
         $contacts = DB::table('contacts')->where('business_id', $id)->latest('created_at')->first();
         return view('compliance', ['contacts' => $contacts]);
@@ -66,9 +69,9 @@ class ContactController extends Controller
      * Display the specified resource.
      *
      * @param Contact $contact
-     * @return Response
+     * @return void
      */
-    public function show(Contact $contact)
+    public function show(Contact $contact): void
     {
         //
     }
@@ -77,9 +80,9 @@ class ContactController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Contact $contact
-     * @return Response
+     * @return void
      */
-    public function edit(Contact $contact)
+    public function edit(Contact $contact): void
     {
         //
     }
@@ -89,20 +92,20 @@ class ContactController extends Controller
      *
      * @param UpdateContactRequest $request
      * @param Contact $contact
-     * @return Response
+     * @return void
      */
-    public function update(UpdateContactRequest $request, Contact $contact)
+    public function update(UpdateContactRequest $request, Contact $contact): void
     {
         //
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified contact from storage.
      *
      * @param Contact $contact
-     * @return Response
+     * @return Application|Factory|View
      */
-    public function destroy_contact(contact $contact)
+    public function destroy_contact(contact $contact): View|Factory|Application
     {
         $contact->delete();
         $contacts = Contact::all();
