@@ -39,7 +39,10 @@ class StocksController extends Controller
         $validated = $request->validate([
             'name' => 'required|max:255',
             'supplier' => 'required|numeric',//supplier ID for now, to be replaced with plain text entry
-            'unit' => 'required|max:50'
+            'unit' => 'required|max:50',
+            'info' => 'required',
+        ],['info.required' => 'Please add Stock Information'
+
         ]);
         $gotquery = $request->name;
         $getsupplier = Supplier::query()->where('id','=',$request->supplier)->get();
@@ -69,6 +72,12 @@ class StocksController extends Controller
             "timezone" => "GB"
         ]);
         $data = json_decode($response, true);
+
+        if (array_key_exists('message',$data)) {
+            $suppliers = Supplier::pluck('name','id');
+            $allergens = Allergen::pluck('name','id');
+            return view('stock-form', ['suppliers'=>$suppliers,'allergens'=>$allergens, 'data'=>$data, 'failMsg'=>'Ingredient not found in database']);
+        }
         $allergens = Allergen::all();
         $usrallergens = $request->addMoreAllergenFields;
         $nutrients = Nutrient::all()->sortBy('type');

@@ -31,7 +31,7 @@
                         <x-nav-link :href="route('welcome')">
                             {{ __('Hide Overdue Documents') }}
                         </x-nav-link>
-                        <x-overduedocuments :$overduedocuments/>
+                        <x-overduedocuments :$overduedocuments :$incidentreports/>
                         </div>
                     @endif
                         @if(Route::currentRouteName() == "welcome")

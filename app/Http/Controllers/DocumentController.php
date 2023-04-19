@@ -30,7 +30,8 @@ class DocumentController extends Controller
         $upcomingdocuments = $this->get_upcoming();
         $overduedocuments = $this->get_overdue();
         $recentincidents = $this->get_recentincidents();
-        return view('welcome',['documents'=>$documents, 'overduedocuments'=>$overduedocuments, 'upcomingdocuments'=>$upcomingdocuments,'incidentreports'=>$recentincidents]);
+        $incidentreports = IncidentReport::all()->where('business_id',$id);
+        return view('welcome',['incidentreports'=>$incidentreports, 'documents'=>$documents, 'overduedocuments'=>$overduedocuments, 'upcomingdocuments'=>$upcomingdocuments,'incidentreports'=>$recentincidents]);
     }
     public function documents_index()
     {
@@ -44,13 +45,16 @@ class DocumentController extends Controller
         $id = Auth::user()->business_id;
         $overduedocuments = $this->get_overdue();
         $upcomingdocuments = $this->get_upcoming();
-        return view('welcome',['upcomingdocuments'=>$upcomingdocuments,'overduedocuments'=>$overduedocuments]);
+        $incidentreports = IncidentReport::all()->where('business_id',$id);
+        return view('welcome',['upcomingdocuments'=>$upcomingdocuments,'incidentreports'=>$incidentreports,'overduedocuments'=>$overduedocuments]);
     }
     public function upcoming_documents()
     {
+        $id = Auth::user()->business_id;
         $overduedocuments = $this->get_overdue();
         $upcomingdocuments = $this->get_upcoming();
-        return view('welcome',['upcomingdocuments'=>$upcomingdocuments,'overduedocuments'=>$overduedocuments]);
+        $incidentreports = IncidentReport::all()->where('business_id',$id);
+        return view('welcome',['upcomingdocuments'=>$upcomingdocuments,'incidentreports'=>$incidentreports,'overduedocuments'=>$overduedocuments]);
     }
     /**
      * Show the form for creating a new resource.

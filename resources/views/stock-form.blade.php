@@ -6,7 +6,7 @@
     </x-slot>
     <div class="py-12">
     @include('layouts.stock_navigation')
-    <div class="flex justify-center items-center p-2">
+    <div class="grid justify-center items-center">
         <!-- if to catch errors and report to user -->
         @if ($errors->any())
             <div class="bg-red-600 border-solid rounded-md border-2 border-red-700">
@@ -16,6 +16,9 @@
                     @endforeach
                 </ul>
             </div>
+        @endif
+        @if(!empty($failMsg))
+            <div class="bg-red-600 border-solid rounded-md border-3 border-red-700 p-2"> {{ $failMsg }}</div>
         @endif
 <br><br>
         <form method="post" action="/stocks/confirm" class="" enctype="multipart/form-data">
