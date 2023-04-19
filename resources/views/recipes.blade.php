@@ -16,6 +16,7 @@
                                 <div>
                                     @if(Route::currentRouteName() == "store_recipes")
                                         <h1>New Recipe Created</h1>
+                                        <x-show_single_recipe :$recipes :$stocks />
                                     @else <x-showrecipes :recipes="$recipes" :$stocks/>
                                         @endif
                                 </div>
