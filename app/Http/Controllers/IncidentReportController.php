@@ -47,8 +47,8 @@ class IncidentReportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\IncidentReport  $incidentReport
-     * @return \Illuminate\Http\Response
+     * @param IncidentReport $incidentReport
+     * @return Response
      */
     public function show(IncidentReport $incidentReport)
     {
@@ -58,8 +58,8 @@ class IncidentReportController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\IncidentReport  $incidentReport
-     * @return \Illuminate\Http\Response
+     * @param IncidentReport $incidentReport
+     * @return Response
      */
     public function edit(IncidentReport $incidentReport)
     {
@@ -69,9 +69,9 @@ class IncidentReportController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateIncidentReportRequest  $request
-     * @param  \App\Models\IncidentReport  $incidentReport
-     * @return \Illuminate\Http\Response
+     * @param UpdateIncidentReportRequest $request
+     * @param IncidentReport $incidentReport
+     * @return Response
      */
     public function update(UpdateIncidentReportRequest $request, IncidentReport $incidentReport)
     {
@@ -81,8 +81,8 @@ class IncidentReportController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\IncidentReport  $incidentReport
-     * @return \Illuminate\Http\Response
+     * @param IncidentReport $incidentReport
+     * @return Response
      */
     public function destroy_incidentreport(incidentreport $incidentreport)
     {

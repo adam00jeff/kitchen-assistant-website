@@ -17,7 +17,7 @@ class StockSeeder extends Seeder
     /**
      * The current Faker instance.
      *
-     * @var \Faker\Generator
+     * @var Generator
      */
     protected $faker;
 
@@ -34,7 +34,7 @@ class StockSeeder extends Seeder
     /**
      * Get a new Faker instance.
      *
-     * @return \Faker\Generator
+     * @return Generator
      */
     protected function withFaker()
     {

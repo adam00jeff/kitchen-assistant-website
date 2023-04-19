@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\supplier;
 use App\Http\Requests\StoresupplierRequest;
 use App\Http\Requests\UpdatesupplierRequest;
+use Illuminate\Http\Response;
 
 class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function suppliers_index()
     {
@@ -22,7 +23,7 @@ class SupplierController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create_supplier()
     {
@@ -32,8 +33,8 @@ class SupplierController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoresupplierRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param StoresupplierRequest $request
+     * @return Response
      */
     public function store_supplier(StoresupplierRequest $request)
     {
@@ -50,8 +51,8 @@ class SupplierController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\supplier  $supplier
-     * @return \Illuminate\Http\Response
+     * @param supplier $supplier
+     * @return Response
      */
     public function show(supplier $supplier)
     {
@@ -61,8 +62,8 @@ class SupplierController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\supplier  $supplier
-     * @return \Illuminate\Http\Response
+     * @param supplier $supplier
+     * @return Response
      */
     public function edit(supplier $supplier)
     {
@@ -72,9 +73,9 @@ class SupplierController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatesupplierRequest  $request
-     * @param  \App\Models\supplier  $supplier
-     * @return \Illuminate\Http\Response
+     * @param UpdatesupplierRequest $request
+     * @param supplier $supplier
+     * @return Response
      */
     public function update(UpdatesupplierRequest $request, supplier $supplier)
     {
@@ -84,8 +85,8 @@ class SupplierController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\supplier  $supplier
-     * @return \Illuminate\Http\Response
+     * @param supplier $supplier
+     * @return Response
      */
     public function destroy_supplier(supplier $supplier)
     {

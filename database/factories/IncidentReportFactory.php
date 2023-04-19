@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\IncidentReport;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\IncidentReport>
+ * @extends Factory<IncidentReport>
  */
 class IncidentReportFactory extends Factory
 {

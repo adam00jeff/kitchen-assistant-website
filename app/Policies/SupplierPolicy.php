@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\User;
 use App\Models\supplier;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class SupplierPolicy
 {
@@ -13,8 +14,8 @@ class SupplierPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param User $user
+     * @return Response|bool
      */
     public function viewAny(User $user)
     {
@@ -24,9 +25,9 @@ class SupplierPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\supplier  $supplier
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param User $user
+     * @param supplier $supplier
+     * @return Response|bool
      */
     public function view(User $user, supplier $supplier)
     {
@@ -36,8 +37,8 @@ class SupplierPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param User $user
+     * @return Response|bool
      */
     public function create(User $user)
     {
@@ -47,9 +48,9 @@ class SupplierPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\supplier  $supplier
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param User $user
+     * @param supplier $supplier
+     * @return Response|bool
      */
     public function update(User $user, supplier $supplier)
     {
@@ -59,9 +60,9 @@ class SupplierPolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\supplier  $supplier
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param User $user
+     * @param supplier $supplier
+     * @return Response|bool
      */
     public function delete(User $user, supplier $supplier)
     {
@@ -71,9 +72,9 @@ class SupplierPolicy
     /**
      * Determine whether the user can restore the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\supplier  $supplier
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param User $user
+     * @param supplier $supplier
+     * @return Response|bool
      */
     public function restore(User $user, supplier $supplier)
     {
@@ -83,9 +84,9 @@ class SupplierPolicy
     /**
      * Determine whether the user can permanently delete the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\supplier  $supplier
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param User $user
+     * @param supplier $supplier
+     * @return Response|bool
      */
     public function forceDelete(User $user, supplier $supplier)
     {
