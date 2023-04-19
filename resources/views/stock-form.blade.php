@@ -20,7 +20,7 @@
         @if(!empty($failMsg))
             <div class="bg-red-600 border-solid rounded-md border-3 border-red-700 p-2"> {{ $failMsg }}</div>
         @endif
-<br><br>
+        <div class="container mt-5">
         <form method="post" action="/stocks/confirm" class="" enctype="multipart/form-data">
             @csrf
             <div class="">
@@ -64,6 +64,7 @@
                 </div>
             </div>
         </form>
+        </div>
     </div>
     </div>
 
