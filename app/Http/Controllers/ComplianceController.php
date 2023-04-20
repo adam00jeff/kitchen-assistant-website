@@ -28,6 +28,7 @@ class ComplianceController extends Controller
     public function compliance_index(): View|Factory|Application
     {
         $id = Auth::user()->business_id;
+        $allergens = Allergen::all();
         $documents = Document::all()->where('business_id', $id);
         $users = User::all()->where('business_id', $id);
         $suppliers = Supplier::all();
@@ -35,7 +36,7 @@ class ComplianceController extends Controller
         $busid = Auth::user()->business_id;
         $stocks = Stock::all()->where('business_id', $busid);
         $contacts = Contact::all();
-        return view('compliance', ['documents' => $documents, 'stocks' => $stocks, 'suppliers' => $suppliers, 'contacts' => $contacts, 'users' => $users, 'incidentreports' => $incidentreports]);
+        return view('compliance', ['allergens'=>$allergens,'documents' => $documents, 'stocks' => $stocks, 'suppliers' => $suppliers, 'contacts' => $contacts, 'users' => $users, 'incidentreports' => $incidentreports]);
     }
 
     /**
@@ -46,6 +47,7 @@ class ComplianceController extends Controller
      */
     public function supplier_reports(): View|Factory|Application
     {
+        $allergens = Allergen::all();
         $id = Auth::user()->business_id;
         $documents = Document::all()->where('business_id', $id);
         $suppliers = Supplier::all()->toArray();

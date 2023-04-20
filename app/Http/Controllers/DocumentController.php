@@ -61,12 +61,16 @@ class DocumentController extends Controller
      */
     public function overdue_documents(): View|Factory|Application
     {
-        $startDate = Carbon::today()->addWeeks(2);
         $id = Auth::user()->business_id;
+        $allergens = Allergen::all();
+        $stocks = Stock::all()->where('business_id', $id);
+        $recipes = $recipes = Recipe::all()->where('business_id', $id);
+        $suppliers = Supplier::all();
+        $startDate = Carbon::today()->addWeeks(2);
         $overduedocuments = $this->get_overdue();
         $upcomingdocuments = $this->get_upcoming();
         $incidentreports = IncidentReport::all()->where('business_id', $id);
-        return view('welcome', ['upcomingdocuments' => $upcomingdocuments, 'incidentreports' => $incidentreports, 'overduedocuments' => $overduedocuments]);
+        return view('welcome', ['recipes'=>$recipes,'suppliers'=>$suppliers,'stocks'=>$stocks,'allergens'=>$allergens,'upcomingdocuments' => $upcomingdocuments, 'incidentreports' => $incidentreports, 'overduedocuments' => $overduedocuments]);
     }
     /**
      * Display a listing of documents for the upcomming documents view
@@ -76,10 +80,15 @@ class DocumentController extends Controller
     public function upcoming_documents(): View|Factory|Application
     {
         $id = Auth::user()->business_id;
+        $allergens = Allergen::all();
+        $stocks = Stock::all()->where('business_id', $id);
+        $recipes = $recipes = Recipe::all()->where('business_id', $id);
+        $suppliers = Supplier::all();
+        $id = Auth::user()->business_id;
         $overduedocuments = $this->get_overdue();
         $upcomingdocuments = $this->get_upcoming();
         $incidentreports = IncidentReport::all()->where('business_id', $id);
-        return view('welcome', ['upcomingdocuments' => $upcomingdocuments, 'incidentreports' => $incidentreports, 'overduedocuments' => $overduedocuments]);
+        return view('welcome', ['recipes'=>$recipes,'suppliers'=>$suppliers,'stocks'=>$stocks,'allergens'=>$allergens,'upcomingdocuments' => $upcomingdocuments, 'incidentreports' => $incidentreports, 'overduedocuments' => $overduedocuments]);
     }
 
     /**

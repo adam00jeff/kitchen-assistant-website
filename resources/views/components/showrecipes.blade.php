@@ -9,10 +9,9 @@
         @foreach($recipes as $recipe)
             <tr>
                 <td class="px-6 py-3">{{$recipe['name']}}</td>
-
                 <td class="px-6 py-3">
                     @if(is_string($recipe['ingredients'])){{$recipe['ingredients']}}
-                        @else{{--<textarea>--}} @foreach($recipe['ingredients'] as $ingredient)
+                        @else @foreach($recipe['ingredients'] as $ingredient)
                             @foreach($ingredient as $k => $v)
                                 @php($unit = "")
                                 @foreach($stocks as $key => $value)
@@ -22,7 +21,7 @@
                             @endforeach
                                 {{$k}}{{$v}} {{$unit}}<br>
                             @endforeach
-                        @endforeach{{--</textarea>--}}
+                        @endforeach
                     @endif</td>
                 <td class=""><textarea>@foreach($recipe['method'] as $m)
 {{ $m }}
